@@ -30,56 +30,50 @@ const pathMap: Record<string, string> = {
 
 export function DynamicBreadcrumb() {
   const pathname = usePathname();
-
-  // Remove leading slash and split path segments
-  // Ignore route groups like (dashboards)
-  const pathSegments = pathname.split('/').filter(segment =>
+  const rawSegments = pathname.split('/').filter(segment =>
     segment !== '' && !segment.startsWith('(') && !segment.endsWith(')')
   );
 
-  // For root path, show only VI Operate > Console
-  if (pathSegments.length === 0) {
-    return (
-      <Breadcrumb className="flex text-sm">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/">VI Operate</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    );
+  // Base breadcrumbs: VI Operate > Console
+  const baseCrumbs = [
+    { name: 'VI Operate', href: '/' },
+    { name: 'Console', href: '/console' }
+  ];
+
+  let additionalSegments = [...rawSegments];
+  if (additionalSegments[0] === 'console') {
+    additionalSegments = additionalSegments.slice(1);
   }
+
+  const crumbs = [...baseCrumbs];
+  let accumulatedPath = '/console';
+  additionalSegments.forEach(segment => {
+    accumulatedPath += `/${segment}`;
+    const displayName = pathMap[segment] || segment.replace(/-/g, ' ');
+    crumbs.push({ name: displayName, href: accumulatedPath });
+  });
 
   return (
     <Breadcrumb className="flex items-center mb-2 text-sm">
       <BreadcrumbList>
-        {/* Map each path segment to breadcrumb item */}
-        {pathSegments.map((segment, index) => {
-          const segmentPath = `/${pathSegments.slice(0, index + 1).join('/')}`;
-          const isLastSegment = index === pathSegments.length - 1;
-          const displayName = pathMap[segment] || segment.replace(/-/g, ' ');
-
-          return (
-            <React.Fragment key={segment}>
-              {index > 0 && <BreadcrumbSeparator />}
-              <BreadcrumbItem>
-                {isLastSegment ? (
-                  <BreadcrumbPage className="capitalize">
-                    {displayName}
-                  </BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink asChild>
-                    <Link href={segmentPath} className="capitalize">
-                      {displayName}
-                    </Link>
-                  </BreadcrumbLink>
-                )}
-              </BreadcrumbItem>
-            </React.Fragment>
-          );
-        })}
+        {crumbs.map((crumb, index) => (
+          <React.Fragment key={crumb.href}>
+            {index > 0 && <BreadcrumbSeparator />}
+            <BreadcrumbItem>
+              {index === crumbs.length - 1 ? (
+                <BreadcrumbPage className="capitalize">
+                  {crumb.name}
+                </BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink asChild>
+                  <Link href={crumb.href} className="capitalize">
+                    {crumb.name}
+                  </Link>
+                </BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+          </React.Fragment>
+        ))}
       </BreadcrumbList>
     </Breadcrumb>
   );
