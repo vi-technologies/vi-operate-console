@@ -19,12 +19,6 @@ import { useRouter } from 'next/navigation';
 import { CardIcon } from '@/components/universal/card-icon';
 import useWorkflows from '@/hooks/useWorkflows';
 import useAgents from '@/hooks/useAgents';
-import Workflows from './Workflows';
-import AgentsContent from './AgentsContent';
-import CronContent from './CronContent';
-import EventsContent from './EventsContent';
-import DataContent from './DataContent';
-import ApiContent from './ApiContent';
 
 export default function AutomationsPage() {
   const [showCreateAutomation, setShowCreateAutomation] = useState(false);
