@@ -1,10 +1,10 @@
 
-import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';
-import { User } from './dashboards/user';
-import Providers from './dashboards/providers';
-import { SearchInput } from './dashboards/search';
 import { DynamicBreadcrumb } from '@/components/dynamic-breadcrumb';
+import { SearchInput } from './dashboards/search';
+import { User } from './dashboards/user';
+import dynamic from 'next/dynamic';
+import Providers from './dashboards/providers';
 const DesktopNav = dynamic(() => import('@/components/_common/navigation/desktop-nav'));
 const MobileNav = dynamic(() => import('@/components/_common/navigation/mobile-nav'));
 
