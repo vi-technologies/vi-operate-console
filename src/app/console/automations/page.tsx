@@ -17,6 +17,7 @@ import { Cog, Flower, Calendar, Layers, Cpu, Link2 } from 'lucide-react';
 import { Page } from '@/components/_common/layout';
 import { useRouter } from 'next/navigation';
 import { CardIcon } from '@/components/universal/card-icon';
+import useWorkflows from '@/hooks/useWorkflows';
 
 export default function AutomationsPage() {
   const [showCreateAutomation, setShowCreateAutomation] = useState(false);
@@ -78,23 +79,7 @@ export default function AutomationsPage() {
         </TabsList>
 
         <TabsContent value="workflows" className="border-none p-0">
-          {/* TODO - Move to its own list component */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <CardIcon title="Labor Forecast Workflow" icon={<Flower />}>
-              Automated call volume prediction and staffing requirements
-            </CardIcon>
-            <CardIcon title="Scheduling Workflow" icon={<Flower />}>
-              Generate optimized staff schedules based on forecasts
-            </CardIcon>
-            <CardIcon
-              title="Create New Workflow"
-              icon={<Flower />}
-              onClick={handleStartCreateAutomation}
-              className="border-dashed border-2 cursor-pointer hover:shadow-md transition-all"
-            >
-              Build a custom workflow to automate your processes
-            </CardIcon>
-          </div>
+          <Workflows />
         </TabsContent>
 
         <TabsContent value="agents" className="border-none p-0">
@@ -135,28 +120,19 @@ export default function AutomationsPage() {
 
         <TabsContent value="events" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <CardIcon 
-              title="Agent Knowledge Assistance" 
-              icon={<Layers />}
-            >
+            <CardIcon title="Agent Knowledge Assistance" icon={<Layers />}>
               Triggered when agents need knowledge support
               <div className="mt-2 text-xs text-muted-foreground">
                 Trigger: Chat/Voice Pattern Match
               </div>
             </CardIcon>
-            <CardIcon 
-              title="Call Volume Spike Alert" 
-              icon={<Layers />}
-            >
+            <CardIcon title="Call Volume Spike Alert" icon={<Layers />}>
               Triggered when call volume exceeds forecast by 20%
               <div className="mt-2 text-xs text-muted-foreground">
                 Trigger: Metric Threshold
               </div>
             </CardIcon>
-            <CardIcon 
-              title="Schedule Conflict Resolution" 
-              icon={<Layers />}
-            >
+            <CardIcon title="Schedule Conflict Resolution" icon={<Layers />}>
               Triggered when schedule conflicts are detected
               <div className="mt-2 text-xs text-muted-foreground">
                 Trigger: Data Validation Error
@@ -167,26 +143,23 @@ export default function AutomationsPage() {
 
         <TabsContent value="data" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <CardIcon
-              title="Real-Time Call Center Metrics"
-              icon={<Link2 />}
-            >
+            <CardIcon title="Real-Time Call Center Metrics" icon={<Link2 />}>
               Live stream of call center performance metrics
-              <div className="mt-2 text-xs text-muted-foreground">Status: Active</div>
+              <div className="mt-2 text-xs text-muted-foreground">
+                Status: Active
+              </div>
             </CardIcon>
-            <CardIcon
-              title="Epic Scheduling Integration"
-              icon={<Link2 />}
-            >
+            <CardIcon title="Epic Scheduling Integration" icon={<Link2 />}>
               Continuous sync with Epic Scheduling System
-              <div className="mt-2 text-xs text-muted-foreground">Status: Active</div>
+              <div className="mt-2 text-xs text-muted-foreground">
+                Status: Active
+              </div>
             </CardIcon>
-            <CardIcon
-              title="Agent Activity Monitor"
-              icon={<Link2 />}
-            >
+            <CardIcon title="Agent Activity Monitor" icon={<Link2 />}>
               Real-time monitoring of agent activity and status
-              <div className="mt-2 text-xs text-muted-foreground">Status: Paused</div>
+              <div className="mt-2 text-xs text-muted-foreground">
+                Status: Paused
+              </div>
             </CardIcon>
           </div>
         </TabsContent>
@@ -213,5 +186,37 @@ export default function AutomationsPage() {
         </TabsContent>
       </Tabs>
     </Page>
+  );
+}
+
+export function Workflows() {
+  const router = useRouter();
+  const { workflows } = useWorkflows();
+
+  const handleStartCreateAutomation = () => {
+    router.push('/console/automations/create');
+  };
+
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {workflows.map((workflow) => (
+        <CardIcon
+          key={workflow.title}
+          title={workflow.title}
+          icon={<Flower />}
+          // onClick={() => router.push(`/console/automations/${workflow.title}`)}
+        >
+          {workflow.content}
+        </CardIcon>
+      ))}
+      <CardIcon
+        title="Create New Workflow"
+        icon={<Flower />}
+        onClick={handleStartCreateAutomation}
+        className="border-dashed border-2 cursor-pointer hover:shadow-md transition-all"
+      >
+        Build a custom workflow to automate your processes
+      </CardIcon>
+    </div>
   );
 }
