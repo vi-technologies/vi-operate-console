@@ -128,3 +128,113 @@ export function Workflows() {
     </div>
   );
 }
+
+export function AgentsContent() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <CardIcon title="Forecasting Agent" icon={<Cpu />}>
+        Analyzes historical data to generate accurate forecasts
+      </CardIcon>
+      <CardIcon title="Scheduling Agent" icon={<Cpu />}>
+        Creates optimal schedules based on forecasts and constraints
+      </CardIcon>
+      <CardIcon title="Support Knowledge Agent" icon={<Cpu />}>
+        Retrieves relevant knowledge to assist human agents
+      </CardIcon>
+    </div>
+  );
+}
+
+export function CronContent() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <CardIcon
+        title="Daily Forecast Update"
+        icon={<Calendar />}
+        children="Runs at 1 AM daily to update forecasts. Schedule: 0 1 * * *"
+      />
+      <CardIcon
+        title="Weekly Schedule Generation"
+        icon={<Calendar />}
+        children="Runs every Monday at 2 AM to create weekly schedules. Schedule: 0 2 * * 1"
+      />
+      <CardIcon
+        title="Data Cleanup Job"
+        icon={<Calendar />}
+        children="Archives old data and cleans up temporary storage. Schedule: 0 3 * * 0"
+      />
+    </div>
+  );
+}
+
+export function EventsContent() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <CardIcon title="Agent Knowledge Assistance" icon={<Layers />}>
+        Triggered when agents need knowledge support
+        <div className="mt-2 text-xs text-muted-foreground">
+          Trigger: Chat/Voice Pattern Match
+        </div>
+      </CardIcon>
+      <CardIcon title="Call Volume Spike Alert" icon={<Layers />}>
+        Triggered when call volume exceeds forecast by 20%
+        <div className="mt-2 text-xs text-muted-foreground">
+          Trigger: Metric Threshold
+        </div>
+      </CardIcon>
+      <CardIcon title="Schedule Conflict Resolution" icon={<Layers />}>
+        Triggered when schedule conflicts are detected
+        <div className="mt-2 text-xs text-muted-foreground">
+          Trigger: Data Validation Error
+        </div>
+      </CardIcon>
+    </div>
+  );
+}
+
+export function DataContent() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <CardIcon title="Real-Time Call Center Metrics" icon={<Link2 />}>
+        Live stream of call center performance metrics
+        <div className="mt-2 text-xs text-muted-foreground">
+          Status: Active
+        </div>
+      </CardIcon>
+      <CardIcon title="Epic Scheduling Integration" icon={<Link2 />}>
+        Continuous sync with Epic Scheduling System
+        <div className="mt-2 text-xs text-muted-foreground">
+          Status: Active
+        </div>
+      </CardIcon>
+      <CardIcon title="Agent Activity Monitor" icon={<Link2 />}>
+        Real-time monitoring of agent activity and status
+        <div className="mt-2 text-xs text-muted-foreground">
+          Status: Paused
+        </div>
+      </CardIcon>
+    </div>
+  );
+}
+
+export function ApiContent() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <CardIcon
+        title="Forecast Data API"
+        icon={<Cog />}
+        children="Exposes forecast data to external systems. Endpoint: /api/forecasts"
+      />
+      <CardIcon
+        title="Schedule API"
+        icon={<Cog />}
+        children="Allows external systems to access and update schedules. Endpoint: /api/schedules"
+      />
+      <CardIcon
+        title="Metrics Webhook"
+        icon={<Cog />}
+        children="Pushes real-time metrics to external dashboards. Webhook: Configurable"
+      />
+    </div>
+  );
+}
