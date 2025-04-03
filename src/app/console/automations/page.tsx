@@ -166,56 +166,28 @@ export default function AutomationsPage() {
         </TabsContent>
 
         <TabsContent value="data" className="border-none p-0">
-          {/* TODO - Move to its own list component */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Real-Time Call Center Metrics
-                </CardTitle>
-                <Link2 className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Live stream of call center performance metrics
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Status: Active
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Epic Scheduling Integration
-                </CardTitle>
-                <Link2 className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Continuous sync with Epic Scheduling System
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Status: Active
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Agent Activity Monitor
-                </CardTitle>
-                <Link2 className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Real-time monitoring of agent activity and status
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Status: Paused
-                </div>
-              </CardContent>
-            </Card>
+            <CardIcon
+              title="Real-Time Call Center Metrics"
+              icon={<Link2 />}
+            >
+              Live stream of call center performance metrics
+              <div className="mt-2 text-xs text-muted-foreground">Status: Active</div>
+            </CardIcon>
+            <CardIcon
+              title="Epic Scheduling Integration"
+              icon={<Link2 />}
+            >
+              Continuous sync with Epic Scheduling System
+              <div className="mt-2 text-xs text-muted-foreground">Status: Active</div>
+            </CardIcon>
+            <CardIcon
+              title="Agent Activity Monitor"
+              icon={<Link2 />}
+            >
+              Real-time monitoring of agent activity and status
+              <div className="mt-2 text-xs text-muted-foreground">Status: Paused</div>
+            </CardIcon>
           </div>
         </TabsContent>
 
