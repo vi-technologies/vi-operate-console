@@ -126,12 +126,6 @@ export function Workflows() {
       </CardIcon>
     </div>
   );
-
-  function useMethods() {
-    return {
-      workflows
-    };
-  }
 }
 
 export function AgentsContent() {
