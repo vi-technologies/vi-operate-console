@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../../components/ui/sheet';
-import { Button } from '../../components/ui/button';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../ui/sheet';
+import { Button } from '../ui/button';
 import { PanelLeft, Gauge, LineChart, Cog, Network, ServerCog } from 'lucide-react';
 
 export default function MobileNav() {
@@ -12,7 +12,7 @@ export default function MobileNav() {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="sm:max-w-xs">
+      <SheetContent side="left" className="sm:max-w-xs nav">
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         <nav className="grid gap-6 text-lg font-medium">
           <Link
@@ -24,35 +24,35 @@ export default function MobileNav() {
           </Link>
           <Link
             href="/"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground font-poppins"
+            className="link"
           >
             <Gauge className="h-5 w-5" />
             Dashboards
           </Link>
           <Link
             href="/reports"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground font-poppins"
+            className="link"
           >
             <LineChart className="h-5 w-5" />
             Reports
           </Link>
           <Link
             href="/automations"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground font-poppins"
+            className="link"
           >
             <Cog className="h-5 w-5" />
             Automations
           </Link>
           <Link
             href="/archetypes"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground font-poppins"
+            className="link"
           >
             <Network className="h-5 w-5" />
             Archetypes
           </Link>
           <Link
             href="/sources"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground font-poppins"
+            className="link"
           >
             <ServerCog className="h-5 w-5" />
             Sources

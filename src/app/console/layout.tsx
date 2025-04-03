@@ -1,37 +1,12 @@
-import Link from 'next/link';
-import {
-  BarChart,
-  Cog,
-  Gauge,
-  Home,
-  LineChart,
-  Network,
-  Package,
-  Package2,
-  PanelLeft,
-  ServerCog,
-  Settings,
-  ShoppingCart,
-  Users2
-} from 'lucide-react';
 
-import { Button } from '../../components/ui/button';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../../components/ui/sheet';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger
-} from '../../components/ui/tooltip';
 import dynamic from 'next/dynamic';
-const DesktopNav = dynamic(() => import('./DesktopNav'));
-const MobileNav = dynamic(() => import('./MobileNav'));
 import { Analytics } from '@vercel/analytics/react';
 import { User } from './dashboards/user';
-import { VercelLogo } from '../../components/icons';
 import Providers from './dashboards/providers';
-import { NavItem } from './dashboards/nav-item';
 import { SearchInput } from './dashboards/search';
-import { DynamicBreadcrumb } from '../../components/dynamic-breadcrumb';
+import { DynamicBreadcrumb } from '@/components/dynamic-breadcrumb';
+const DesktopNav = dynamic(() => import('@/components/navigation/desktop-nav'));
+const MobileNav = dynamic(() => import('@/components/navigation/mobile-nav'));
 
 export default function DashboardLayout({
   children

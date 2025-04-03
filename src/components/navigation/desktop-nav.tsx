@@ -1,13 +1,11 @@
 import Link from 'next/link';
 import { Gauge, LineChart, Cog, Network, ServerCog, Settings } from 'lucide-react';
-import { NavItem } from './dashboards/nav-item';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../../components/ui/tooltip';
+import { NavItem } from '../../app/console/dashboards/nav-item';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 export default function DesktopNav() {
   return (
-    <aside className="fixed inset-y-0 left-0 z-10 hidden w-24 flex-col border-r bg-background sm:flex" style={{
-      backgroundColor: '#140923'
-    }}>
+    <aside className="fixed inset-y-0 left-0 z-10 hidden w-24 flex-col border-r bg-background sm:flex nav">
       <nav className="flex flex-col items-center gap-8 px-2 sm:py-5">
         <Link
           href="/"
