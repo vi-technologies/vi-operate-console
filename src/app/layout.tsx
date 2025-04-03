@@ -1,4 +1,4 @@
-import './globals.css';
+import '@/styles/globals.css';
 import '@fontsource/poppins/300.css';
 import '@fontsource/poppins/400.css';
 import '@fontsource/poppins/500.css';
@@ -20,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen w-full flex-col font-poppins">{children}</body>
+      <body className="flex min-h-screen w-full flex-col font-poppins">
+        {children}
+      </body>
       <Analytics />
     </html>
   );

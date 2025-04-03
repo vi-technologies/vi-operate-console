@@ -1,17 +1,28 @@
+'use client';
+
 import { Input } from '@/components/_common/ui/input';
 import { Search } from 'lucide-react';
-import { ArchetypeCard, NotificationBanner } from '@/components/features/archetypes';
+import {
+  ArchetypeCard,
+  NotificationBanner
+} from '@/components/features/archetypes';
 import { useArchetypes } from '@/hooks/useArchetypes';
 
 export function ArchetypesList() {
-  const { searchTerm, setSearchTerm, filteredArchetypes, expandedArchetypeId, toggleExpand } = useArchetypes();
+  const {
+    searchTerm,
+    setSearchTerm,
+    filteredArchetypes,
+    expandedArchetypeId,
+    toggleExpand
+  } = useArchetypes();
 
   return (
     <>
       {/* Notification banner */}
       <NotificationBanner
         message="Two archetypes were updated since your last visit. Last refreshed 12 min ago"
-        onAction={() => console.log("Refresh clicked")}
+        onAction={() => console.log('Refresh clicked')}
       />
 
       {/* Search input */}
@@ -30,7 +41,7 @@ export function ArchetypesList() {
 
       {/* Archetypes list */}
       <div className="grid gap-4">
-        {filteredArchetypes.map(archetype => (
+        {filteredArchetypes.map((archetype) => (
           <ArchetypeCard
             key={archetype.id}
             id={archetype.id}
