@@ -18,6 +18,7 @@ import { Page } from '@/components/_common/layout';
 import { useRouter } from 'next/navigation';
 import { CardIcon } from '@/components/universal/card-icon';
 import useWorkflows from '@/hooks/useWorkflows';
+import useAgents from '@/hooks/useAgents';
 
 export default function AutomationsPage() {
   const [showCreateAutomation, setShowCreateAutomation] = useState(false);
@@ -111,37 +112,33 @@ export function Workflows() {
   const router = useRouter();
   const { workflows } = useWorkflows();
 
-  const handleStartCreateAutomation = () => {
-    router.push('/console/automations/create');
-  };
-
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {workflows.map(mapCardIcon(<Flower />))}
+
       <CardIcon
         title="Create New Workflow"
         icon={<Flower />}
-        onClick={handleStartCreateAutomation}
+        onClick={() => router.push('/console/automations/create')}
         className="border-dashed border-2 cursor-pointer hover:shadow-md transition-all"
       >
         Build a custom workflow to automate your processes
       </CardIcon>
     </div>
   );
+
+  function useMethods() {
+    return {
+      workflows
+    };
+  }
 }
 
 export function AgentsContent() {
+  const { agents } = useAgents();
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <CardIcon title="Forecasting Agent" icon={<Cpu />}>
-        Analyzes historical data to generate accurate forecasts
-      </CardIcon>
-      <CardIcon title="Scheduling Agent" icon={<Cpu />}>
-        Creates optimal schedules based on forecasts and constraints
-      </CardIcon>
-      <CardIcon title="Support Knowledge Agent" icon={<Cpu />}>
-        Retrieves relevant knowledge to assist human agents
-      </CardIcon>
+      {agents.map(mapCardIcon(<Cpu />))}
     </div>
   );
 }
