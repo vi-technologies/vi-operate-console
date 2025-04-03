@@ -78,23 +78,32 @@ export default function AutomationsPage() {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent
-          value="workflows"
-          className="border-none p-0"
-          children={<Workflows />}
-        />
-
-        <TabsContent value="agents" className="border-none p-0" children={<AgentsContent />} />
-
-        <TabsContent value="cron" className="border-none p-0" children={<CronContent />} />
-
-        <TabsContent value="events" className="border-none p-0" children={<EventsContent />} />
-
-        <TabsContent value="data" className="border-none p-0" children={<DataContent />} />
-
-        <TabsContent value="api" className="border-none p-0" children={<ApiContent />} />
+        <TabsContent value="workflows" children={<Workflows />} />
+        <TabsContent value="agents" children={<AgentsContent />} />
+        <TabsContent value="cron" children={<CronContent />} />
+        <TabsContent value="events" children={<EventsContent />} />
+        <TabsContent value="data" children={<DataContent />} />
+        <TabsContent value="api" children={<ApiContent />} />
       </Tabs>
     </Page>
+  );
+}
+
+function mapCardIcon(Icon: React.ReactNode) {
+  return ({
+    title,
+    children
+  }: {
+    title: string;
+    children: React.ReactNode;
+  }) => (
+    <CardIcon
+      key={title}
+      title={title}
+      icon={Icon}
+      children={children}
+      // onClick={() => router.push(`/console/automations/${workflow.title}`)}
+    />
   );
 }
 
@@ -108,15 +117,7 @@ export function Workflows() {
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {workflows.map(({ title, children }) => (
-        <CardIcon
-          key={title}
-          title={title}
-          icon={<Flower />}
-          children={children}
-          // onClick={() => router.push(`/console/automations/${workflow.title}`)}
-        />
-      ))}
+      {workflows.map(mapCardIcon(<Flower />))}
       <CardIcon
         title="Create New Workflow"
         icon={<Flower />}
@@ -197,21 +198,15 @@ export function DataContent() {
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <CardIcon title="Real-Time Call Center Metrics" icon={<Link2 />}>
         Live stream of call center performance metrics
-        <div className="mt-2 text-xs text-muted-foreground">
-          Status: Active
-        </div>
+        <div className="mt-2 text-xs text-muted-foreground">Status: Active</div>
       </CardIcon>
       <CardIcon title="Epic Scheduling Integration" icon={<Link2 />}>
         Continuous sync with Epic Scheduling System
-        <div className="mt-2 text-xs text-muted-foreground">
-          Status: Active
-        </div>
+        <div className="mt-2 text-xs text-muted-foreground">Status: Active</div>
       </CardIcon>
       <CardIcon title="Agent Activity Monitor" icon={<Link2 />}>
         Real-time monitoring of agent activity and status
-        <div className="mt-2 text-xs text-muted-foreground">
-          Status: Paused
-        </div>
+        <div className="mt-2 text-xs text-muted-foreground">Status: Paused</div>
       </CardIcon>
     </div>
   );
