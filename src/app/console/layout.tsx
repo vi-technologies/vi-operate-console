@@ -22,6 +22,9 @@ import {
   TooltipContent,
   TooltipTrigger
 } from '../../components/ui/tooltip';
+import dynamic from 'next/dynamic';
+const DesktopNav = dynamic(() => import('./DesktopNav'));
+const MobileNav = dynamic(() => import('./MobileNav'));
 import { Analytics } from '@vercel/analytics/react';
 import { User } from './dashboards/user';
 import { VercelLogo } from '../../components/icons';
