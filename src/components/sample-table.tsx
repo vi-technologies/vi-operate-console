@@ -1,6 +1,6 @@
 'use client';
 
-import { DataTable } from '../app/console/dashboards/components/data-table';
+import { DataTable } from './data-display/data-table';
 import { DataRow } from './data-display/data-row';
 import { Badge } from '@/components/_common/ui/badge';
 import Image from 'next/image';
@@ -21,11 +21,7 @@ interface SampleTableProps {
   totalItems: number;
 }
 
-export function SampleTable({
-  items,
-  offset,
-  totalItems
-}: SampleTableProps) {
+export function SampleTable({ items, offset, totalItems }: SampleTableProps) {
   const columns = [
     { key: 'image', label: 'sr-only', hideOnMobile: true },
     { key: 'name', label: 'Name' },
