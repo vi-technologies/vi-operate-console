@@ -78,9 +78,11 @@ export default function AutomationsPage() {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="workflows" className="border-none p-0">
-          <Workflows />
-        </TabsContent>
+        <TabsContent
+          value="workflows"
+          className="border-none p-0"
+          children={<Workflows />}
+        />
 
         <TabsContent value="agents" className="border-none p-0">
           {/* TODO - Move to its own list component */}
