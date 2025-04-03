@@ -43,7 +43,7 @@ export function SourceConnectionCard({
         <div className={`h-10 w-10 rounded-full ${iconBg} flex items-center justify-center mr-4`}>
           {icon}
         </div>
-        <div className="flex-grow">
+        <div className="grow">
           <div className="flex justify-between items-center">
             <div>
               <h3 className="font-medium">{name}</h3>

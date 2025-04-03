@@ -19,7 +19,7 @@ export function CreateDashboardCard({ title, description, onClick }: CreateDashb
         <CardTitle className="text-lg font-medium">{title}</CardTitle>
         <Plus className="h-5 w-5 text-muted-foreground" />
       </CardHeader>
-      <CardContent className="pb-4 flex-grow">
+      <CardContent className="pb-4 grow">
         <div className="text-sm text-muted-foreground">
           {description}
         </div>
