@@ -101,98 +101,41 @@ export default function AutomationsPage() {
 
         <TabsContent value="agents" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Forecasting Agent
-                </CardTitle>
-                <Cpu className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Analyzes historical data to generate accurate forecasts
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Scheduling Agent
-                </CardTitle>
-                <Cpu className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Creates optimal schedules based on forecasts and constraints
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Support Knowledge Agent
-                </CardTitle>
-                <Cpu className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Retrieves relevant knowledge to assist human agents
-                </div>
-              </CardContent>
-            </Card>
+            <AutomationCard
+              title="Forecasting Agent"
+              icon={<Cpu />}
+              description="Analyzes historical data to generate accurate forecasts"
+            />
+            <AutomationCard
+              title="Scheduling Agent"
+              icon={<Cpu />}
+              description="Creates optimal schedules based on forecasts and constraints"
+            />
+            <AutomationCard
+              title="Support Knowledge Agent"
+              icon={<Cpu />}
+              description="Retrieves relevant knowledge to assist human agents"
+            />
           </div>
         </TabsContent>
 
         <TabsContent value="cron" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Daily Forecast Update
-                </CardTitle>
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Runs at 1 AM daily to update forecasts
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Schedule: 0 1 * * *
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Weekly Schedule Generation
-                </CardTitle>
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Runs every Monday at 2 AM to create weekly schedules
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Schedule: 0 2 * * 1
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Data Cleanup Job
-                </CardTitle>
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Archives old data and cleans up temporary storage
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Schedule: 0 3 * * 0
-                </div>
-              </CardContent>
-            </Card>
+            <AutomationCard
+              title="Daily Forecast Update"
+              icon={<Calendar />}
+              description="Runs at 1 AM daily to update forecasts. Schedule: 0 1 * * *"
+            />
+            <AutomationCard
+              title="Weekly Schedule Generation"
+              icon={<Calendar />}
+              description="Runs every Monday at 2 AM to create weekly schedules. Schedule: 0 2 * * 1"
+            />
+            <AutomationCard
+              title="Data Cleanup Job"
+              icon={<Calendar />}
+              description="Archives old data and cleans up temporary storage. Schedule: 0 3 * * 0"
+            />
           </div>
         </TabsContent>
 
@@ -304,54 +247,21 @@ export default function AutomationsPage() {
 
         <TabsContent value="api" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Forecast Data API
-                </CardTitle>
-                <Cog className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Exposes forecast data to external systems
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Endpoint: /api/forecasts
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Schedule API
-                </CardTitle>
-                <Cog className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Allows external systems to access and update schedules
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Endpoint: /api/schedules
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Metrics Webhook
-                </CardTitle>
-                <Cog className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Pushes real-time metrics to external dashboards
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Webhook: Configurable
-                </div>
-              </CardContent>
-            </Card>
+            <AutomationCard
+              title="Forecast Data API"
+              icon={<Cog />}
+              description="Exposes forecast data to external systems. Endpoint: /api/forecasts"
+            />
+            <AutomationCard
+              title="Schedule API"
+              icon={<Cog />}
+              description="Allows external systems to access and update schedules. Endpoint: /api/schedules"
+            />
+            <AutomationCard
+              title="Metrics Webhook"
+              icon={<Cog />}
+              description="Pushes real-time metrics to external dashboards. Webhook: Configurable"
+            />
           </div>
         </TabsContent>
       </Tabs>
