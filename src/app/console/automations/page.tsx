@@ -16,7 +16,7 @@ import {
 import { Cog, Flower, Calendar, Layers, Cpu, Link2 } from 'lucide-react';
 import { Page } from '@/components/_common/layout';
 import { useRouter } from 'next/navigation';
-import { AutomationCard } from '@/components/universal/AutomationCard';
+import { CardIcon } from '@/components/universal/card-icon';
 
 export default function AutomationsPage() {
   const [showCreateAutomation, setShowCreateAutomation] = useState(false);
@@ -79,62 +79,53 @@ export default function AutomationsPage() {
 
         <TabsContent value="workflows" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <AutomationCard
-              title="Labor Forecast Workflow"
-              icon={<Flower className="h-4 w-4 text-muted-foreground" />}
-              description="Automated call volume prediction and staffing requirements"
-            />
-            <AutomationCard
-              title="Scheduling Workflow"
-              icon={<Flower className="h-4 w-4 text-muted-foreground" />}
-              description="Generate optimized staff schedules based on forecasts"
-            />
-            <AutomationCard
+            <CardIcon title="Labor Forecast Workflow" icon={<Flower />}>
+              Automated call volume prediction and staffing requirements
+            </CardIcon>
+            <CardIcon title="Scheduling Workflow" icon={<Flower />}>
+              Generate optimized staff schedules based on forecasts
+            </CardIcon>
+            <CardIcon
               title="Create New Workflow"
-              icon={<Flower className="h-4 w-4 text-muted-foreground" />}
-              description="Build a custom workflow to automate your processes"
+              icon={<Flower />}
               onClick={handleStartCreateAutomation}
               className="border-dashed border-2 cursor-pointer hover:shadow-md transition-all"
-            />
+            >
+              Build a custom workflow to automate your processes
+            </CardIcon>
           </div>
         </TabsContent>
 
         <TabsContent value="agents" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <AutomationCard
-              title="Forecasting Agent"
-              icon={<Cpu />}
-              description="Analyzes historical data to generate accurate forecasts"
-            />
-            <AutomationCard
-              title="Scheduling Agent"
-              icon={<Cpu />}
-              description="Creates optimal schedules based on forecasts and constraints"
-            />
-            <AutomationCard
-              title="Support Knowledge Agent"
-              icon={<Cpu />}
-              description="Retrieves relevant knowledge to assist human agents"
-            />
+            <CardIcon title="Forecasting Agent" icon={<Cpu />}>
+              Analyzes historical data to generate accurate forecasts
+            </CardIcon>
+            <CardIcon title="Scheduling Agent" icon={<Cpu />}>
+              Creates optimal schedules based on forecasts and constraints
+            </CardIcon>
+            <CardIcon title="Support Knowledge Agent" icon={<Cpu />}>
+              Retrieves relevant knowledge to assist human agents
+            </CardIcon>
           </div>
         </TabsContent>
 
         <TabsContent value="cron" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <AutomationCard
+            <CardIcon
               title="Daily Forecast Update"
               icon={<Calendar />}
-              description="Runs at 1 AM daily to update forecasts. Schedule: 0 1 * * *"
+              children="Runs at 1 AM daily to update forecasts. Schedule: 0 1 * * *"
             />
-            <AutomationCard
+            <CardIcon
               title="Weekly Schedule Generation"
               icon={<Calendar />}
-              description="Runs every Monday at 2 AM to create weekly schedules. Schedule: 0 2 * * 1"
+              children="Runs every Monday at 2 AM to create weekly schedules. Schedule: 0 2 * * 1"
             />
-            <AutomationCard
+            <CardIcon
               title="Data Cleanup Job"
               icon={<Calendar />}
-              description="Archives old data and cleans up temporary storage. Schedule: 0 3 * * 0"
+              children="Archives old data and cleans up temporary storage. Schedule: 0 3 * * 0"
             />
           </div>
         </TabsContent>
@@ -247,20 +238,20 @@ export default function AutomationsPage() {
 
         <TabsContent value="api" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <AutomationCard
+            <CardIcon
               title="Forecast Data API"
               icon={<Cog />}
-              description="Exposes forecast data to external systems. Endpoint: /api/forecasts"
+              children="Exposes forecast data to external systems. Endpoint: /api/forecasts"
             />
-            <AutomationCard
+            <CardIcon
               title="Schedule API"
               icon={<Cog />}
-              description="Allows external systems to access and update schedules. Endpoint: /api/schedules"
+              children="Allows external systems to access and update schedules. Endpoint: /api/schedules"
             />
-            <AutomationCard
+            <CardIcon
               title="Metrics Webhook"
               icon={<Cog />}
-              description="Pushes real-time metrics to external dashboards. Webhook: Configurable"
+              children="Pushes real-time metrics to external dashboards. Webhook: Configurable"
             />
           </div>
         </TabsContent>
