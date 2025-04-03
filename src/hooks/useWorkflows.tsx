@@ -3,11 +3,13 @@ export default function useWorkflows() {
     workflows: [
       {
         title: 'Labor Forecast Workflow',
-        content: <>Automated call volume prediction and staffing requirements</>
+        children: (
+          <>Automated call volume prediction and staffing requirements</>
+        )
       },
       {
         title: 'Scheduling Workflow',
-        content: <>Generate optimized staff schedules based on forecasts</>
+        children: <>Generate optimized staff schedules based on forecasts</>
       }
     ]
   };
