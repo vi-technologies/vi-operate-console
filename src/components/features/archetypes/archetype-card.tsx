@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card } from '@/components/_common/ui/card';
+import { Button } from '@/components/_common/ui/button';
 import { Database, Clock, ChevronDown, ChevronRight } from 'lucide-react';
 
 export interface ArchetypeDetailsProps {
@@ -39,11 +39,11 @@ export function ArchetypeCard({
   onToggleExpand
 }: ArchetypeCardProps) {
   const isExpanded = expandedId === id;
-  
+
   return (
     <Card className="overflow-hidden">
-      <div 
-        className="p-6 cursor-pointer" 
+      <div
+        className="p-6 cursor-pointer"
         onClick={() => onToggleExpand(id)}
       >
         <div className="flex justify-between items-start">
@@ -66,14 +66,14 @@ export function ArchetypeCard({
             <div className="text-sm text-gray-500 min-w-[80px] text-right">
               Updated {lastUpdated}
             </div>
-            {isExpanded ? 
-              <ChevronDown className="h-5 w-5 text-gray-400" /> : 
+            {isExpanded ?
+              <ChevronDown className="h-5 w-5 text-gray-400" /> :
               <ChevronRight className="h-5 w-5 text-gray-400" />
             }
           </div>
         </div>
       </div>
-      
+
       {isExpanded && (
         <div className="px-6 pb-6 pt-2 border-t border-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -93,7 +93,7 @@ export function ArchetypeCard({
               <div className="text-sm mb-4">
                 {details.dependencies.join(', ')}
               </div>
-              
+
               <h4 className="font-medium mb-2">Update Frequency</h4>
               <div className="text-sm flex items-center">
                 <Clock className="h-3.5 w-3.5 text-gray-400 mr-2" />
@@ -101,7 +101,7 @@ export function ArchetypeCard({
               </div>
             </div>
           </div>
-          
+
           <div className="mt-4 pt-4 border-t border-gray-100 flex justify-end">
             <Button variant="outline" size="sm" className="mr-2">Edit</Button>
             {status === 'Paused' ? (

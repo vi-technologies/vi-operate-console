@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableBody,
   Table
-} from '@/components/ui/table';
+} from '@/components/_common/ui/table';
 import {
   Card,
   CardContent,
@@ -14,10 +14,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '@/components/ui/card';
+} from '@/components/_common/ui/card';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/_common/ui/button';
 
 interface DataTableProps<T> {
   data: T[];
@@ -69,8 +69,8 @@ export function DataTable<T>({
           <TableHeader>
             <TableRow>
               {columns.map((column) => (
-                <TableHead 
-                  key={column.key} 
+                <TableHead
+                  key={column.key}
                   className={column.hideOnMobile ? 'hidden md:table-cell' : column.hidden ? 'hidden' : undefined}
                 >
                   {column.label === 'sr-only' ? (

@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { DashboardCard, DashboardCardProps } from './dashboard-card';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/_common/ui/card';
+import { Button } from '@/components/_common/ui/button';
 import { Plus } from 'lucide-react';
 
 export interface CreateDashboardCardProps {
@@ -53,7 +53,7 @@ export function DashboardCardList({
       {cards.map((card, index) => (
         <DashboardCard key={index} {...card} />
       ))}
-      
+
       {showCreateCard && createCardProps && (
         <CreateDashboardCard {...createCardProps} />
       )}

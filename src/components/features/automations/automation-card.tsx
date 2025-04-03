@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/_common/ui/card';
 
 export interface AutomationCardProps {
   title: string;
@@ -21,7 +21,7 @@ export function AutomationCard({
   className = ''
 }: AutomationCardProps) {
   return (
-    <Card 
+    <Card
       className={`${onClick ? 'cursor-pointer hover:shadow-md transition-all' : ''} ${className}`}
       onClick={onClick}
     >

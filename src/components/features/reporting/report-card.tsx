@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Card, CardHeader, CardContent, CardTitle, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardContent, CardTitle, CardFooter } from '@/components/_common/ui/card';
+import { Badge } from '@/components/_common/ui/badge';
+import { Button } from '@/components/_common/ui/button';
 import { Download } from 'lucide-react';
 
 export interface ReportCardProps {
@@ -17,10 +17,10 @@ export interface ReportCardProps {
   className?: string;
 }
 
-export function ReportCard({ 
-  title, 
-  description, 
-  icon, 
+export function ReportCard({
+  title,
+  description,
+  icon,
   badges = [],
   lastUpdated,
   onViewReport,
@@ -50,7 +50,7 @@ export function ReportCard({
           <div className="flex justify-between items-center text-xs text-muted-foreground mt-3">
             <div>Last updated: {lastUpdated}</div>
             {onExport && (
-              <div 
+              <div
                 className="flex items-center gap-1 cursor-pointer hover:text-foreground transition-colors"
                 onClick={onExport}
               >

@@ -7,7 +7,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from '@/components/ui/breadcrumb';
+} from '@/components/_common/ui/breadcrumb';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -33,7 +33,7 @@ export function DynamicBreadcrumb() {
 
   // Remove leading slash and split path segments
   // Ignore route groups like (dashboards)
-  const pathSegments = pathname.split('/').filter(segment => 
+  const pathSegments = pathname.split('/').filter(segment =>
     segment !== '' && !segment.startsWith('(') && !segment.endsWith(')')
   );
 

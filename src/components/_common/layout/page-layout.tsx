@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/_common/ui/button';
 
 export interface PageLayoutProps {
   title: string;
@@ -32,10 +32,10 @@ export function PageLayout({
             <p className="text-muted-foreground mt-1">{description}</p>
           )}
         </div>
-        
+
         {actionButton && (
-          <Button 
-            variant={actionButton.variant || 'default'} 
+          <Button
+            variant={actionButton.variant || 'default'}
             onClick={actionButton.onClick}
             {...(actionButton.href ? { asChild: true } : {})}
           >
@@ -47,7 +47,7 @@ export function PageLayout({
           </Button>
         )}
       </div>
-      
+
       {children}
     </div>
   );

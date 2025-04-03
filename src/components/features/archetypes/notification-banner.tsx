@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/_common/ui/button';
 import { Bell, RefreshCw } from 'lucide-react';
 
 export interface NotificationBannerProps {
@@ -26,13 +26,13 @@ export function NotificationBanner({
     warning: 'bg-amber-50 border-l-4 border-amber-500',
     success: 'bg-green-50 border-l-4 border-green-500'
   };
-  
+
   const iconStyles = {
     info: 'text-blue-500',
     warning: 'text-amber-500',
     success: 'text-green-500'
   };
-  
+
   return (
     <div className={`${variantStyles[variant]} p-4 flex items-center justify-between mb-2 ${className}`}>
       <div className="flex items-center">

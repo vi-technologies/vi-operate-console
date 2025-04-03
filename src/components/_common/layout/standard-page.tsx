@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageLayout } from '@/components/layout/page-layout';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 
 export interface StandardPageProps {
   title: string;

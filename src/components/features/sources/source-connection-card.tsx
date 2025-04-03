@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/_common/ui/card';
+import { Badge } from '@/components/_common/ui/badge';
 import { Check, Clock, ChevronRight, ChevronDown } from 'lucide-react';
 
 export interface SourceConnectionCardProps {
@@ -33,10 +33,10 @@ export function SourceConnectionCard({
   children
 }: SourceConnectionCardProps) {
   const isExpanded = expandedId === id;
-  
+
   return (
     <Card className="hover:shadow-md transition-all overflow-hidden">
-      <div 
+      <div
         className="flex items-center p-4 cursor-pointer"
         onClick={() => onToggleExpand(id)}
       >
@@ -85,7 +85,7 @@ export function SourceConnectionCard({
           </div>
         </div>
       </div>
-      
+
       {/* Expanded content */}
       {isExpanded && (
         <div className="border-t px-4 py-4 bg-muted/20">

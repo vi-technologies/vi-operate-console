@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/_common/ui/button';
 import { auth, signOut } from '@/lib/auth';
 import Image from 'next/image';
 import {
@@ -8,7 +8,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
+} from '@/components/_common/ui/dropdown-menu';
 import Link from 'next/link';
 
 export async function User() {

@@ -1,20 +1,20 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { 
-  Card, 
-  CardContent, 
-  CardHeader, 
+import {
+  Card,
+  CardContent,
+  CardHeader,
   CardTitle
-} from '@/components/ui/card';
-import { 
+} from '@/components/_common/ui/card';
+import {
   LineChart as LineChartIcon,
   BarChart as BarChartIcon,
   ArrowRight,
   Users,
   Target
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/_common/ui/button';
 import { LineChart, BarChart } from '@/components/charts';
 import { MetricItem } from '@/components/dashboard/metrics-display';
 
@@ -39,7 +39,7 @@ interface OutboundDashboardProps {
 
 export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
   const [data, setData] = useState(initialData);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,17 +50,17 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
         console.error('Error fetching outbound dashboard data:', error);
       }
     };
-    
+
     if (!initialData) {
       fetchData();
     }
   }, [initialData]);
-  
+
   // If still loading data, show loading state
   if (!initialData && !data) {
     return <div>Loading dashboard data...</div>;
   }
-  
+
   // Use data or fallback to mock data
   const campaignPerformance = data?.campaignPerformance || [
     { name: 'Week 1', Appointments: 45, Callbacks: 32, Conversions: 18 },
@@ -72,7 +72,7 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
     { name: 'Week 7', Appointments: 64, Callbacks: 50, Conversions: 29 },
     { name: 'Week 8', Appointments: 68, Callbacks: 53, Conversions: 32 }
   ];
-  
+
   const agentPerformance = data?.agentPerformance || [
     { name: 'Smith', Calls: 175, Conversions: 24, Rate: 13.7 },
     { name: 'Johnson', Calls: 210, Conversions: 32, Rate: 15.2 },
@@ -99,17 +99,17 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
 
   // Calculate percent changes
   const percentChange = {
-    totalCalls: metrics.previousMonth ? 
-      ((metrics.totalCalls - metrics.previousMonth.totalCalls) / metrics.previousMonth.totalCalls * 100).toFixed(0) : 
+    totalCalls: metrics.previousMonth ?
+      ((metrics.totalCalls - metrics.previousMonth.totalCalls) / metrics.previousMonth.totalCalls * 100).toFixed(0) :
       '12',
-    appointments: metrics.previousMonth ? 
-      ((metrics.appointments - metrics.previousMonth.appointments) / metrics.previousMonth.appointments * 100).toFixed(0) : 
+    appointments: metrics.previousMonth ?
+      ((metrics.appointments - metrics.previousMonth.appointments) / metrics.previousMonth.appointments * 100).toFixed(0) :
       '8',
-    conversionRate: metrics.previousMonth ? 
-      ((metrics.conversionRate - metrics.previousMonth.conversionRate) / metrics.previousMonth.conversionRate * 100).toFixed(0) : 
+    conversionRate: metrics.previousMonth ?
+      ((metrics.conversionRate - metrics.previousMonth.conversionRate) / metrics.previousMonth.conversionRate * 100).toFixed(0) :
       '-2',
-    activeAgents: metrics.previousMonth ? 
-      metrics.activeAgents - metrics.previousMonth.activeAgents : 
+    activeAgents: metrics.previousMonth ?
+      metrics.activeAgents - metrics.previousMonth.activeAgents :
       2
   };
 
@@ -130,7 +130,7 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Appointments</CardTitle>
@@ -144,7 +144,7 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Conversion Rate</CardTitle>
@@ -158,7 +158,7 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Active Agents</CardTitle>
@@ -192,7 +192,7 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
           />
         </CardContent>
       </Card>
-      
+
       {/* Agent Performance */}
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
@@ -213,7 +213,7 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
             </Button>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-lg font-medium">Conversion by Agent</CardTitle>

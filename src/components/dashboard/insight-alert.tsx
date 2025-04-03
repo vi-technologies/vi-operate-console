@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Card, CardHeader, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardContent, CardFooter, CardTitle } from '@/components/_common/ui/card';
+import { Badge } from '@/components/_common/ui/badge';
+import { Button } from '@/components/_common/ui/button';
 
 export interface InsightAlertProps {
   title: string;
@@ -57,7 +57,7 @@ export function InsightAlert({
       secondaryButton: 'border-red-500 text-red-700 hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-950/50'
     }
   };
-  
+
   const colors = colorMap[severity];
 
   return (
@@ -79,9 +79,9 @@ export function InsightAlert({
       {(primaryActionLabel || secondaryActionLabel) && (
         <CardFooter className="flex justify-end gap-3 pt-0">
           {secondaryActionLabel && (
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               className={colors.secondaryButton}
               onClick={onSecondaryAction}
             >
@@ -89,8 +89,8 @@ export function InsightAlert({
             </Button>
           )}
           {primaryActionLabel && (
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               className={colors.primaryButton}
               onClick={onPrimaryAction}
             >

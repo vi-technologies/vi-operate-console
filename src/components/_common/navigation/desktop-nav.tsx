@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Gauge, LineChart, Cog, Network, ServerCog, Settings } from 'lucide-react';
-import { NavItem } from '../../app/console/dashboards/nav-item';
+import { NavItem } from '../../../app/console/dashboards/nav-item';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 export default function DesktopNav() {

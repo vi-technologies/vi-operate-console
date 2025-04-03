@@ -2,7 +2,7 @@
 
 import { DataTable } from '../app/console/dashboards/components/data-table';
 import { DataRow } from './data-row';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/_common/ui/badge';
 import Image from 'next/image';
 
 interface SampleItem {

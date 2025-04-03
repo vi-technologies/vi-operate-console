@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/_common/ui/card';
 import { Clock } from 'lucide-react';
 
 export interface ScheduledReportCardProps {

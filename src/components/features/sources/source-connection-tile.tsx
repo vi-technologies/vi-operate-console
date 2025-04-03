@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardTitle } from '@/components/_common/ui/card';
 
 export interface SourceConnectionTileProps {
   name: string;
@@ -19,7 +19,7 @@ export function SourceConnectionTile({
   className = ''
 }: SourceConnectionTileProps) {
   return (
-    <Card 
+    <Card
       className={`hover:shadow-md transition-all cursor-pointer border-2 hover:border-${iconBg.replace('bg-', '')} ${className}`}
       onClick={onClick}
     >

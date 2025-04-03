@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/_common/ui/card';
+import { Badge } from '@/components/_common/ui/badge';
 
 export interface DashboardCardProps {
   title: string;
@@ -60,9 +60,9 @@ export function DashboardCard({
           {badges && badges.length > 0 && (
             <div className="flex gap-2 mt-1">
               {badges.map((badge, index) => (
-                <Badge 
-                  key={index} 
-                  variant={badge.variant || 'outline'} 
+                <Badge
+                  key={index}
+                  variant={badge.variant || 'outline'}
                   className={badge.className}
                 >
                   {badge.text}

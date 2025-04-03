@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { 
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/_common/ui/card';
+import { Button } from '@/components/_common/ui/button';
+import {
   AlertTriangle,
   ArrowRight,
   Calendar,
@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { LineChart, BarChart, ScatterChart, CalendarHeatmap } from '@/components/charts';
 import { InsightAlert } from '@/components/dashboard/insight-alert';
-import { PageLayout } from '@/components/layout/page-layout';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 
 interface InboundDashboardProps {
   initialData?: {
@@ -29,7 +29,7 @@ interface InboundDashboardProps {
 
 export function InboundDashboard({ initialData }: InboundDashboardProps) {
   const [data, setData] = useState(initialData);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,17 +40,17 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
         console.error('Error fetching inbound dashboard data:', error);
       }
     };
-    
+
     if (!initialData) {
       fetchData();
     }
   }, [initialData]);
-  
+
   // If still loading data, show loading state
   if (!initialData && !data) {
     return <div>Loading dashboard data...</div>;
   }
-  
+
   // Use data or fallback to mock data
   const callVolumeData = data?.callVolumeData || [
     { name: 'Jan', General: 1100, Appointment: 850, Technical: 600, Billing: 450 },
@@ -66,7 +66,7 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
     { name: 'Nov', General: 1400, Appointment: 1100, Technical: 750, Billing: 600 },
     { name: 'Dec', General: 1300, Appointment: 1000, Technical: 700, Billing: 550 }
   ];
-  
+
   const staffingRequirements = data?.staffingRequirements || [
     { name: 'Jan', Current: 32, Projected: 32 },
     { name: 'Feb', Current: 32, Projected: 34 },
@@ -81,14 +81,14 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
     { name: 'Nov', Current: 32, Projected: 38 },
     { name: 'Dec', Current: 32, Projected: 36 }
   ];
-  
+
   const quarterlyVolume = data?.quarterlyVolume || [
     { name: 'Q1', General: 3600, Appointment: 2700, Technical: 1800, Billing: 1500 },
     { name: 'Q2', General: 4150, Appointment: 3300, Technical: 2250, Billing: 1750 },
     { name: 'Q3', General: 4900, Appointment: 4000, Technical: 2600, Billing: 2150 },
     { name: 'Q4', General: 4200, Appointment: 3300, Technical: 2250, Billing: 1800 }
   ];
-  
+
   const historicalCallData = data?.historicalCallData || {
     weekday: {
       name: 'Weekday',
@@ -115,7 +115,7 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
       }))
     }
   };
-  
+
   const weekDemand = data?.weekDemand || [
     { name: 'Mon', 'Call Volume': 120, 'Service Level': 92 },
     { name: 'Tue', 'Call Volume': 110, 'Service Level': 95 },
@@ -125,7 +125,7 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
     { name: 'Sat', 'Call Volume': 80, 'Service Level': 98 },
     { name: 'Sun', 'Call Volume': 60, 'Service Level': 99 }
   ];
-  
+
   const calendarData = data?.calendarData || Array.from({ length: 180 }, (_, i) => {
     const date = new Date();
     date.setDate(date.getDate() - i);
@@ -138,7 +138,7 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
   return (
     <>
       {/* Insight Alert Section */}
-      <InsightAlert 
+      <InsightAlert
         title="Potential labor demand increase in 3 months"
         message="Our predictive model has detected a potential 25% increase in call volume starting in July, based on historical patterns and upcoming marketing campaigns. This will require adjusting staffing levels."
         icon={<AlertTriangle />}
@@ -168,7 +168,7 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
             />
           </CardContent>
         </Card>
-        
+
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
@@ -200,7 +200,7 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
               <CardTitle className="text-lg font-medium">Quarterly Volume Forecast</CardTitle>
@@ -273,7 +273,7 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
               <CardTitle className="text-lg font-medium">Average Week Demand</CardTitle>
@@ -305,7 +305,7 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
             </CardContent>
           </Card>
         </div>
-        
+
         <Card className="mt-6">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-lg font-medium">Calendar Year Heat Map</CardTitle>
