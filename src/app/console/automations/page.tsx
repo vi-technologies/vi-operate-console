@@ -16,6 +16,7 @@ import {
 import { Cog, Flower, Calendar, Layers, Cpu, Link2 } from 'lucide-react';
 import { Page } from '@/components/_common/layout';
 import { useRouter } from 'next/navigation';
+import { AutomationCard } from '@/components/universal/AutomationCard';
 
 export default function AutomationsPage() {
   const [showCreateAutomation, setShowCreateAutomation] = useState(false);
@@ -78,48 +79,23 @@ export default function AutomationsPage() {
 
         <TabsContent value="workflows" className="border-none p-0">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Labor Forecast Workflow
-                </CardTitle>
-                <Flower className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Automated call volume prediction and staffing requirements
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Scheduling Workflow
-                </CardTitle>
-                <Flower className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Generate optimized staff schedules based on forecasts
-                </div>
-              </CardContent>
-            </Card>
-            <Card
-              className="border-dashed border-2 cursor-pointer hover:shadow-md transition-all"
+            <AutomationCard
+              title="Labor Forecast Workflow"
+              icon={<Flower className="h-4 w-4 text-muted-foreground" />}
+              description="Automated call volume prediction and staffing requirements"
+            />
+            <AutomationCard
+              title="Scheduling Workflow"
+              icon={<Flower className="h-4 w-4 text-muted-foreground" />}
+              description="Generate optimized staff schedules based on forecasts"
+            />
+            <AutomationCard
+              title="Create New Workflow"
+              icon={<Flower className="h-4 w-4 text-muted-foreground" />}
+              description="Build a custom workflow to automate your processes"
               onClick={handleStartCreateAutomation}
-            >
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Create New Workflow
-                </CardTitle>
-                <Flower className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Build a custom workflow to automate your processes
-                </div>
-              </CardContent>
-            </Card>
+              className="border-dashed border-2 cursor-pointer hover:shadow-md transition-all"
+            />
           </div>
         </TabsContent>
 
