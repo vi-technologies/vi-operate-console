@@ -134,56 +134,34 @@ export default function AutomationsPage() {
         </TabsContent>
 
         <TabsContent value="events" className="border-none p-0">
-          {/* TODO - Move to its own list component */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Agent Knowledge Assistance
-                </CardTitle>
-                <Layers className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Triggered when agents need knowledge support
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Trigger: Chat/Voice Pattern Match
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Call Volume Spike Alert
-                </CardTitle>
-                <Layers className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Triggered when call volume exceeds forecast by 20%
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Trigger: Metric Threshold
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
-                  Schedule Conflict Resolution
-                </CardTitle>
-                <Layers className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm">
-                  Triggered when schedule conflicts are detected
-                </div>
-                <div className="mt-2 text-xs text-muted-foreground">
-                  Trigger: Data Validation Error
-                </div>
-              </CardContent>
-            </Card>
+            <CardIcon 
+              title="Agent Knowledge Assistance" 
+              icon={<Layers />}
+            >
+              Triggered when agents need knowledge support
+              <div className="mt-2 text-xs text-muted-foreground">
+                Trigger: Chat/Voice Pattern Match
+              </div>
+            </CardIcon>
+            <CardIcon 
+              title="Call Volume Spike Alert" 
+              icon={<Layers />}
+            >
+              Triggered when call volume exceeds forecast by 20%
+              <div className="mt-2 text-xs text-muted-foreground">
+                Trigger: Metric Threshold
+              </div>
+            </CardIcon>
+            <CardIcon 
+              title="Schedule Conflict Resolution" 
+              icon={<Layers />}
+            >
+              Triggered when schedule conflicts are detected
+              <div className="mt-2 text-xs text-muted-foreground">
+                Trigger: Data Validation Error
+              </div>
+            </CardIcon>
           </div>
         </TabsContent>
 
