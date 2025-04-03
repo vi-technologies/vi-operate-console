@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { LineChart, BarChart, ScatterChart, CalendarHeatmap } from '@/components/charts';
 import { InsightAlert } from '@/components/dashboard/insight-alert';
-import { PageLayout } from '@/components/_common/layout/page-layout';
+import { Page } from '@/components/_common/layout/page';
 
 interface InboundDashboardProps {
   initialData?: {

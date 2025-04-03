@@ -24,7 +24,7 @@ import {
 import { Button } from '@/components/_common/ui/button';
 import { Input } from '@/components/_common/ui/input';
 import { Badge } from '@/components/_common/ui/badge';
-import { PageLayout } from '@/components/_common/layout/page-layout';
+import { Page } from '@/components/_common/layout/page';
 
 export default function AutomationsPage() {
   const [showCreateAutomation, setShowCreateAutomation] = useState(false);
@@ -54,7 +54,7 @@ export default function AutomationsPage() {
   };
 
   const renderDefaultView = () => (
-    <PageLayout
+    <Page
       title="Automations"
       actionButton={{
         label: "Create Automation",
@@ -296,7 +296,7 @@ export default function AutomationsPage() {
           </div>
         </TabsContent>
       </Tabs>
-    </PageLayout>
+    </Page>
   );
 
   const renderCreateAutomation = () => (

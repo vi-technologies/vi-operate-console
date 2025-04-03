@@ -18,7 +18,7 @@ import {
 import { DashboardCardList } from '@/components/dashboard/dashboard-card-list';
 import { Badge } from '@/components/_common/ui/badge';
 import { getDashboardSummary } from '@/lib/services/dashboard-service';
-import { PageLayout } from '@/components/_common/layout/page-layout';
+import { Page } from '@/components/_common/layout/page';
 
 // Metadata is defined in metadata.ts
 
@@ -39,7 +39,7 @@ export default function DashboardsPage() {
   }, []);
 
   if (!dashboardData) {
-    return <PageLayout title="Dashboards">Loading dashboards...</PageLayout>;
+    return <Page title="Dashboards">Loading dashboards...</Page>;
   }
 
   // Convert the dashboards data to the format expected by DashboardCardList
@@ -99,7 +99,7 @@ export default function DashboardsPage() {
   const recentReports = dashboardData?.recentReports || [];
 
   return (
-    <PageLayout
+    <Page
       title="Dashboards"
       actionButton={{
         label: "Create Dashboard",
@@ -137,6 +137,6 @@ export default function DashboardsPage() {
           ))}
         </div>
       </div>
-    </PageLayout>
+    </Page>
   );
 }

@@ -3,7 +3,7 @@
 import React from 'react';
 import { Button } from '@/components/_common/ui/button';
 
-export interface PageLayoutProps {
+export interface PageProps {
   title: string;
   description?: string;
   actionButton?: {
@@ -16,13 +16,13 @@ export interface PageLayoutProps {
   className?: string;
 }
 
-export function PageLayout({
+export function Page({
   title,
   description,
   actionButton,
   children,
   className = ''
-}: PageLayoutProps) {
+}: PageProps) {
   return (
     <div className={`flex flex-col gap-6 ${className}`}>
       <div className="flex justify-between items-center">

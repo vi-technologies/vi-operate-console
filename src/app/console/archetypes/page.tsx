@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { StandardPage } from '@/components/_common/layout/standard-page';
+import { ContainerPage } from '@/components/_common/layout/container-page';
 import { Input } from '@/components/_common/ui/input';
 import { Search } from 'lucide-react';
 import { ArchetypeCard, NotificationBanner } from '@/components/features/archetypes';
@@ -11,7 +11,7 @@ export default function ArchetypesPage() {
   const { searchTerm, setSearchTerm, filteredArchetypes, expandedArchetypeId, toggleExpand } = useArchetypes();
 
   return (
-    <StandardPage
+    <ContainerPage
       title="Archetypes"
       actionButton={{
         label: "New Archetype",
@@ -57,6 +57,6 @@ export default function ArchetypesPage() {
           />
         ))}
       </div>
-    </StandardPage>
+    </ContainerPage>
   );
 }

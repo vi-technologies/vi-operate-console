@@ -1,7 +1,7 @@
 'use client';
 
 import { Metadata } from 'next';
-import { PageLayout } from '@/components/_common/layout/page-layout';
+import { Page } from '@/components/_common/layout/page';
 import { OutboundDashboard } from '@/components/dashboards/outbound-call-center/outbound-dashboard';
 import { getDashboardData } from '@/lib/services/dashboard-service';
 
@@ -9,7 +9,7 @@ import { getDashboardData } from '@/lib/services/dashboard-service';
 
 export default function OutboundCallCenterPage() {
   return (
-    <PageLayout
+    <Page
       title="Outbound Campaign Performance"
       actionButton={{
         label: "Run New Campaign",
@@ -17,6 +17,6 @@ export default function OutboundCallCenterPage() {
       }}
     >
       <OutboundDashboard />
-    </PageLayout>
+    </Page>
   );
 }
