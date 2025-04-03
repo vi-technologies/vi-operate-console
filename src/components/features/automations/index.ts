@@ -1,2 +1,2 @@
-export * from './automation-card';
+export * from '../../cards/automation-card';
 export * from './create-automation';

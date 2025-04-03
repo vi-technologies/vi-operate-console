@@ -1,7 +1,7 @@
 'use client';
 
 import { DataTable } from '../app/console/dashboards/components/data-table';
-import { DataRow } from './data-row';
+import { DataRow } from './data-display/data-row';
 import { Badge } from '@/components/_common/ui/badge';
 import Image from 'next/image';
 

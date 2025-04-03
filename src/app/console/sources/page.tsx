@@ -22,7 +22,7 @@ import {
   RefreshCw,
   AlertTriangle
 } from 'lucide-react';
-import { Page } from '@/components/_common/layout/page';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 
 export default function SourcesPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -137,7 +137,7 @@ export default function SourcesPage() {
   ];
 
   return (
-    <Page
+    <PageLayout
       title="Add A New Source"
       actionButton={{
         label: "New Source",
@@ -350,6 +350,6 @@ export default function SourcesPage() {
           ))}
         </div>
       </div>
-    </Page>
+    </PageLayout>
   );
 }

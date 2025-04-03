@@ -1,54 +1,24 @@
-'use client';
-
 import React from 'react';
-import { Button } from '@/components/_common/ui/button';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 
-export interface PageProps {
+export interface StandardPageProps {
   title: string;
-  description?: string;
   actionButton?: {
     label: string;
-    onClick?: () => void;
-    href?: string;
-    variant?: 'default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+    onClick: () => void;
   };
+  variant?: 'default' | 'container';
   children: React.ReactNode;
-  className?: string;
 }
 
-export function Page({
-  title,
-  description,
-  actionButton,
-  children,
-  className = ''
-}: PageProps) {
+export function Page({ title, actionButton, children, variant }: StandardPageProps) {
   return (
-    <div className={`flex flex-col gap-6 ${className}`}>
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">{title}</h1>
-          {description && (
-            <p className="text-muted-foreground mt-1">{description}</p>
-          )}
+    <PageLayout title={title} actionButton={actionButton}>
+      {variant === 'container' ? (
+        <div className="container mx-auto px-0 py-6">
+          {children}
         </div>
-
-        {actionButton && (
-          <Button
-            variant={actionButton.variant || 'default'}
-            onClick={actionButton.onClick}
-            {...(actionButton.href ? { asChild: true } : {})}
-          >
-            {actionButton.href ? (
-              <a href={actionButton.href}>{actionButton.label}</a>
-            ) : (
-              actionButton.label
-            )}
-          </Button>
-        )}
-      </div>
-
-      {children}
-    </div>
-  );
+      ) : children}
+    </PageLayout>
+  )
 }

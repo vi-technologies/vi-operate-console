@@ -15,10 +15,10 @@ import {
   TrendingUp,
   Plus
 } from 'lucide-react';
-import { DashboardCardList } from '@/components/dashboard/dashboard-card-list';
+import { DashboardCardList } from '@/components/lists/dashboard-card-list';
 import { Badge } from '@/components/_common/ui/badge';
 import { getDashboardSummary } from '@/lib/services/dashboard-service';
-import { Page } from '@/components/_common/layout/page';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 
 // Metadata is defined in metadata.ts
 
@@ -39,7 +39,7 @@ export default function DashboardsPage() {
   }, []);
 
   if (!dashboardData) {
-    return <Page title="Dashboards">Loading dashboards...</Page>;
+    return <PageLayout title="Dashboards">Loading dashboards...</PageLayout>;
   }
 
   // Convert the dashboards data to the format expected by DashboardCardList
@@ -99,7 +99,7 @@ export default function DashboardsPage() {
   const recentReports = dashboardData?.recentReports || [];
 
   return (
-    <Page
+    <PageLayout
       title="Dashboards"
       actionButton={{
         label: "Create Dashboard",
@@ -137,6 +137,6 @@ export default function DashboardsPage() {
           ))}
         </div>
       </div>
-    </Page>
+    </PageLayout>
   );
 }

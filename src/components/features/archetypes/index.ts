@@ -1,2 +1,2 @@
-export * from './archetype-card';
+export * from '../../cards/archetype-card';
 export * from './notification-banner';

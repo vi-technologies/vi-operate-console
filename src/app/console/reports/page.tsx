@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Page } from '@/components/_common/layout/page';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 import { ReportCard, ScheduledReportCard } from '@/components/features/reporting';
 import { LineChart, PieChart, BarChart, Calendar } from 'lucide-react';
 
@@ -64,7 +64,7 @@ export default function ReportsPage() {
   };
 
   return (
-    <Page
+    <PageLayout
       title="Reports"
       actionButton={{
         label: "Create Report",
@@ -109,6 +109,6 @@ export default function ReportsPage() {
           ))}
         </div>
       </div>
-    </Page>
+    </PageLayout>
   );
 }

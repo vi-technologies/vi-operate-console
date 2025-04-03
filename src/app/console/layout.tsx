@@ -8,7 +8,7 @@ import Providers from './dashboards/providers';
 const DesktopNav = dynamic(() => import('@/components/_common/navigation/desktop-nav'));
 const MobileNav = dynamic(() => import('@/components/_common/navigation/mobile-nav'));
 
-export default function DashboardLayout({
+export default function ConsoleLayout({
   children
 }: {
   children: React.ReactNode;

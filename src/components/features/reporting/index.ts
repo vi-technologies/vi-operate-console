@@ -1,2 +1,2 @@
-export * from './report-card';
-export * from './scheduled-report-card';
+export * from '../../cards/report-card';
+export * from '../../cards/scheduled-report-card';

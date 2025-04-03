@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { DashboardCard, DashboardCardProps } from './dashboard-card';
+import { DashboardCard, DashboardCardProps } from '../cards/dashboard-card';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/_common/ui/card';
 import { Button } from '@/components/_common/ui/button';
 import { Plus } from 'lucide-react';

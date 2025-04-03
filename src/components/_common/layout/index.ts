@@ -1,2 +1,2 @@
+export * from './page-layout';
 export * from './page';
-export * from './container-page';
