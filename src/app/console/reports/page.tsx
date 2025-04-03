@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PageLayout } from '@/components/layout/page-layout';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 import { ReportCard, ScheduledReportCard } from '@/components/features/reporting';
 import { LineChart, PieChart, BarChart, Calendar } from 'lucide-react';
 
@@ -84,7 +84,7 @@ export default function ReportsPage() {
             onExport={() => handleExport(report.title)}
           />
         ))}
-        
+
         <ReportCard
           title="Create New Report"
           description="Build a custom report to analyze specific metrics and timeframes"
@@ -93,7 +93,7 @@ export default function ReportsPage() {
           onViewReport={() => console.log("Create new report")}
         />
       </div>
-      
+
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Scheduled Reports</h2>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

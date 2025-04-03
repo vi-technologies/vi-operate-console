@@ -5,8 +5,8 @@ import { User } from './dashboards/user';
 import Providers from './dashboards/providers';
 import { SearchInput } from './dashboards/search';
 import { DynamicBreadcrumb } from '@/components/dynamic-breadcrumb';
-const DesktopNav = dynamic(() => import('@/components/navigation/desktop-nav'));
-const MobileNav = dynamic(() => import('@/components/navigation/mobile-nav'));
+const DesktopNav = dynamic(() => import('@/components/_common/navigation/desktop-nav'));
+const MobileNav = dynamic(() => import('@/components/_common/navigation/mobile-nav'));
 
 export default function DashboardLayout({
   children

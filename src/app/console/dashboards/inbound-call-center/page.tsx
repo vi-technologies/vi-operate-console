@@ -1,7 +1,7 @@
 'use client';
 
 import { Metadata } from 'next';
-import { StandardPage } from '@/components/common/StandardPage';
+import { StandardPage } from '@/components/_common/layout/standard-page';
 import { InboundDashboard } from '@/components/dashboards/inbound-call-center/inbound-dashboard';
 import { getDashboardData } from '@/lib/services/dashboard-service';
 
@@ -13,7 +13,7 @@ export default function InboundCallCenterPage() {
       title="Labor Forecast"
       actionButton={{
         label: "Generate New Forecast",
-        onClick: () => {}
+        onClick: () => { }
       }}
     >
       <InboundDashboard />

@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/_common/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/_common/ui/tabs';
 import {
   Cog,
   Flower,
@@ -21,10 +21,10 @@ import {
   ChevronRight,
   Database
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { PageLayout } from '@/components/layout/page-layout';
+import { Button } from '@/components/_common/ui/button';
+import { Input } from '@/components/_common/ui/input';
+import { Badge } from '@/components/_common/ui/badge';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 
 export default function AutomationsPage() {
   const [showCreateAutomation, setShowCreateAutomation] = useState(false);

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { StandardPage } from '@/components/common/StandardPage';
-import { Input } from '@/components/ui/input';
+import { StandardPage } from '@/components/_common/layout/standard-page';
+import { Input } from '@/components/_common/ui/input';
 import { Search, Clock, Network, Database, Activity, BarChart3 } from 'lucide-react';
 import { ArchetypeCard, NotificationBanner } from '@/components/features/archetypes';
 
@@ -88,7 +88,7 @@ export default function ArchetypesPage() {
     }
   ];
 
-  const filteredArchetypes = archetypes.filter(archetype => 
+  const filteredArchetypes = archetypes.filter(archetype =>
     archetype.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     archetype.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -124,7 +124,7 @@ export default function ArchetypesPage() {
           />
         </div>
       </div>
-      
+
       {/* Archetypes list */}
       <div className="grid gap-4">
         {filteredArchetypes.map(archetype => (
@@ -144,6 +144,6 @@ export default function ArchetypesPage() {
           />
         ))}
       </div>
-    </PageLayout>
+    </StandardPage>
   );
 }

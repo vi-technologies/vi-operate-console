@@ -1,30 +1,30 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { 
-  Gauge, 
-  BarChart, 
-  LineChart, 
-  Users, 
-  Phone, 
-  PhoneOutgoing, 
-  Calendar, 
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/_common/ui/card';
+import { Button } from '@/components/_common/ui/button';
+import {
+  Gauge,
+  BarChart,
+  LineChart,
+  Users,
+  Phone,
+  PhoneOutgoing,
+  Calendar,
   ClipboardCheck,
   TrendingUp,
   Plus
 } from 'lucide-react';
 import { DashboardCardList } from '@/components/dashboard/dashboard-card-list';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/_common/ui/badge';
 import { getDashboardSummary } from '@/lib/services/dashboard-service';
-import { PageLayout } from '@/components/layout/page-layout';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 
 // Metadata is defined in metadata.ts
 
 export default function DashboardsPage() {
   const [dashboardData, setDashboardData] = useState<any>(null);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,14 +34,14 @@ export default function DashboardsPage() {
         console.error('Error fetching dashboard data:', error);
       }
     };
-    
+
     fetchData();
   }, []);
-  
+
   if (!dashboardData) {
     return <PageLayout title="Dashboards">Loading dashboards...</PageLayout>;
   }
-  
+
   // Convert the dashboards data to the format expected by DashboardCardList
   const dashboardCards = (dashboardData.dashboards || []).map((dashboard: any) => {
     const statusVariantMap: Record<string, { variant: string, className: string }> = {
@@ -58,13 +58,13 @@ export default function DashboardsPage() {
       'quality-monitoring': <Gauge className="h-5 w-5" />
     };
 
-    const statusBadge = dashboard.status ? 
-      { 
-        text: dashboard.status === 'active' ? 'Active' : 
-              dashboard.status === 'development' ? 'In Development' : 
-              'Inactive',
+    const statusBadge = dashboard.status ?
+      {
+        text: dashboard.status === 'active' ? 'Active' :
+          dashboard.status === 'development' ? 'In Development' :
+            'Inactive',
         ...statusVariantMap[dashboard.status]
-      } : 
+      } :
       undefined;
 
     const badgeObjects = [
@@ -80,7 +80,7 @@ export default function DashboardsPage() {
       metrics: dashboard.metrics,
       statusIndicator: dashboard.trend ? {
         icon: <TrendingUp className="h-3 w-3 mr-1 text-green-500" />,
-        text: 
+        text:
           <div className="flex items-center">
             <span className={`text-${dashboard.trend.direction === 'up' ? 'green' : 'red'}-500 font-medium mr-1`}>
               {dashboard.trend.direction === 'up' ? '↑' : '↓'} {dashboard.trend.value}
@@ -99,14 +99,14 @@ export default function DashboardsPage() {
   const recentReports = dashboardData?.recentReports || [];
 
   return (
-    <PageLayout 
+    <PageLayout
       title="Dashboards"
       actionButton={{
         label: "Create Dashboard",
         onClick: () => console.log("Create dashboard clicked")
       }}
     >
-      <DashboardCardList 
+      <DashboardCardList
         cards={dashboardCards}
         showCreateCard={true}
         createCardProps={{
@@ -114,7 +114,7 @@ export default function DashboardsPage() {
           description: "Build a custom dashboard to track specific metrics and KPIs for your call center operations"
         }}
       />
-      
+
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Recent Reports</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

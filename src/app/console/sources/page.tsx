@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Card, CardContent, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { 
-  Database, 
+import { Card, CardContent, CardTitle } from '@/components/_common/ui/card';
+import { Button } from '@/components/_common/ui/button';
+import { Badge } from '@/components/_common/ui/badge';
+import { Input } from '@/components/_common/ui/input';
+import {
+  Database,
   Search,
   ChevronRight,
   ChevronDown,
@@ -22,20 +22,20 @@ import {
   RefreshCw,
   AlertTriangle
 } from 'lucide-react';
-import { PageLayout } from '@/components/layout/page-layout';
+import { PageLayout } from '@/components/_common/layout/page-layout';
 
 export default function SourcesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedSourceId, setExpandedSourceId] = useState<number | null>(null);
-  
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
-  
+
   const toggleSourceExpand = (id: number) => {
     setExpandedSourceId(expandedSourceId === id ? null : id);
   };
-  
+
   // Mock source data
   const sources = [
     {
@@ -135,9 +135,9 @@ export default function SourcesPage() {
       }
     }
   ];
-  
+
   return (
-    <PageLayout 
+    <PageLayout
       title="Add A New Source"
       actionButton={{
         label: "New Source",
@@ -146,14 +146,14 @@ export default function SourcesPage() {
     >
       <div className="relative w-64 ml-auto mb-4">
         <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input 
-          className="pl-8" 
-          placeholder="Search sources..." 
+        <Input
+          className="pl-8"
+          placeholder="Search sources..."
           value={searchTerm}
           onChange={handleSearchChange}
         />
       </div>
-      
+
       {/* New Source Connection Options */}
       <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
         <Card className="hover:shadow-md transition-all cursor-pointer border-2 hover:border-red-200">
@@ -164,7 +164,7 @@ export default function SourcesPage() {
             <CardTitle className="text-center text-sm font-medium">Azure Blob Storage</CardTitle>
           </CardContent>
         </Card>
-        
+
         <Card className="hover:shadow-md transition-all cursor-pointer border-2 hover:border-blue-200">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-3">
@@ -173,7 +173,7 @@ export default function SourcesPage() {
             <CardTitle className="text-center text-sm font-medium">BigQuery</CardTitle>
           </CardContent>
         </Card>
-        
+
         <Card className="hover:shadow-md transition-all cursor-pointer border-2 hover:border-cyan-200">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <div className="h-12 w-12 rounded-full bg-cyan-100 flex items-center justify-center mb-3">
@@ -182,7 +182,7 @@ export default function SourcesPage() {
             <CardTitle className="text-center text-sm font-medium">Snowflake</CardTitle>
           </CardContent>
         </Card>
-        
+
         <Card className="hover:shadow-md transition-all cursor-pointer border-2 hover:border-red-200">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center mb-3">
@@ -191,7 +191,7 @@ export default function SourcesPage() {
             <CardTitle className="text-center text-sm font-medium">Databricks</CardTitle>
           </CardContent>
         </Card>
-        
+
         <Card className="hover:shadow-md transition-all cursor-pointer border-2 hover:border-amber-200">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <div className="h-12 w-12 rounded-full bg-amber-100 flex items-center justify-center mb-3">
@@ -200,7 +200,7 @@ export default function SourcesPage() {
             <CardTitle className="text-center text-sm font-medium">Google Analytics</CardTitle>
           </CardContent>
         </Card>
-        
+
         <Card className="hover:shadow-md transition-all cursor-pointer border-2 hover:border-slate-200">
           <CardContent className="flex flex-col items-center justify-center py-6">
             <div className="h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center mb-3">
@@ -210,14 +210,14 @@ export default function SourcesPage() {
           </CardContent>
         </Card>
       </div>
-      
+
       {/* Existing Sources Section */}
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Existing Sources</h2>
         <div className="space-y-4">
           {sources.map((source) => (
             <Card key={source.id} className="hover:shadow-md transition-all overflow-hidden">
-              <div 
+              <div
                 className="flex items-center p-4 cursor-pointer"
                 onClick={() => toggleSourceExpand(source.id)}
               >
@@ -261,7 +261,7 @@ export default function SourcesPage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Expanded section */}
               {expandedSourceId === source.id && (
                 <div className="border-t px-4 py-4 bg-muted/20">
@@ -295,7 +295,7 @@ export default function SourcesPage() {
                         </div>
                       </CardContent>
                     </Card>
-                    
+
                     <Card className="bg-white">
                       <CardContent className="p-4">
                         <h4 className="font-medium text-sm mb-2">Health & Metrics</h4>
@@ -338,7 +338,7 @@ export default function SourcesPage() {
                       </CardContent>
                     </Card>
                   </div>
-                  
+
                   <div className="flex gap-2 justify-end mt-4">
                     <Button size="sm" variant="outline">View Datasets</Button>
                     <Button size="sm" variant="outline">Edit Connection</Button>

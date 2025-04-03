@@ -1,15 +1,15 @@
 import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/_common/ui/badge';
+import { Button } from '@/components/_common/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
+} from '@/components/_common/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
-import { TableCell, TableRow } from '@/components/ui/table';
+import { TableCell, TableRow } from '@/components/_common/ui/table';
 import { SelectProduct } from '@/lib/db';
 import { deleteProduct } from './actions';
 
