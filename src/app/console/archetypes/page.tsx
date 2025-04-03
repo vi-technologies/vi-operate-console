@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { PageLayout } from '@/components/layout/page-layout';
+import { StandardPage } from '@/components/common/StandardPage';
 import { Input } from '@/components/ui/input';
 import { Search, Clock, Network, Database, Activity, BarChart3 } from 'lucide-react';
 import { ArchetypeCard, NotificationBanner } from '@/components/features/archetypes';
@@ -98,7 +98,7 @@ export default function ArchetypesPage() {
   };
 
   return (
-    <PageLayout
+    <StandardPage
       title="Archetypes"
       actionButton={{
         label: "New Archetype",
