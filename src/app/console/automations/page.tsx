@@ -201,15 +201,14 @@ export function Workflows() {
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {workflows.map((workflow) => (
+      {workflows.map(({ title, children }) => (
         <CardIcon
-          key={workflow.title}
-          title={workflow.title}
+          key={title}
+          title={title}
           icon={<Flower />}
+          children={children}
           // onClick={() => router.push(`/console/automations/${workflow.title}`)}
-        >
-          {workflow.content}
-        </CardIcon>
+        />
       ))}
       <CardIcon
         title="Create New Workflow"
