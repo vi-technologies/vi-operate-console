@@ -78,6 +78,7 @@ export default function AutomationsPage() {
         </TabsList>
 
         <TabsContent value="workflows" className="border-none p-0">
+          {/* TODO - Move to its own list component */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <CardIcon title="Labor Forecast Workflow" icon={<Flower />}>
               Automated call volume prediction and staffing requirements
@@ -97,6 +98,7 @@ export default function AutomationsPage() {
         </TabsContent>
 
         <TabsContent value="agents" className="border-none p-0">
+          {/* TODO - Move to its own list component */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <CardIcon title="Forecasting Agent" icon={<Cpu />}>
               Analyzes historical data to generate accurate forecasts
@@ -111,6 +113,7 @@ export default function AutomationsPage() {
         </TabsContent>
 
         <TabsContent value="cron" className="border-none p-0">
+          {/* TODO - Move to its own list component */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <CardIcon
               title="Daily Forecast Update"
@@ -131,6 +134,7 @@ export default function AutomationsPage() {
         </TabsContent>
 
         <TabsContent value="events" className="border-none p-0">
+          {/* TODO - Move to its own list component */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
@@ -184,6 +188,7 @@ export default function AutomationsPage() {
         </TabsContent>
 
         <TabsContent value="data" className="border-none p-0">
+          {/* TODO - Move to its own list component */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
@@ -237,6 +242,7 @@ export default function AutomationsPage() {
         </TabsContent>
 
         <TabsContent value="api" className="border-none p-0">
+          {/* TODO - Move to its own list component */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <CardIcon
               title="Forecast Data API"
