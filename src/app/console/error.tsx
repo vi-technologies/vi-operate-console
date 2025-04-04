@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/_common/ui/accordion';
 
 export default function Error({
   error,
@@ -27,33 +28,16 @@ export default function Error({
             {error.message}
           </pre>
         </div>
-        <div>
-          <h2 className="font-semibold mb-2">Setup Instructions</h2>
-          <p className="mb-4">
-            It seems your database might not be properly configured. Please follow these instructions:
-          </p>
-          <div className="mb-4">
-            <h3 className="font-semibold">Create the Users Table</h3>
-            <pre className="p-4 bg-gray-800 text-white rounded overflow-auto text-sm">
-              <code>
-                {`CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  email VARCHAR(255) NOT NULL,
-  name VARCHAR(255),
-  username VARCHAR(255)
-);`}
-              </code>
-            </pre>
-          </div>
-          <div className="mb-4">
-            <h3 className="font-semibold">Insert a Test Row</h3>
-            <pre className="p-4 bg-gray-800 text-white rounded overflow-auto text-sm">
-              <code>
-                {`INSERT INTO users (id, email, name, username) VALUES (1, 'me@site.com', 'Me', 'username');`}
-              </code>
-            </pre>
-          </div>
-        </div>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="error-details">
+            <AccordionTrigger>More Error Details</AccordionTrigger>
+            <AccordionContent>
+              <pre className="text-sm text-red-800 whitespace-pre-wrap break-words">
+                {error.stack}
+              </pre>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
         <button
           onClick={reset}
           className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
