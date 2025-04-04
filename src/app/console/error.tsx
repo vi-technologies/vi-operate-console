@@ -1,7 +1,12 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/_common/ui/accordion';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent
+} from '@/components/_common/ui/accordion';
 import { Card, CardHeader, CardContent } from '@/components/_common/ui/card';
 
 export default function Error({
@@ -17,12 +22,13 @@ export default function Error({
   }, [error]);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
-      <Card>
+    <main className="flex flex-col items-center justify-center h-full">
+      <Card className="w-full max-w-2xl shadow-lg m-auto">
         <CardHeader className="p-4">
           <h1 className="text-2xl font-bold">Something went wrong</h1>
           <p>
-            An unexpected error occurred. Please review the error details below for troubleshooting.
+            An unexpected error occurred. Please review the error details below
+            for troubleshooting.
           </p>
         </CardHeader>
         <CardContent className="p-4">
