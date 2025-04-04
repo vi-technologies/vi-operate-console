@@ -35,8 +35,20 @@ export default function Error({
         <CardContent className="p-4">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="error-details">
-              <AccordionTrigger className="p-4 bg-red-50 border border-red-200 rounded mb-4 text-red-700">
-                Error Details: {error.message}
+              <AccordionTrigger className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded mb-4 text-red-700">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M12 2a10 10 0 110 20 10 10 0 010-20z" />
+                </svg>
+                <div>
+                  <h3 className="text-lg font-semibold">Error Occurred</h3>
+                  <p className="text-sm">{error.message}</p>
+                </div>
               </AccordionTrigger>
               <AccordionContent>
                 <ScrollArea className="h-40">
