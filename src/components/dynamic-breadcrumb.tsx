@@ -15,24 +15,27 @@ import React from 'react';
 // Map paths to human-readable names
 const pathMap: Record<string, string> = {
   '': 'Dashboard',
-  'console': 'Dashboards',
-  'reports': 'Reports',
-  'automations': 'Automations',
-  'archetypes': 'Archetypes',
-  'sources': 'Sources',
+  console: 'Dashboards',
+  reports: 'Reports',
+  automations: 'Automations',
+  archetypes: 'Archetypes',
+  sources: 'Sources',
   'inbound-call-center': 'Inbound Call Center',
   'outbound-call-center': 'Outbound Call Center',
   'agent-performance': 'Agent Performance',
   'workforce-management': 'Workforce Management',
   'quality-monitoring': 'Quality Monitoring',
-  'customers': 'Customers'
+  customers: 'Customers'
 };
 
 export function DynamicBreadcrumb() {
   const pathname = usePathname();
-  const rawSegments = pathname.split('/').filter(segment =>
-    segment !== '' && !segment.startsWith('(') && !segment.endsWith(')')
-  );
+  const rawSegments = pathname
+    .split('/')
+    .filter(
+      (segment) =>
+        segment !== '' && !segment.startsWith('(') && !segment.endsWith(')')
+    );
 
   // Base breadcrumbs: VI Operate > Console
   const baseCrumbs = [
@@ -47,7 +50,7 @@ export function DynamicBreadcrumb() {
 
   const crumbs = [...baseCrumbs];
   let accumulatedPath = '/console';
-  additionalSegments.forEach(segment => {
+  additionalSegments.forEach((segment) => {
     accumulatedPath += `/${segment}`;
     const displayName = pathMap[segment] || segment.replace(/-/g, ' ');
     crumbs.push({ name: displayName, href: accumulatedPath });
