@@ -120,3 +120,8 @@
     @apply font-poppins;
   }
 }
+h1 {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+}
