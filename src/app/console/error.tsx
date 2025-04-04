@@ -8,6 +8,7 @@ import {
   AccordionContent
 } from '@/components/_common/ui/accordion';
 import { Card, CardHeader, CardContent } from '@/components/_common/ui/card';
+import { ScrollArea } from '@/components/_common/ui/scroll-area';
 
 export default function Error({
   error,
@@ -32,19 +33,17 @@ export default function Error({
           </p>
         </CardHeader>
         <CardContent className="p-4">
-          <div className="p-4 bg-red-50 border border-red-200 rounded mb-4">
-            <h2 className="font-semibold mb-2 text-red-700">Error Details:</h2>
-            <pre className="text-sm text-red-800 whitespace-pre-wrap break-words">
-              {error.message}
-            </pre>
-          </div>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="error-details">
-              <AccordionTrigger>More Error Details</AccordionTrigger>
+              <AccordionTrigger className="p-4 bg-red-50 border border-red-200 rounded mb-4 text-red-700">
+                Error Details: {error.message}
+              </AccordionTrigger>
               <AccordionContent>
-                <pre className="text-sm text-red-800 whitespace-pre-wrap break-words">
-                  {error.stack}
-                </pre>
+                <ScrollArea className="h-40">
+                  <pre className="text-sm text-red-800 whitespace-pre-wrap break-words p-2">
+                    {error.stack}
+                  </pre>
+                </ScrollArea>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
