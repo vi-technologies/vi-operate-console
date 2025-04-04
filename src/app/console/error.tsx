@@ -10,6 +10,7 @@ import {
 import { Card, CardHeader, CardContent } from '@/components/_common/ui/card';
 import { ScrollArea } from '@/components/_common/ui/scroll-area';
 import { AlertCircle } from 'lucide-react';
+import { AccordionHeader } from '@radix-ui/react-accordion';
 
 export default function Error({
   error,
@@ -25,8 +26,8 @@ export default function Error({
 
   return (
     <main className="flex flex-col items-center justify-center h-full">
-      <Card className="w-full max-w-4xl shadow-lg m-auto">
-        <CardHeader className="p-4">
+      <Card className="w-full max-w-4xl shadow-lg m-auto bg-red-800">
+        <CardHeader className="p-4 text-white">
           <h1 className="text-2xl font-bold">Something went wrong</h1>
           <p>
             An unexpected error occurred. Please review the error details below
@@ -34,17 +35,21 @@ export default function Error({
           </p>
         </CardHeader>
         <CardContent className="p-4">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full border-red-200 rounded text-red-700 bg-red-50 border"
+          >
             <AccordionItem value="error-details">
-              <AccordionTrigger className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded text-red-700">
+              <AccordionTrigger className="flex justify-between items-center gap-2 p-4 cursor-help">
                 <AlertCircle className="h-6 w-6" />
-                <div>
+                <div className="flex flex-col text-center">
                   <h3 className="text-lg font-semibold">Error Occurred</h3>
                   <p className="text-sm">{error.message}</p>
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <ScrollArea className="max-h-40">
+                <ScrollArea className="max-h-80">
                   <pre className="text-sm text-red-800 whitespace-pre-wrap break-words p-2">
                     {error.stack}
                   </pre>
@@ -53,10 +58,10 @@ export default function Error({
             </AccordionItem>
           </Accordion>
         </CardContent>
-        <div className="p-4">
+        <div className="px-4">
           <button
             onClick={reset}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-4 py-2  text-white rounded bg-red-950 hover:bg-red-700 w-full "
           >
             Try Again
           </button>

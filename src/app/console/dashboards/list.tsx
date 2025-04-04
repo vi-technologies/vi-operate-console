@@ -1,7 +1,12 @@
 'use client';
 
 import React from 'react';
-import { DashboardCard, DashboardCardProps } from './card';
+import {
+  CreateDashboardCard,
+  CreateDashboardCardProps,
+  DashboardCard,
+  DashboardCardProps
+} from './card';
 
 export interface DashboardCardListProps {
   cards: DashboardCardProps[];
