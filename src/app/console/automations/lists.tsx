@@ -10,7 +10,7 @@ import {
 } from '@/hooks';
 import { CardIcon } from '@/components/cards/card-icon';
 import { Cog, Flower, Calendar, Layers, Cpu, Link2, Grid } from 'lucide-react';
-import CardList, { mapCardIcon } from '@/components/lists/automation-card-list';
+import CardList, { mapCardIcon } from '@/components/lists/card-list';
 import { useRouter } from 'next/navigation';
 
 export function WorkflowsList() {
