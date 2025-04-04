@@ -140,8 +140,8 @@ export default function SourcesPage() {
     <PageLayout
       title="Add A New Source"
       actionButton={{
-        label: "New Source",
-        onClick: () => console.log("New source clicked")
+        label: 'New Source',
+        onClick: () => console.log('New source clicked')
       }}
     >
       <div className="relative w-64 ml-auto mb-4">
@@ -161,7 +161,9 @@ export default function SourcesPage() {
             <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center mb-3">
               <Boxes className="h-6 w-6 text-red-600" />
             </div>
-            <CardTitle className="text-center text-sm font-medium">Azure Blob Storage</CardTitle>
+            <CardTitle className="text-center text-sm font-medium">
+              Azure Blob Storage
+            </CardTitle>
           </CardContent>
         </Card>
 
@@ -170,7 +172,9 @@ export default function SourcesPage() {
             <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-3">
               <Database className="h-6 w-6 text-blue-600" />
             </div>
-            <CardTitle className="text-center text-sm font-medium">BigQuery</CardTitle>
+            <CardTitle className="text-center text-sm font-medium">
+              BigQuery
+            </CardTitle>
           </CardContent>
         </Card>
 
@@ -179,7 +183,9 @@ export default function SourcesPage() {
             <div className="h-12 w-12 rounded-full bg-cyan-100 flex items-center justify-center mb-3">
               <Snowflake className="h-6 w-6 text-cyan-600" />
             </div>
-            <CardTitle className="text-center text-sm font-medium">Snowflake</CardTitle>
+            <CardTitle className="text-center text-sm font-medium">
+              Snowflake
+            </CardTitle>
           </CardContent>
         </Card>
 
@@ -188,7 +194,9 @@ export default function SourcesPage() {
             <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center mb-3">
               <Layers className="h-6 w-6 text-red-600" />
             </div>
-            <CardTitle className="text-center text-sm font-medium">Databricks</CardTitle>
+            <CardTitle className="text-center text-sm font-medium">
+              Databricks
+            </CardTitle>
           </CardContent>
         </Card>
 
@@ -197,7 +205,9 @@ export default function SourcesPage() {
             <div className="h-12 w-12 rounded-full bg-amber-100 flex items-center justify-center mb-3">
               <BarChart4 className="h-6 w-6 text-amber-600" />
             </div>
-            <CardTitle className="text-center text-sm font-medium">Google Analytics</CardTitle>
+            <CardTitle className="text-center text-sm font-medium">
+              Google Analytics
+            </CardTitle>
           </CardContent>
         </Card>
 
@@ -206,7 +216,9 @@ export default function SourcesPage() {
             <div className="h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center mb-3">
               <LayoutGrid className="h-6 w-6 text-slate-600" />
             </div>
-            <CardTitle className="text-center text-sm font-medium">Custom Source</CardTitle>
+            <CardTitle className="text-center text-sm font-medium">
+              Custom Source
+            </CardTitle>
           </CardContent>
         </Card>
       </div>
@@ -216,12 +228,17 @@ export default function SourcesPage() {
         <h2 className="text-xl font-bold mb-4">Existing Sources</h2>
         <div className="space-y-4">
           {sources.map((source) => (
-            <Card key={source.id} className="hover:shadow-md transition-all overflow-hidden">
+            <Card
+              key={source.id}
+              className="hover:shadow-md transition-all overflow-hidden"
+            >
               <div
                 className="flex items-center p-4 cursor-pointer"
                 onClick={() => toggleSourceExpand(source.id)}
               >
-                <div className={`h-10 w-10 rounded-full ${source.iconBg} flex items-center justify-center mr-4`}>
+                <div
+                  className={`h-10 w-10 rounded-full ${source.iconBg} flex items-center justify-center mr-4`}
+                >
                   {source.icon}
                 </div>
                 <div className="grow">
@@ -229,7 +246,9 @@ export default function SourcesPage() {
                     <div>
                       <h3 className="font-medium">{source.name}</h3>
                       <div className="flex items-center mt-1">
-                        <Badge variant="outline" className="text-xs mr-2">{source.type}</Badge>
+                        <Badge variant="outline" className="text-xs mr-2">
+                          {source.type}
+                        </Badge>
                         {source.status === 'healthy' ? (
                           <Badge className="bg-green-100 text-green-800 hover:bg-green-100 text-xs px-2 py-0">
                             <Check className="h-3 w-3 mr-1" />
@@ -245,11 +264,15 @@ export default function SourcesPage() {
                     </div>
                     <div className="flex items-center gap-8">
                       <div className="text-center">
-                        <div className="text-xs text-muted-foreground">Datasets</div>
+                        <div className="text-xs text-muted-foreground">
+                          Datasets
+                        </div>
                         <div className="font-medium">{source.datasets}</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-xs text-muted-foreground">Models</div>
+                        <div className="text-xs text-muted-foreground">
+                          Models
+                        </div>
                         <div className="font-medium">{source.models}</div>
                       </div>
                       {expandedSourceId === source.id ? (
@@ -268,27 +291,44 @@ export default function SourcesPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <Card className="bg-white">
                       <CardContent className="p-4">
-                        <h4 className="font-medium text-sm mb-2">Connection Details</h4>
+                        <h4 className="font-medium text-sm mb-2">
+                          Connection Details
+                        </h4>
                         <div className="space-y-2 text-sm">
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Connection Type:</span>
+                            <span className="text-muted-foreground">
+                              Connection Type:
+                            </span>
                             <span>{source.type}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Last Refresh:</span>
+                            <span className="text-muted-foreground">
+                              Last Refresh:
+                            </span>
                             <span>{source.lastRefresh}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Refresh Interval:</span>
+                            <span className="text-muted-foreground">
+                              Refresh Interval:
+                            </span>
                             <span>{source.refreshInterval}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Schema Size:</span>
-                            <span>{source.schema.tables} tables, {source.schema.views} views</span>
+                            <span className="text-muted-foreground">
+                              Schema Size:
+                            </span>
+                            <span>
+                              {source.schema.tables} tables,{' '}
+                              {source.schema.views} views
+                            </span>
                           </div>
                         </div>
                         <div className="mt-4">
-                          <Button size="sm" variant="outline" className="w-full">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="w-full"
+                          >
                             <RefreshCw className="h-3 w-3 mr-2" />
                             Refresh Now
                           </Button>
@@ -298,12 +338,16 @@ export default function SourcesPage() {
 
                     <Card className="bg-white">
                       <CardContent className="p-4">
-                        <h4 className="font-medium text-sm mb-2">Health & Metrics</h4>
+                        <h4 className="font-medium text-sm mb-2">
+                          Health & Metrics
+                        </h4>
                         <div className="space-y-3 text-sm">
                           <div className="flex justify-between items-center">
-                            <span className="text-muted-foreground">Status:</span>
+                            <span className="text-muted-foreground">
+                              Status:
+                            </span>
                             <span className="flex items-center">
-                              {source.health.status === "Healthy" ? (
+                              {source.health.status === 'Healthy' ? (
                                 <>
                                   <div className="w-2 h-2 rounded-full bg-green-500 mr-1"></div>
                                   {source.health.status}
@@ -317,20 +361,30 @@ export default function SourcesPage() {
                             </span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Availability:</span>
+                            <span className="text-muted-foreground">
+                              Availability:
+                            </span>
                             <span>{source.health.metrics.availability}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Latency:</span>
+                            <span className="text-muted-foreground">
+                              Latency:
+                            </span>
                             <span>{source.health.metrics.latency}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Error Rate:</span>
+                            <span className="text-muted-foreground">
+                              Error Rate:
+                            </span>
                             <span>{source.health.metrics.errors}</span>
                           </div>
                         </div>
                         <div className="mt-4">
-                          <Button size="sm" variant="outline" className="w-full">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="w-full"
+                          >
                             <AlertTriangle className="h-3 w-3 mr-2" />
                             Run Diagnostics
                           </Button>
@@ -340,8 +394,12 @@ export default function SourcesPage() {
                   </div>
 
                   <div className="flex gap-2 justify-end mt-4">
-                    <Button size="sm" variant="outline">View Datasets</Button>
-                    <Button size="sm" variant="outline">Edit Connection</Button>
+                    <Button size="sm" variant="outline">
+                      View Datasets
+                    </Button>
+                    <Button size="sm" variant="outline">
+                      Edit Connection
+                    </Button>
                     <Button size="sm">Manage Source</Button>
                   </div>
                 </div>
