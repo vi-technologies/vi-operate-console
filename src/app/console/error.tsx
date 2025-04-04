@@ -15,11 +15,12 @@ export default function Error({
   }, [error]);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
       <div className="max-w-xl w-full bg-white shadow rounded-lg p-6">
         <h1 className="text-2xl font-bold mb-4">Setup Required</h1>
         <p className="mb-4">
-          We detected that your database is not yet configured. Please follow the instructions below to set up your environment.
+          We detected that your database is not yet configured. Please follow
+          the instructions below to set up your environment.
         </p>
         <div className="mb-4">
           <h2 className="font-semibold mb-2">Create the Users Table</h2>
@@ -42,8 +43,8 @@ export default function Error({
             </code>
           </pre>
         </div>
-        <button 
-          onClick={reset} 
+        <button
+          onClick={reset}
           className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
         >
           Try Again
