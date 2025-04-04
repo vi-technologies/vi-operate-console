@@ -8,16 +8,12 @@ import SourceSearch from './search';
 export default function SourcesPageClient() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
     <>
       <div className="relative w-64 ml-auto mb-4">
         <SourceSearch
           searchTerm={searchTerm}
-          onSearchChange={handleSearchChange}
+          onSearchChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <ConnectionOptions />
