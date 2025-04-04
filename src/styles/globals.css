@@ -1,3 +1,8 @@
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
 @import './base.css';
-@import './theme.css';
 @import './components.css';
+@import './theme.css';
+@import './utilities.css';

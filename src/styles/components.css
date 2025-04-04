@@ -1,0 +1,37 @@
+.nav {
+  background-color: #140923;
+}
+
+.link {
+  @apply flex items-center gap-4 px-2.5 text-muted-foreground hover:text-white font-poppins transition-colors;
+}
+
+.nav-select {
+  @apply text-white;
+  background-color: #6146f6;
+  padding: 0.5rem;
+  width: calc(100% + 25px);
+  font-weight: 200;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Firefox */
+input[type='search']::-moz-search-cancel-button {
+  display: none;
+}
+
+/* Microsoft Edge */
+input[type='search']::-ms-clear {
+  display: none;
+}
+
+.tab-trigger {
+  @apply px-4 py-8 hover:bg-gray-50 transition-colors duration-200;
+  @apply flex flex-col items-center gap-3 h-auto w-full cursor-pointer;
+  @apply border border-gray-300 text-gray-700 rounded-md max-w-1/6;
+}
