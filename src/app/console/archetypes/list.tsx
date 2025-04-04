@@ -2,11 +2,9 @@
 
 import { Input } from '@/components/_common/ui/input';
 import { Search } from 'lucide-react';
-import {
-  ArchetypeCard,
-  NotificationBanner
-} from '@/components/features/archetypes';
 import { useArchetypes } from '@/hooks/useArchetypes';
+import { NotificationBanner } from './banner';
+import { ArchetypeCard } from './card';
 
 export function ArchetypesList() {
   const {
@@ -54,7 +52,7 @@ export function ArchetypesList() {
             icon={archetype.icon}
             details={archetype.details}
             expandedId={expandedArchetypeId}
-            onToggleExpand={toggleExpand}
+            onToggleExpandAction={toggleExpand}
           />
         ))}
       </div>

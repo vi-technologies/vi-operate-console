@@ -1,4 +1,4 @@
-export * from '../cards/dashboard-card';
-export * from '../lists/dashboard-card-list';
+export * from '../../app/console/dashboards/card';
+export * from '../../app/console/dashboards/list';
 export * from './insight-alert';
 export * from './metrics-display';

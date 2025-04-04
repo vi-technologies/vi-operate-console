@@ -1,7 +1,14 @@
 import Link from 'next/link';
-import { Gauge, LineChart, Cog, Network, ServerCog, Settings } from 'lucide-react';
-import { NavItem } from '../../../app/console/dashboards/nav-item';
+import {
+  Gauge,
+  LineChart,
+  Cog,
+  Network,
+  ServerCog,
+  Settings
+} from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { NavItem } from './nav-item';
 
 export default function DesktopNav() {
   return (
@@ -46,7 +53,9 @@ export default function DesktopNav() {
               <span className="sr-only">Settings</span>
             </Link>
           </TooltipTrigger>
-          <TooltipContent side="right" className="font-poppins">Settings</TooltipContent>
+          <TooltipContent side="right" className="font-poppins">
+            Settings
+          </TooltipContent>
         </Tooltip>
       </nav>
     </aside>

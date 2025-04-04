@@ -22,7 +22,7 @@ export interface ArchetypeCardProps {
   icon: React.ReactNode;
   details: ArchetypeDetailsProps;
   expandedId: number | null;
-  onToggleExpand: (id: number) => void;
+  onToggleExpandAction: (id: number) => void;
 }
 
 export function ArchetypeCard({
@@ -36,7 +36,7 @@ export function ArchetypeCard({
   icon,
   details,
   expandedId,
-  onToggleExpand
+  onToggleExpandAction
 }: ArchetypeCardProps) {
   const isExpanded = expandedId === id;
 
@@ -44,19 +44,19 @@ export function ArchetypeCard({
     <Card className="overflow-hidden">
       <div
         className="p-6 cursor-pointer"
-        onClick={() => onToggleExpand(id)}
+        onClick={() => onToggleExpandAction(id)}
       >
         <div className="flex justify-between items-start">
           <div className="flex-1">
             <div className="flex items-center">
               <h3 className="text-lg font-medium">{name}</h3>
-              <div className={`ml-3 ${statusColor} text-white text-xs px-2 py-0.5 rounded-full`}>
+              <div
+                className={`ml-3 ${statusColor} text-white text-xs px-2 py-0.5 rounded-full`}
+              >
                 {status}
               </div>
             </div>
-            <p className="text-sm text-gray-500 mt-1">
-              {description}
-            </p>
+            <p className="text-sm text-gray-500 mt-1">{description}</p>
           </div>
           <div className="flex items-center space-x-6">
             <div className="text-center">
@@ -66,10 +66,11 @@ export function ArchetypeCard({
             <div className="text-sm text-gray-500 min-w-[80px] text-right">
               Updated {lastUpdated}
             </div>
-            {isExpanded ?
-              <ChevronDown className="h-5 w-5 text-gray-400" /> :
+            {isExpanded ? (
+              <ChevronDown className="h-5 w-5 text-gray-400" />
+            ) : (
               <ChevronRight className="h-5 w-5 text-gray-400" />
-            }
+            )}
           </div>
         </div>
       </div>
@@ -103,11 +104,15 @@ export function ArchetypeCard({
           </div>
 
           <div className="mt-4 pt-4 border-t border-gray-100 flex justify-end">
-            <Button variant="outline" size="sm" className="mr-2">Edit</Button>
+            <Button variant="outline" size="sm" className="mr-2">
+              Edit
+            </Button>
             {status === 'Paused' ? (
               <Button size="sm">Resume</Button>
             ) : (
-              <Button size="sm" variant="outline" className="bg-gray-50">Pause</Button>
+              <Button size="sm" variant="outline" className="bg-gray-50">
+                Pause
+              </Button>
             )}
           </div>
         </div>

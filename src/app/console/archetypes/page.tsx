@@ -1,5 +1,5 @@
 import { Page } from '@/components/_common/layout/page';
-import { ArchetypesList } from '@/components/lists/archetypes-list';
+import { ArchetypesList } from '@/app/console/archetypes/list';
 import { Metadata } from 'next';
 import { actionButton } from './artifacts';
 
