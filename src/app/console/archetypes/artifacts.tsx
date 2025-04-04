@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-export default {
+export const actionButton = {
   label: 'New Archetypes',
   onClick: () => console.log('New archetype clicked')
-} 
+};

@@ -1,7 +1,7 @@
 import { Page } from '@/components/_common/layout/page';
 import { ArchetypesList } from '@/components/lists/archetypes-list';
 import { Metadata } from 'next';
-import actionButton from './action-button';
+import { actionButton } from './artifacts';
 
 export const metadata: Metadata = {
   title: 'Archetypes',
