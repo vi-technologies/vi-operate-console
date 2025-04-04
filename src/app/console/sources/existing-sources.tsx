@@ -6,14 +6,12 @@ import { SourceConnectionCard } from '@/components/features/sources';
 import { Button } from '@/components/_common/ui/button';
 import { Card, CardContent } from '@/components/_common/ui/card';
 import { RefreshCw, AlertTriangle } from 'lucide-react';
+import SourceSearch from './search';
 
-interface ExistingSourcesProps {
-  searchTerm: string;
-}
-
-export default function ExistingSources({ searchTerm }: ExistingSourcesProps) {
+export default function ExistingSources() {
   const { sources } = useSources();
   const [expandedSourceId, setExpandedSourceId] = useState<number | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const toggleSourceExpand = (id: number) => {
     setExpandedSourceId(expandedSourceId === id ? null : id);
@@ -29,8 +27,16 @@ export default function ExistingSources({ searchTerm }: ExistingSourcesProps) {
 
   return (
     <div className="mt-8">
-      <h2 className="text-xl font-bold mb-4">Existing Sources</h2>
-      
+      <div className="flex flex-row justify-between">
+        <h2 className="text-xl font-bold mb-4">Existing Sources</h2>
+        <div className="relative w-64 ml-auto mb-4">
+          <SourceSearch
+            searchTerm={searchTerm}
+            onSearchChangeAction={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+      </div>
+
       {filteredSources.length === 0 ? (
         <div className="text-center py-8 text-muted-foreground">
           No sources found matching "{searchTerm}"
@@ -97,7 +103,9 @@ export default function ExistingSources({ searchTerm }: ExistingSourcesProps) {
 
                 <Card className="bg-white">
                   <CardContent className="p-4">
-                    <h4 className="font-medium text-sm mb-2">Health & Metrics</h4>
+                    <h4 className="font-medium text-sm mb-2">
+                      Health & Metrics
+                    </h4>
                     <div className="space-y-3 text-sm">
                       <div className="flex justify-between items-center">
                         <span className="text-muted-foreground">Status:</span>
@@ -126,7 +134,9 @@ export default function ExistingSources({ searchTerm }: ExistingSourcesProps) {
                         <span>{source.health.metrics.latency}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">Error Rate:</span>
+                        <span className="text-muted-foreground">
+                          Error Rate:
+                        </span>
                         <span>{source.health.metrics.errors}</span>
                       </div>
                     </div>
