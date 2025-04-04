@@ -23,7 +23,7 @@ export default function Error({
 
   return (
     <main className="flex flex-col items-center justify-center h-full">
-      <Card className="w-full max-w-2xl shadow-lg m-auto">
+      <Card className="w-full max-w-4xl shadow-lg m-auto">
         <CardHeader className="p-4">
           <h1 className="text-2xl font-bold">Something went wrong</h1>
           <p>
