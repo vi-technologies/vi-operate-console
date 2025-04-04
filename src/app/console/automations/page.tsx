@@ -1,10 +1,16 @@
+import { Metadata } from 'next';
 import { Page } from '@/common/layout';
+import { actionButton } from './artifacts';
 import AutomationTabs from './tabs';
-import actionButton from './action-button';
+
+export const metadata: Metadata = {
+  title: 'Automations',
+  description: 'VI Operate Console Automations'
+};
 
 export default function AutomationsPage() {
   return (
-    <Page title="Automations" actionButton={actionButton}>
+    <Page title="Automations" actionButton={actionButton} variant="container">
       <AutomationTabs />
     </Page>
   );

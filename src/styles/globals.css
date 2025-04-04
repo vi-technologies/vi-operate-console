@@ -201,6 +201,13 @@ input[type='search']::-moz-search-cancel-button {
 input[type='search']::-ms-clear {
   display: none;
 }
+
+.tab-trigger {
+  @apply px-4 py-8 hover:bg-gray-50 transition-colors duration-200;
+  @apply flex flex-col items-center gap-3 h-auto w-full cursor-pointer;
+  @apply border border-gray-300 text-gray-700 rounded-md;
+}
+
 /*
   ---break---
 */
