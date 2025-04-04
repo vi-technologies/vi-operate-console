@@ -6,8 +6,10 @@ type Props = {
 };
 
 export default function BigButtonTabs({ tabs }: Props) {
+  const [defaults] = tabs;
+
   return (
-    <Tabs defaultValue="workflows" className="w-full">
+    <Tabs defaultValue={defaults.value}>
       <TabsList className="flex gap-2 w-full h-auto">
         {tabs.map((tab) => (
           <TabsTrigger
