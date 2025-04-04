@@ -1,4 +1,4 @@
-export default function useCronJobs() {
+export function useCronJobs() {
   return {
     cronJobs: [
       {
@@ -7,11 +7,13 @@ export default function useCronJobs() {
       },
       {
         title: 'Weekly Schedule Generation',
-        children: 'Runs every Monday at 2 AM to create weekly schedules. Schedule: 0 2 * * 1'
+        children:
+          'Runs every Monday at 2 AM to create weekly schedules. Schedule: 0 2 * * 1'
       },
       {
         title: 'Data Cleanup Job',
-        children: 'Archives old data and cleans up temporary storage. Schedule: 0 3 * * 0'
+        children:
+          'Archives old data and cleans up temporary storage. Schedule: 0 3 * * 0'
       }
     ]
   };

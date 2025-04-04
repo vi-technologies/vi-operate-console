@@ -1,4 +1,4 @@
-export default function useWorkflows() {
+export function useWorkflows() {
   return {
     workflows: [
       {

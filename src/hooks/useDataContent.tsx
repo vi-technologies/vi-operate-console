@@ -1,4 +1,4 @@
-export default function useDataContent() {
+export function useDataContent() {
   return {
     dataContent: [
       {
@@ -6,7 +6,9 @@ export default function useDataContent() {
         children: (
           <>
             Live stream of call center performance metrics
-            <div className="mt-2 text-xs text-muted-foreground">Status: Active</div>
+            <div className="mt-2 text-xs text-muted-foreground">
+              Status: Active
+            </div>
           </>
         )
       },
@@ -15,7 +17,9 @@ export default function useDataContent() {
         children: (
           <>
             Continuous sync with Epic Scheduling System
-            <div className="mt-2 text-xs text-muted-foreground">Status: Active</div>
+            <div className="mt-2 text-xs text-muted-foreground">
+              Status: Active
+            </div>
           </>
         )
       },
@@ -24,7 +28,9 @@ export default function useDataContent() {
         children: (
           <>
             Real-time monitoring of agent activity and status
-            <div className="mt-2 text-xs text-muted-foreground">Status: Paused</div>
+            <div className="mt-2 text-xs text-muted-foreground">
+              Status: Paused
+            </div>
           </>
         )
       }

@@ -1,4 +1,4 @@
-export default function useEvents() {
+export function useEvents() {
   return {
     events: [
       {

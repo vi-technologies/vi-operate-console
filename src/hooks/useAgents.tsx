@@ -1,4 +1,4 @@
-export default function useAgents() {
+export function useAgents() {
   return {
     agents: [
       {

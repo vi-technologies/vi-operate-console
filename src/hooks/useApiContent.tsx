@@ -1,17 +1,20 @@
-export default function useApiContent() {
+export function useApiContent() {
   return {
     apiContent: [
       {
         title: 'Forecast Data API',
-        children: 'Exposes forecast data to external systems. Endpoint: /api/forecasts'
+        children:
+          'Exposes forecast data to external systems. Endpoint: /api/forecasts'
       },
       {
         title: 'Schedule API',
-        children: 'Allows external systems to access and update schedules. Endpoint: /api/schedules'
+        children:
+          'Allows external systems to access and update schedules. Endpoint: /api/schedules'
       },
       {
         title: 'Metrics Webhook',
-        children: 'Pushes real-time metrics to external dashboards. Webhook: Configurable'
+        children:
+          'Pushes real-time metrics to external dashboards. Webhook: Configurable'
       }
     ]
   };
