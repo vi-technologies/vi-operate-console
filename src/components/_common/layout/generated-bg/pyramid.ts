@@ -4,15 +4,15 @@ export function createPyramid(x: number, y: number, width: number, height: numbe
   const depthX = depth * Math.cos(isoAngle);
   const depthY = depth * Math.sin(isoAngle);
   
-  // Calculate the pyramid apex (slightly offset for better visibility)
-  const apexX = x + width / 2 - depthX * 0.2;
-  const apexY = y - height * 0.8;
+  // Calculate the pyramid apex using standard isometric projection
+  const apexX = x + width / 2;
+  const apexY = y - height;
   
-  // Calculate the base corners
+  // Calculate the base corners with consistent projection
   const frontBottomLeft = [x, y + height];
   const frontBottomRight = [x + width, y + height];
-  const backBottomLeft = [x + depthX * 1.2, y + height - depthY * 1.2];
-  const backBottomRight = [x + width + depthX * 1.2, y + height - depthY * 1.2];
+  const backBottomLeft = [x + depthX, y + height - depthY];
+  const backBottomRight = [x + width + depthX, y + height - depthY];
   
   // Define the faces
   // Front triangular face
