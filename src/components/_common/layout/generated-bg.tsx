@@ -110,9 +110,9 @@ interface BackgroundComponentProps {
 const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
   children,
   shapeCount = 22,
-  strokeColor = '#8ab4f8',
+  strokeColor = '#E0E0E0',
   strokeWidth = 1.2,
-  fillColor = 'none',
+  fillColor = 'white',
   seed: propSeed,
   distribution = 'scattered'
 }): JSX.Element => {
