@@ -42,7 +42,7 @@ import {
 } from 'lucide-react';
 import { Button } from './_common/ui/button';
 import { Tabs, TabsList, TabsTrigger } from './_common/ui/tabs';
-import { useAppLauncher } from '@/hooks/useAppLauncher';
+import { useAppLauncher, platformColors } from '@/hooks/useAppLauncher';
 
 export function AppLauncher() {
   const [open, setOpen] = useState(false);
@@ -56,12 +56,7 @@ export function AppLauncher() {
   // Filter apps based on active platform
   const filteredApps = apps.filter((app) => app.platform === activePlatform);
 
-  // Platform color schemes optimized for dark background
-  const platformColors = {
-    operate: 'bg-blue-600 text-white',
-    acquire: 'bg-purple-600 text-white',
-    engage: 'bg-emerald-600 text-white'
-  };
+  
 
   return (
     <div className="relative">
