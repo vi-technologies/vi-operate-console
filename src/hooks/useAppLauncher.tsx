@@ -244,3 +244,9 @@ export function useAppLauncher(): {
     apps
   };
 }
+
+export const platformColors = {
+  operate: 'bg-blue-900 text-gray-200',
+  acquire: 'bg-purple-900 text-gray-200',
+  engage: 'bg-emerald-900 text-gray-200'
+};
