@@ -41,7 +41,11 @@ import {
   Handshake
 } from 'lucide-react';
 import { Button } from './_common/ui/button';
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/_common/ui/tooltip';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent
+} from '@/components/_common/ui/tooltip';
 import { Tabs, TabsList, TabsTrigger } from './_common/ui/tabs';
 import { useAppLauncher, platformColors } from '@/hooks/useAppLauncher';
 
@@ -56,9 +60,11 @@ export function AppLauncher() {
 
   // Filter apps based on active platform
   const filteredApps = apps.filter((app) => app.platform === activePlatform);
+
   const availableApps = filteredApps.filter(
     (app) => app.category !== 'coming-soon'
   );
+
   const comingSoonApps = filteredApps.filter(
     (app) => app.category === 'coming-soon'
   );
@@ -79,9 +85,7 @@ export function AppLauncher() {
               </Button>
             </PopoverTrigger>
           </TooltipTrigger>
-          <TooltipContent>
-            App Launcher
-          </TooltipContent>
+          <TooltipContent>App Launcher</TooltipContent>
         </Tooltip>
         <PopoverContent
           className="w-[380px] p-0 nav rounded-none shadow-lg"
