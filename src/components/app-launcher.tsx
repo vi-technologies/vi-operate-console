@@ -123,25 +123,32 @@ export function AppLauncher() {
                 </div> */}
                   <div className="grid grid-cols-3 gap-2 pb-3">
                     {availableApps.map((app) => (
-                      <Link
-                        key={app.name}
-                        href={app.url}
-                        className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                          pathname === app.url
-                            ? 'app-selected'
-                            : 'text-muted-foreground hover:text-white'
-                        }`}
-                      >
-                        <div
-                          className={`flex h-10 w-10 items-center justify-center rounded-full 
-                        ${platformColors[app.platform]}`}
-                        >
-                          {app.icon}
-                        </div>
-                        <span className="mt-1 text-xs font-medium text-center">
-                          {app.name}
-                        </span>
-                      </Link>
+                      <Tooltip key={app.name}>
+                        <TooltipTrigger asChild>
+                          <Link
+                            key={app.name}
+                            href={app.url}
+                            className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
+                              pathname === app.url
+                                ? 'app-selected'
+                                : 'text-muted-foreground hover:text-white'
+                            }`}
+                          >
+                            <div
+                              className={`flex h-10 w-10 items-center justify-center rounded-full 
+                            ${platformColors[app.platform]}`}
+                            >
+                              {app.icon}
+                            </div>
+                            <span className="mt-1 text-xs font-medium text-center">
+                              {app.name}
+                            </span>
+                          </Link>
+                        </TooltipTrigger>
+                        <TooltipContent sideOffset={5}>
+                          Launch {app.name}: Enhance your productivity by managing your {app.name.toLowerCase()} tasks seamlessly.
+                        </TooltipContent>
+                      </Tooltip>
                     ))}
                   </div>
                 </>
@@ -153,24 +160,31 @@ export function AppLauncher() {
                 </div> */}
                   <div className="grid grid-cols-3 gap-2 pb-3">
                     {comingSoonApps.map((app) => (
-                      <Link
-                        key={app.name}
-                        href={app.url}
-                        className="flex flex-col items-center justify-center p-2 rounded transition-colors text-muted-foreground cursor-not-allowed"
-                      >
-                        <div
-                          className={`flex h-10 w-10 items-center justify-center rounded-full 
-                        ${platformColors[app.platform]} opacity-70`}
-                        >
-                          {app.icon}
-                        </div>
-                        <span className="mt-1 text-xs font-medium text-center">
-                          {app.name}
-                        </span>
-                        <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
-                          Soon
-                        </span>
-                      </Link>
+                      <Tooltip key={app.name}>
+                        <TooltipTrigger asChild>
+                          <Link
+                            key={app.name}
+                            href={app.url}
+                            className="flex flex-col items-center justify-center p-2 rounded transition-colors text-muted-foreground cursor-not-allowed"
+                          >
+                            <div
+                              className={`flex h-10 w-10 items-center justify-center rounded-full 
+                            ${platformColors[app.platform]} opacity-70`}
+                            >
+                              {app.icon}
+                            </div>
+                            <span className="mt-1 text-xs font-medium text-center">
+                              {app.name}
+                            </span>
+                            <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
+                              Soon
+                            </span>
+                          </Link>
+                        </TooltipTrigger>
+                        <TooltipContent sideOffset={5}>
+                          {app.name} is coming soon – check back later for exciting new features!
+                        </TooltipContent>
+                      </Tooltip>
                     ))}
                   </div>
                 </>
