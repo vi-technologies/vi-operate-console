@@ -1,4 +1,15 @@
 import React, { useMemo } from 'react';
+
+export type Shape =
+  | { type: 'box'; key: string; frontFace: string; topFace: string; rightFace: string }
+  | { type: 'l-shape'; key: string; frontFace: string; topFace: string; rightFace: string; armFrontFace: string; armTopFace: string; armRightFace: string }
+  | { type: 'u-shape'; key: string; leftFrontFace: string; leftTopFace: string; leftRightFace: string; rightFrontFace: string; rightTopFace: string; rightRightFace: string; bottomFrontFace: string; bottomTopFace: string; bottomRightFace: string }
+  | { type: 'c-shape'; key: string; topFrontFace: string; topTopFace: string; topRightFace: string; leftFrontFace: string; leftTopFace: string; leftRightFace: string; bottomFrontFace: string; bottomTopFace: string; bottomRightFace: string }
+  | { type: 't-shape'; key: string; verticalFrontFace: string; verticalTopFace: string; verticalRightFace: string; horizontalFrontFace: string; horizontalTopFace: string; horizontalRightFace: string }
+  | { type: 'platform'; key: string; frontFace: string; topFace: string; rightFace: string }
+  | { type: 'stepped'; key: string; steps: Array<{ frontFace: string; topFace: string; rightFace: string }> }
+  | { type: 'zigzag'; key: string; parts: Array<{ frontFace: string; topFace: string; rightFace: string }> }
+  | { type: 'hexagon'; key: string; frontFace: string };
 import { createHexagon } from '../../../../layout/generated-bg/hexagon';
 import { createBox } from '../../../../layout/generated-bg/box';
 import { createLShape } from '../../../../layout/generated-bg/l-shape';
@@ -209,7 +220,7 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({
     setMounted(true);
   }, []);
   
-  const renderShape = (shape: any): JSX.Element | null => {
+  const renderShape = (shape: Shape): JSX.Element | null => {
     switch (shape.type) {
       case 'box':
         return (
