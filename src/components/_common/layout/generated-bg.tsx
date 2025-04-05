@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { createHexagon } from '../../../layout/generated-bg/hexagon';
+import { createHexagon } from '../../../../layout/generated-bg/hexagon';
 
 const BackgroundComponent = ({
   children,
