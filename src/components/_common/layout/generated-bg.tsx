@@ -235,52 +235,51 @@ const BackgroundComponent = ({
     const shapes = [];
     const viewWidth = 1200;
     const viewHeight = 800;
-
-    // Create a grid system to avoid overlaps
-    const gridSize = 200;
-    const cols = Math.floor(viewWidth / gridSize);
-    const rows = Math.floor(viewHeight / gridSize);
-    const grid = Array(rows)
-      .fill()
-      .map(() => Array(cols).fill(false));
-
-    // Helper function to place a shape in an empty grid cell
-    const placeShape = () => {
-      // Try to find an empty cell
-      let attempts = 0;
-      let row, col;
-
-      do {
-        row = Math.floor(random() * rows);
-        col = Math.floor(random() * cols);
-        attempts++;
-        if (attempts > 100) return null; // Avoid infinite loop
-      } while (grid[row][col]);
-
-      // Mark cell as occupied
-      grid[row][col] = true;
-
-      // Calculate position with some randomness within the cell
-      const x = col * gridSize + randomRange(20, 40);
-      const y = row * gridSize + randomRange(20, 40);
-
-      return { x, y };
+  
+    // Array to hold placed bounding boxes for collision detection
+    const placedBoxes = [];
+  
+    // Helper function to check overlap between two boxes
+    const doesOverlap = (box, boxes) => {
+      return boxes.some(b =>
+        box.x < b.x + b.w &&
+        box.x + box.w > b.x &&
+        box.y < b.y + b.h &&
+        box.y + box.h > b.y
+      );
     };
-
+  
+    // Helper function to get a candidate position that doesn't overlap
+    const getCandidate = (w, h) => {
+      let attempts = 0;
+      while (attempts < 100) {
+        const x = randomRange(0, viewWidth - w);
+        const y = randomRange(0, viewHeight - h);
+        const candidate = { x, y, w, h };
+        if (!doesOverlap(candidate, placedBoxes)) {
+          return candidate;
+        }
+        attempts++;
+      }
+      return null;
+    };
+  
     for (let i = 0; i < shapeCount; i++) {
-      const position = placeShape();
-      if (!position) continue; // Skip if no empty cell found
-
-      const { x, y } = position;
-      const shapeType = Math.floor(random() * 8); // More shape varieties
       const width = randomRange(60, 100);
       const height = randomRange(60, 100);
       const depth = randomRange(20, 40);
       const armWidth = randomRange(20, 30);
-
+  
+      const candidate = getCandidate(width, height);
+      if (!candidate) continue; // Skip if no non-overlapping position found
+  
+      placedBoxes.push(candidate);
+      const { x, y } = candidate;
+      const shapeType = Math.floor(random() * 8); // More shape varieties
+  
       let shape;
       let key = `shape-${i}`;
-
+  
       switch (shapeType) {
         case 0: // Simple box
           shape = createBox(x, y, width, height, depth);
@@ -348,7 +347,7 @@ const BackgroundComponent = ({
           break;
       }
     }
-
+  
     return shapes;
   }, [shapeCount, seed]);
 
