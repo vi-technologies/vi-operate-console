@@ -337,9 +337,6 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({
       default:
         return null;
     }
-      default:
-        return null;
-    }
   };
   
   return (
