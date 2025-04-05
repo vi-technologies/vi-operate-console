@@ -47,8 +47,8 @@ export function useAppLauncher(): {
       name: 'Console',
       icon: <LayoutDashboard size={20} />,
       url: '/console/dashboards',
-      platform: 'engage',
-      category: 'coming-soon'
+      platform: 'operate',
+      category: 'core'
     },
     {
       name: 'Reports',
@@ -58,7 +58,7 @@ export function useAppLauncher(): {
       category: 'core'
     },
     {
-      name: 'Automate',
+      name: 'Automations',
       icon: <Cog size={20} />,
       url: '/console/automations/create',
       platform: 'operate',
@@ -92,42 +92,42 @@ export function useAppLauncher(): {
       icon: <Users size={20} />,
       url: '/acquire/audiences',
       platform: 'acquire',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Analytics',
       icon: <BarChart4 size={20} />,
       url: '/acquire/analytics',
       platform: 'acquire',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Leads',
       icon: <SearchCheck size={20} />,
       url: '/acquire/leads',
       platform: 'acquire',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Conversions',
       icon: <Handshake size={20} />,
       url: '/acquire/conversions',
       platform: 'acquire',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Channels',
       icon: <Megaphone size={20} />,
       url: '/acquire/channels',
       platform: 'acquire',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Performance',
       icon: <LineChart size={20} />,
       url: '/acquire/performance',
       platform: 'acquire',
-      category: 'core'
+      category: 'coming-soon'
     },
 
     // Vi Engage - Customer Engagement Platform
@@ -143,27 +143,27 @@ export function useAppLauncher(): {
       icon: <Mail size={20} />,
       url: '/engage/campaigns',
       platform: 'engage',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Journey',
       icon: <Network size={20} />,
       url: '/engage/journey',
       platform: 'engage',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Insights',
       icon: <Sparkle size={20} />,
       url: '/engage/insights',
       platform: 'engage',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'AI Chat',
       icon: <Bot size={20} />,
       url: '/engage/ai-chat',
-      platform: 'operate',
+      platform: 'engage',
       category: 'coming-soon'
     },
     {
@@ -171,14 +171,14 @@ export function useAppLauncher(): {
       icon: <Gift size={20} />,
       url: '/engage/loyalty',
       platform: 'engage',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Revenue',
       icon: <Banknote size={20} />,
       url: '/engage/revenue',
       platform: 'engage',
-      category: 'core'
+      category: 'coming-soon'
     },
 
     // Coming Soon Features
@@ -214,7 +214,7 @@ export function useAppLauncher(): {
       name: 'Call Center',
       icon: <Phone size={20} />,
       url: '/console/industries/call-center',
-      platform: 'acquire',
+      platform: 'operate',
       category: 'coming-soon'
     },
     {
@@ -228,7 +228,7 @@ export function useAppLauncher(): {
       name: 'Manufacturing',
       icon: <Factory size={20} />,
       url: '/console/industries/manufacturing',
-      platform: 'engage',
+      platform: 'operate',
       category: 'coming-soon'
     },
     {
