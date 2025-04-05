@@ -146,7 +146,7 @@ export function AppLauncher() {
                           </Link>
                         </TooltipTrigger>
                         <TooltipContent sideOffset={5}>
-                          Enhance your productivity by managing your {app.name.toLowerCase()} tasks seamlessly.
+                          {app.tooltip}
                         </TooltipContent>
                       </Tooltip>
                     ))}
@@ -182,7 +182,7 @@ export function AppLauncher() {
                           </Link>
                         </TooltipTrigger>
                         <TooltipContent sideOffset={5}>
-                          Coming soon – check back later for exciting new features!
+                          {app.tooltip}
                         </TooltipContent>
                       </Tooltip>
                     ))}
