@@ -190,6 +190,7 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
       
       // Calculate the safety margin to keep shapes from the edges
       const edgeMargin = 30;
+      const tableBase = viewHeight - 50;
 
       while (attempts < 150) { // Increased attempts for better positioning
         let x, y;
@@ -302,7 +303,7 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
             }
         }
 
-        const candidate = { x, y, w, h };
+        const candidate = { x, y: tableBase - h, w, h };
         
         // Enhanced collision detection with minimum spacing
         if (!doesOverlap(candidate, placedBoxes, buffer)) {
