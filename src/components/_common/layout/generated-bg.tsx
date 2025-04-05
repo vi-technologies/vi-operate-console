@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { createHexagon } from '../../../../layout/generated-bg/hexagon';
+import { createBox } from '../../../../layout/generated-bg/box';
 
 const BackgroundComponent = ({
   children,
@@ -24,7 +25,6 @@ const BackgroundComponent = ({
   // Generate random number in range
   const randomRange = (min, max) => min + random() * (max - min);
 
-  import { createBox } from '../../../../layout/generated-bg/box';
 
   // Create an L-shaped 3D object
   const createLShape = (x, y, width, height, depth, armWidth) => {
