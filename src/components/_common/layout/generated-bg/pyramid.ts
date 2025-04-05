@@ -4,9 +4,9 @@ export function createPyramid(x: number, y: number, width: number, height: numbe
   const depthX = depth * Math.cos(isoAngle);
   const depthY = depth * Math.sin(isoAngle);
   
-  // Calculate the pyramid apex
-  const apexX = x + width / 2 + depthX / 2;
-  const apexY = y;
+  // Calculate the pyramid apex (raised above the base)
+  const apexX = x + width / 2;
+  const apexY = y - height;
   
   // Calculate the base corners
   const frontBottomLeft = [x, y + height];
