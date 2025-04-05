@@ -131,9 +131,7 @@ export function AppLauncher() {
                             } ${app.category === 'coming-soon' ? 'cursor-not-allowed' : ''}`}
                           >
                             <div
-                              className={`flex h-10 w-10 items-center justify-center rounded-full ${
-                                app.category === 'coming-soon' ? \`\${platformColors[app.platform]} opacity-70\` : platformColors[app.platform]
-                              }`}
+                              className={`flex h-10 w-10 items-center justify-center rounded-full ${platformColors[app.platform]} ${app.category === 'coming-soon' ? "opacity-70" : ""}`}
                             >
                               {app.icon}
                             </div>
