@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   Popover,
@@ -102,7 +103,7 @@ export function AppLauncher() {
           <ScrollArea className="h-auto">
             <div className="grid grid-cols-3 gap-2 p-3">
               {filteredApps.map((app) => (
-                <a
+                <Link
                   key={app.name}
                   href={app.url}
                   onClick={() => setOpen(false)}
@@ -117,7 +118,7 @@ export function AppLauncher() {
                   >
                     {app.icon}
                   </div>
-                  <span className="mt-1 text-xs font-medium text-white text-center">
+                  <span className="mt-1 text-xs font-medium text-center">
                     {app.name}
                   </span>
                   {app.category === 'coming-soon' && (
@@ -125,7 +126,7 @@ export function AppLauncher() {
                       Soon
                     </span>
                   )}
-                </a>
+                </Link>
               ))}
             </div>
           </ScrollArea>
