@@ -24,52 +24,7 @@ const BackgroundComponent = ({
   // Generate random number in range
   const randomRange = (min, max) => min + random() * (max - min);
 
-  // Create an isometric 3D box
-  const createBox = (x, y, width, height, depth) => {
-    // Base coordinates
-    const frontBottomLeft = [x, y + height];
-    const frontBottomRight = [x + width, y + height];
-    const frontTopLeft = [x, y];
-    const frontTopRight = [x + width, y];
-
-    // Top face coordinates
-    const backTopLeft = [x + depth, y - depth / 2];
-    const backTopRight = [x + width + depth, y - depth / 2];
-
-    // Right face coordinates
-    const backBottomRight = [x + width + depth, y + height - depth / 2];
-
-    // Paths for each face
-    const frontFace = `
-      M ${frontBottomLeft[0]} ${frontBottomLeft[1]}
-      L ${frontBottomRight[0]} ${frontBottomRight[1]}
-      L ${frontTopRight[0]} ${frontTopRight[1]}
-      L ${frontTopLeft[0]} ${frontTopLeft[1]}
-      Z
-    `;
-
-    const topFace = `
-      M ${frontTopLeft[0]} ${frontTopLeft[1]}
-      L ${frontTopRight[0]} ${frontTopRight[1]}
-      L ${backTopRight[0]} ${backTopRight[1]}
-      L ${backTopLeft[0]} ${backTopLeft[1]}
-      Z
-    `;
-
-    const rightFace = `
-      M ${frontTopRight[0]} ${frontTopRight[1]}
-      L ${frontBottomRight[0]} ${frontBottomRight[1]}
-      L ${backBottomRight[0]} ${backBottomRight[1]}
-      L ${backTopRight[0]} ${backTopRight[1]}
-      Z
-    `;
-
-    return {
-      frontFace,
-      topFace,
-      rightFace
-    };
-  };
+  import { createBox } from '../../../../layout/generated-bg/box';
 
   // Create an L-shaped 3D object
   const createLShape = (x, y, width, height, depth, armWidth) => {
