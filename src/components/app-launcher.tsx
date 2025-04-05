@@ -108,7 +108,7 @@ export function AppLauncher() {
                   href={app.url}
                   onClick={() => setOpen(false)}
                   className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                    pathname === app.url ? 'app-selected' : 'text-muted-foreground hover:text-foreground hover:bg-gray-700'
+                    pathname === app.url ? 'app-selected' : 'text-muted-foreground hover:text-white'
                   }`}
                 >
                   <div
