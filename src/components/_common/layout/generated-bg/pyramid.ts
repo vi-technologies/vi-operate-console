@@ -5,7 +5,7 @@ export function createPyramid(x: number, y: number, width: number, height: numbe
   const depthY = depth * Math.sin(isoAngle);
   
   // Calculate the pyramid apex
-  const apexX = x + width / 2;
+  const apexX = x + width / 2 + depthX / 2;
   const apexY = y;
   
   // Calculate the base corners
@@ -24,6 +24,9 @@ export function createPyramid(x: number, y: number, width: number, height: numbe
   // Left triangular face - connecting front left to back left to apex
   const leftFace = `M${frontBottomLeft[0]},${frontBottomLeft[1]} L${backBottomLeft[0]},${backBottomLeft[1]} L${apexX},${apexY} Z`;
   
+  // Back triangular face - connecting back left to back right to apex
+  const backFace = `M${backBottomLeft[0]},${backBottomLeft[1]} L${backBottomRight[0]},${backBottomRight[1]} L${apexX},${apexY} Z`;
+  
   // Base square (optional, usually not visible)
   const baseFace = `M${frontBottomLeft[0]},${frontBottomLeft[1]} L${frontBottomRight[0]},${frontBottomRight[1]} L${backBottomRight[0]},${backBottomRight[1]} L${backBottomLeft[0]},${backBottomLeft[1]} Z`;
   
@@ -31,6 +34,7 @@ export function createPyramid(x: number, y: number, width: number, height: numbe
     frontFace,
     rightFace,
     leftFace,
+    backFace,
     baseFace
   };
 }

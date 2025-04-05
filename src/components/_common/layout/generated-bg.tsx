@@ -92,6 +92,7 @@ export type Shape =
       frontFace: string;
       rightFace: string;
       leftFace: string;
+      backFace: string;
       baseFace: string;
     };
 
@@ -605,6 +606,7 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
               <path d={shape.frontFace} {...pathStyle} />
               <path d={shape.rightFace} {...pathStyle} />
               <path d={shape.leftFace} {...pathStyle} />
+              <path d={shape.backFace} {...pathStyle} />
             </g>
           );
         default:
