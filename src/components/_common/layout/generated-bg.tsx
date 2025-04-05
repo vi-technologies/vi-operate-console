@@ -252,6 +252,7 @@ const BackgroundComponent = ({
   
     // Array to hold placed bounding boxes for collision detection
     const placedBoxes = [];
+    let lastShapeType = -1;
   
     // Helper function to check overlap between two boxes
     const doesOverlap = (box, boxes) => {
@@ -270,6 +271,13 @@ const BackgroundComponent = ({
         const x = randomRange(0, viewWidth - w);
         const y = randomRange(0, viewHeight - h);
         const candidate = { x, y, w, h };
+        const centerX = candidate.x + candidate.w / 2;
+        const centerY = candidate.y + candidate.h / 2;
+        // Skip candidate if its center lies within the central area (300,200) to (900,600)
+        if (centerX >= 300 && centerX <= 900 && centerY >= 200 && centerY <= 600) {
+          attempts++;
+          continue;
+        }
         if (!doesOverlap(candidate, placedBoxes)) {
           return candidate;
         }
@@ -289,7 +297,11 @@ const BackgroundComponent = ({
   
       placedBoxes.push(candidate);
       const { x, y } = candidate;
-      const shapeType = Math.floor(random() * 9); // More shape varieties, including sacred geometry hexagon
+      let shapeType = Math.floor(random() * 9);
+      if (shapeType === lastShapeType) {
+        shapeType = (shapeType + 1) % 9;
+      }
+      lastShapeType = shapeType; // Ensure variety in shape types
   
       let shape;
       let key = `shape-${i}`;
