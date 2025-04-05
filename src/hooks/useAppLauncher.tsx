@@ -45,7 +45,7 @@ export function useAppLauncher(): {
     // Vi Operate - Workforce Management Platform
     {
       name: 'Ai Agent',
-      tooltip: 'Ai Agent',
+      tooltip: 'Automate tasks with AI (coming soon)',
       icon: <Bot size={20} />,
       url: '/console/ai-agent',
       platform: 'operate',
@@ -53,7 +53,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Console',
-      tooltip: 'Console',
+      tooltip: 'Access your dashboard and controls',
       icon: <LayoutDashboard size={20} />,
       url: '/console/dashboards',
       platform: 'operate',
@@ -61,7 +61,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Reports',
-      tooltip: 'Reports',
+      tooltip: 'View detailed reports',
       icon: <LineChart size={20} />,
       url: '/console/reports',
       platform: 'operate',
@@ -69,7 +69,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Automations',
-      tooltip: 'Automations',
+      tooltip: 'Create and manage automations',
       icon: <Cog size={20} />,
       url: '/console/automations/create',
       platform: 'operate',
@@ -77,7 +77,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Archetypes',
-      tooltip: 'Archetypes',
+      tooltip: 'Configure archetypes for workflows',
       icon: <Network size={20} />,
       url: '/console/archetypes',
       platform: 'operate',
@@ -85,7 +85,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Sources',
-      tooltip: 'Sources',
+      tooltip: 'Manage your data sources',
       icon: <ServerCog size={20} />,
       url: '/console/sources',
       platform: 'operate',
@@ -95,7 +95,7 @@ export function useAppLauncher(): {
     // Vi Acquire - Customer Acquisition Platform
     {
       name: 'Ai Agent',
-      tooltip: 'Ai Agent',
+      tooltip: 'Automate customer acquisition tasks (coming soon)',
       icon: <Bot size={20} />,
       url: '/acquire/ai-agent',
       platform: 'acquire',
@@ -103,7 +103,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Campaigns',
-      tooltip: 'Campaigns',
+      tooltip: 'Plan and execute campaigns',
       icon: <Target size={20} />,
       url: '/acquire/campaigns',
       platform: 'acquire',
@@ -111,7 +111,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Audiences',
-      tooltip: 'Audiences',
+      tooltip: 'Target and analyze audiences',
       icon: <Users size={20} />,
       url: '/acquire/audiences',
       platform: 'acquire',
@@ -119,7 +119,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Analytics',
-      tooltip: 'Analytics',
+      tooltip: 'Analyze performance metrics',
       icon: <BarChart4 size={20} />,
       url: '/acquire/analytics',
       platform: 'acquire',
@@ -127,7 +127,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Leads',
-      tooltip: 'Leads',
+      tooltip: 'Track and manage leads',
       icon: <SearchCheck size={20} />,
       url: '/acquire/leads',
       platform: 'acquire',
@@ -135,7 +135,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Conversions',
-      tooltip: 'Conversions',
+      tooltip: 'Monitor conversion rates',
       icon: <Handshake size={20} />,
       url: '/acquire/conversions',
       platform: 'acquire',
@@ -143,7 +143,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Channels',
-      tooltip: 'Channels',
+      tooltip: 'Oversee marketing channels',
       icon: <Megaphone size={20} />,
       url: '/acquire/channels',
       platform: 'acquire',
@@ -151,7 +151,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Performance',
-      tooltip: 'Performance',
+      tooltip: 'Monitor campaign performance',
       icon: <LineChart size={20} />,
       url: '/acquire/performance',
       platform: 'acquire',
@@ -159,7 +159,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Marketplace',
-      tooltip: 'Marketplace',
+      tooltip: 'Explore the marketplace',
       icon: <ShoppingBag size={20} />,
       url: '/marketplace',
       platform: 'acquire',
@@ -169,7 +169,7 @@ export function useAppLauncher(): {
     // Vi Engage - Customer Engagement Platform
     {
       name: 'Ai Agent',
-      tooltip: 'Ai Agent',
+      tooltip: 'AI assistance for engagement (coming soon)',
       icon: <Bot size={20} />,
       url: '/engage/ai-agent',
       platform: 'engage',
@@ -177,7 +177,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Messaging',
-      tooltip: 'Messaging',
+      tooltip: 'Manage messaging interactions',
       icon: <MessageSquare size={20} />,
       url: '/engage/messaging',
       platform: 'engage',
@@ -185,7 +185,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Campaigns',
-      tooltip: 'Campaigns',
+      tooltip: 'Engage through campaigns',
       icon: <Mail size={20} />,
       url: '/engage/campaigns',
       platform: 'engage',
@@ -193,7 +193,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Journey',
-      tooltip: 'Journey',
+      tooltip: 'Map out customer journeys',
       icon: <Network size={20} />,
       url: '/engage/journey',
       platform: 'engage',
@@ -201,7 +201,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Insights',
-      tooltip: 'Insights',
+      tooltip: 'Gain actionable insights',
       icon: <Sparkle size={20} />,
       url: '/engage/insights',
       platform: 'engage',
@@ -209,7 +209,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'AI Chat',
-      tooltip: 'AI Chat',
+      tooltip: 'Interactive AI chat support',
       icon: <Bot size={20} />,
       url: '/engage/ai-chat',
       platform: 'engage',
@@ -217,7 +217,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Loyalty',
-      tooltip: 'Loyalty',
+      tooltip: 'Boost customer loyalty',
       icon: <Gift size={20} />,
       url: '/engage/loyalty',
       platform: 'engage',
@@ -225,7 +225,7 @@ export function useAppLauncher(): {
     },
     {
       name: 'Revenue',
-      tooltip: 'Revenue',
+      tooltip: 'Track revenue insights',
       icon: <Banknote size={20} />,
       url: '/engage/revenue',
       platform: 'engage',
