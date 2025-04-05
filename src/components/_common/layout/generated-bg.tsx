@@ -268,16 +268,30 @@ const BackgroundComponent = ({
     const getCandidate = (w, h) => {
       let attempts = 0;
       while (attempts < 100) {
-        const x = randomRange(0, viewWidth - w);
-        const y = randomRange(0, viewHeight - h);
-        const candidate = { x, y, w, h };
-        const centerX = candidate.x + candidate.w / 2;
-        const centerY = candidate.y + candidate.h / 2;
-        // Skip candidate if its center lies within the central area (300,200) to (900,600)
-        if (centerX >= 300 && centerX <= 900 && centerY >= 200 && centerY <= 600) {
-          attempts++;
-          continue;
+        let x, y;
+        const edgeChoice = random();
+        if (edgeChoice < 0.5) {
+          // Place shape on vertical edges
+          if (random() < 0.5) {
+            // left edge
+            x = randomRange(0, Math.max(0, 300 - w));
+          } else {
+            // right edge
+            x = randomRange(900, viewWidth - w);
+          }
+          y = randomRange(0, viewHeight - h);
+        } else {
+          // Place shape on horizontal edges
+          if (random() < 0.5) {
+            // top edge
+            y = randomRange(0, Math.max(0, 200 - h));
+          } else {
+            // bottom edge
+            y = randomRange(600, viewHeight - h);
+          }
+          x = randomRange(0, viewWidth - w);
         }
+        const candidate = { x, y, w, h };
         if (!doesOverlap(candidate, placedBoxes)) {
           return candidate;
         }
