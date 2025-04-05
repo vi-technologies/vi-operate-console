@@ -55,6 +55,8 @@ export function AppLauncher() {
 
   // Filter apps based on active platform
   const filteredApps = apps.filter((app) => app.platform === activePlatform);
+  const availableApps = filteredApps.filter(app => app.category !== 'coming-soon');
+  const comingSoonApps = filteredApps.filter(app => app.category === 'coming-soon');
 
   return (
     <div className="relative">
@@ -98,35 +100,61 @@ export function AppLauncher() {
           </Tabs>
 
           <ScrollArea className="h-auto">
-            <div className="grid grid-cols-3 gap-2 p-3">
-              {filteredApps.map((app) => (
-                <Link
-                  key={app.name}
-                  href={app.url}
-                  className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                    pathname === app.url
-                      ? 'app-selected'
-                      : 'text-muted-foreground hover:text-white'
-                  } ${app.category === 'coming-soon' ? 'cursor-not-allowed' : ''}`}
-                >
-                  <div
-                    className={`flex h-10 w-10 items-center justify-center rounded-full 
-                    ${platformColors[app.platform]}
-                    ${app.category === 'coming-soon' ? 'opacity-70' : ''}`}
-                  >
-                    {app.icon}
-                  </div>
-                  <span className="mt-1 text-xs font-medium text-center">
-                    {app.name}
-                  </span>
-                  {app.category === 'coming-soon' && (
-                    <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full cursor-not-allowed">
-                      Soon
-                    </span>
-                  )}
-                </Link>
-              ))}
-            </div>
+            {availableApps.length > 0 && (
+              <>
+                <div className="px-3 py-1 text-sm font-semibold">Available Apps</div>
+                <div className="grid grid-cols-3 gap-2 px-3 pb-3">
+                  {availableApps.map((app) => (
+                    <Link
+                      key={app.name}
+                      href={app.url}
+                      className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
+                        pathname === app.url
+                          ? 'app-selected'
+                          : 'text-muted-foreground hover:text-white'
+                      }`}
+                    >
+                      <div
+                        className={`flex h-10 w-10 items-center justify-center rounded-full 
+                        ${platformColors[app.platform]}`}
+                      >
+                        {app.icon}
+                      </div>
+                      <span className="mt-1 text-xs font-medium text-center">
+                        {app.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
+            {comingSoonApps.length > 0 && (
+              <>
+                <div className="px-3 py-1 text-sm font-semibold">Coming Soon</div>
+                <div className="grid grid-cols-3 gap-2 px-3 pb-3">
+                  {comingSoonApps.map((app) => (
+                    <Link
+                      key={app.name}
+                      href={app.url}
+                      className="flex flex-col items-center justify-center p-2 rounded transition-colors text-muted-foreground cursor-not-allowed"
+                    >
+                      <div
+                        className={`flex h-10 w-10 items-center justify-center rounded-full 
+                        ${platformColors[app.platform]} opacity-70`}
+                      >
+                        {app.icon}
+                      </div>
+                      <span className="mt-1 text-xs font-medium text-center">
+                        {app.name}
+                      </span>
+                      <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
+                        Soon
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
           </ScrollArea>
         </PopoverContent>
       </Popover>
