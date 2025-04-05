@@ -10,7 +10,7 @@ export default function NotFound() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [initialized, setInitialized] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Function to generate deterministic "random" values based on a seed
   const seededRandom = (seed: number) => {
     return () => {
@@ -23,7 +23,7 @@ export default function NotFound() {
   const backgroundElements = useMemo(() => {
     // Use a fixed seed for deterministic randomness
     const random = seededRandom(123456);
-    
+
     return Array.from({ length: 15 }).map((_, i) => ({
       width: random() * 300 + 50,
       height: random() * 300 + 50,
@@ -34,30 +34,41 @@ export default function NotFound() {
       rotationFactor: random() * 10 - 5, // Random rotation direction and intensity
       movementAmplitude: random() * 1.5 + 0.5, // Different movement amplitudes
       movementSpeed: random() * 0.5 + 0.8, // Different movement speeds
-      floatPhase: random() * Math.PI * 2, // Random starting phase for the floating animation
+      floatPhase: random() * Math.PI * 2 // Random starting phase for the floating animation
     }));
   }, []);
-  
+
   // Generate floating icons scattered across the screen with better distribution
   const floatingIcons = useMemo(() => {
     // Use a different seed for icons to get different random values than background
     const random = seededRandom(789012);
-    
-    const iconComponents = [Search, Map, Compass, Radar, Home, ArrowLeft, Search, Map, Compass, Radar];
-    
-    const icons = iconComponents.map(Icon => ({
+
+    const iconComponents = [
+      Search,
+      Map,
+      Compass,
+      Radar,
+      Home,
+      ArrowLeft,
+      Search,
+      Map,
+      Compass,
+      Radar
+    ];
+
+    const icons = iconComponents.map((Icon) => ({
       Icon,
-      size: random() * 30 + 15,
+      size: random() * 30 + 15
     }));
-    
+
     // Create a grid-based distribution for better spacing
     return icons.map((icon, i) => {
       // Divide screen into zones to prevent overlapping
       const sector = i % 4; // 0, 1, 2, or 3 (quadrants)
-      
+
       // Calculate baseline positions based on sector
       let baseLeft, baseTop;
-      
+
       if (sector === 0) {
         baseLeft = random() * 40 + 5; // 5-45% (left side)
         baseTop = random() * 40 + 5; // 5-45% (top side)
@@ -71,7 +82,7 @@ export default function NotFound() {
         baseLeft = random() * 40 + 55; // 55-95% (right side)
         baseTop = random() * 40 + 55; // 55-95% (bottom side)
       }
-      
+
       return {
         ...icon,
         left: baseLeft,
@@ -86,31 +97,31 @@ export default function NotFound() {
         bounceSpeed: random() * 0.15 + 0.1,
         bouncePhase: random() * Math.PI * 2,
         color: random() > 0.7 ? 'text-purple' : 'text-violet-400/50',
-        zIndex: Math.floor(random() * 10) + 10, // Random z-index between 10-19
+        zIndex: Math.floor(random() * 10) + 10 // Random z-index between 10-19
       };
     });
   }, []);
-  
+
   // Add subtle floating animation
   const [time, setTime] = useState(0);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(prevTime => prevTime + 0.01);
+      setTime((prevTime) => prevTime + 0.01);
     }, 16); // ~60fps
-    
+
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
-      
+
       const rect = containerRef.current.getBoundingClientRect();
       // Calculate mouse position relative to container center (normalized from -1 to 1)
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-      
+
       setMousePosition({ x, y });
     };
 
@@ -146,31 +157,42 @@ export default function NotFound() {
   }, []);
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="h-screen w-full bg-black flex flex-col items-center justify-center relative overflow-hidden"
     >
       {/* No fixed cursor radar here anymore - it's been moved to the main content area */}
       {/* Background elements */}
-      <div className={`absolute inset-0 overflow-hidden ${!initialized ? 'opacity-0' : 'opacity-100'}`} style={{ transition: 'opacity 0.5s ease-in' }}>
+      <div
+        className={`absolute inset-0 overflow-hidden ${!initialized ? 'opacity-0' : 'opacity-100'}`}
+        style={{ transition: 'opacity 0.5s ease-in' }}
+      >
         {/* Background elements */}
         {backgroundElements.map((style, i) => {
           // Calculate floating movement
-          const floatY = Math.sin(time * style.movementSpeed + style.floatPhase) * style.movementAmplitude * 15;
-          const floatX = Math.cos(time * style.movementSpeed + style.floatPhase) * style.movementAmplitude * 10;
-          
+          const floatY =
+            Math.sin(time * style.movementSpeed + style.floatPhase) *
+            style.movementAmplitude *
+            15;
+          const floatX =
+            Math.cos(time * style.movementSpeed + style.floatPhase) *
+            style.movementAmplitude *
+            10;
+
           // Calculate position shift based on mouse and depth
           const shiftX = mousePosition.x * style.depth * 150 + floatX;
           const shiftY = mousePosition.y * style.depth * 150 + floatY;
-          
+
           // Calculate rotation based on mouse movement and element properties
           const rotateX = mousePosition.y * style.rotationFactor;
           const rotateY = -mousePosition.x * style.rotationFactor;
-          const rotateZ = (mousePosition.x * mousePosition.y) * style.rotationFactor * 2;
-          
+          const rotateZ =
+            mousePosition.x * mousePosition.y * style.rotationFactor * 2;
+
           // Z-translation for more pronounced 3D effect
-          const translateZ = style.depth * mousePosition.x * mousePosition.y * 50;
-          
+          const translateZ =
+            style.depth * mousePosition.x * mousePosition.y * 50;
+
           // Round values to 2 decimal places to ensure server/client consistency
           const roundedWidth = Math.round(style.width * 100) / 100;
           const roundedHeight = Math.round(style.height * 100) / 100;
@@ -185,7 +207,7 @@ export default function NotFound() {
           const roundedRotateZ = Math.round(rotateZ * 100) / 100;
           const roundedBlur = Math.round(style.depth * 15 * 100) / 100;
           const roundedShadow = Math.round(style.depth * 50 * 100) / 100;
-          
+
           return (
             <div
               key={`bg-${i}`}
@@ -206,32 +228,39 @@ export default function NotFound() {
             />
           );
         })}
-        
+
         {/* Floating icons scattered around */}
         {floatingIcons.map((icon, i) => {
           // Calculate complex movement pattern (orbiting + bouncing)
-          const orbitX = Math.cos(time * icon.orbitSpeed + icon.orbitPhase) * icon.orbitRadius;
-          const orbitY = Math.sin(time * icon.orbitSpeed + icon.orbitPhase) * icon.orbitRadius;
-          const bounce = Math.sin(time * icon.bounceSpeed + icon.bouncePhase) * icon.bounceHeight;
-          
+          const orbitX =
+            Math.cos(time * icon.orbitSpeed + icon.orbitPhase) *
+            icon.orbitRadius;
+          const orbitY =
+            Math.sin(time * icon.orbitSpeed + icon.orbitPhase) *
+            icon.orbitRadius;
+          const bounce =
+            Math.sin(time * icon.bounceSpeed + icon.bouncePhase) *
+            icon.bounceHeight;
+
           // Mouse influence based on depth
           const mouseX = mousePosition.x * icon.depth * 40;
           const mouseY = mousePosition.y * icon.depth * 40;
-          
+
           // Rotation animation
           const rotation = time * icon.rotationSpeed * 360;
-          
+
           // Z-translation for depth
           const translateZ = icon.depth * 100 + bounce;
-          
+
           const { Icon } = icon;
-          
+
           // Use a seeded random function based on the icon index for the boxShadow
           const iconRandom = seededRandom(1000 + i);
           const hasBoxShadow = iconRandom() > 0.5;
           const boxShadowSize = Math.round((iconRandom() * 10 + 5) * 100) / 100;
-          const shadowOpacity = Math.round((0.3 + Math.sin(time * 0.4) * 0.2) * 100) / 100;
-          
+          const shadowOpacity =
+            Math.round((0.3 + Math.sin(time * 0.4) * 0.2) * 100) / 100;
+
           // Round values to 2 decimal places
           const roundedLeft = Math.round(icon.left * 100) / 100;
           const roundedTop = Math.round(icon.top * 100) / 100;
@@ -242,7 +271,7 @@ export default function NotFound() {
           const roundedRotation = Math.round(rotation * 100) / 100;
           const roundedBlur = Math.round((1 - icon.depth) * 2 * 100) / 100;
           const roundedSize = Math.round(icon.size * 100) / 100;
-          
+
           return (
             <div
               key={`icon-${i}`}
@@ -256,7 +285,9 @@ export default function NotFound() {
                 transition: 'none',
                 transformStyle: 'preserve-3d',
                 zIndex: icon.zIndex,
-                boxShadow: hasBoxShadow ? `0 0 ${boxShadowSize}px rgba(139, 92, 246, ${shadowOpacity})` : 'none',
+                boxShadow: hasBoxShadow
+                  ? `0 0 ${boxShadowSize}px rgba(139, 92, 246, ${shadowOpacity})`
+                  : 'none'
               }}
             >
               <Icon size={roundedSize} />
@@ -266,17 +297,17 @@ export default function NotFound() {
       </div>
 
       {/* Main content */}
-      <div 
+      <div
         className={`relative z-20 text-center w-full h-full ${!initialized ? 'opacity-0' : 'opacity-100'}`}
         style={{
           perspective: '2000px',
           perspectiveOrigin: `${Math.round((50 + mousePosition.x * 10) * 100) / 100}% ${Math.round((50 + mousePosition.y * 10) * 100) / 100}%`,
           transformStyle: 'preserve-3d',
-          transition: 'opacity 0.5s ease-in',
+          transition: 'opacity 0.5s ease-in'
         }}
       >
         {/* Logo - floating and rotating with time animation only */}
-        <div 
+        <div
           className="absolute"
           style={{
             left: `${48 + Math.sin(time * 0.7) * 5}%`,
@@ -289,15 +320,11 @@ export default function NotFound() {
             zIndex: 30
           }}
         >
-          <img
-            src="/assets/images/Logo.svg"
-            alt="Logo"
-            className="w-20"
-          />
+          <img src="/assets/images/Logo.svg" alt="Logo" className="w-20" />
         </div>
-        
+
         {/* 404 Text - Floating with time-based animation only */}
-        <h1 
+        <h1
           className="text-8xl font-extrabold text-white absolute"
           style={{
             left: `${50 + Math.sin(time * 0.3) * 3}%`,
@@ -314,13 +341,13 @@ export default function NotFound() {
         >
           404
         </h1>
-        
+
         {/* "Location Not Found" - Floating with time-based animation only */}
-        <h2 
+        <h2
           className="text-2xl font-bold text-white/80 absolute"
           style={{
             left: `${50 + Math.cos(time * 0.4) * 4}%`,
-            top: `${50 + Math.sin(time * 0.3) * 3}%`, 
+            top: `${50 + Math.sin(time * 0.3) * 3}%`,
             transform: `translate(-50%, -50%) 
                        translate3d(${Math.sin(time * 0.5) * 10}px, 
                                   ${Math.cos(time * 0.6) * 5}px, 
@@ -332,9 +359,9 @@ export default function NotFound() {
         >
           Location Not Found
         </h2>
-        
+
         {/* Radar icon - Ultra smooth, elegant following motion */}
-        <div 
+        <div
           className="text-purple absolute"
           style={{
             left: `${Math.round(cursorPosition.x * 100) / 100}px`,
@@ -342,27 +369,28 @@ export default function NotFound() {
             transform: `translate(-50%, -50%) 
                        translate3d(0, 0, ${Math.round((50 + Math.sin(time * 0.7) * 20) * 100) / 100}px) 
                        rotateZ(${Math.round(time * 20 * 100) / 100}deg)`,
-            transition: 'left 10s cubic-bezier(0.1, 0.1, 0.1, 0.1), top 10s cubic-bezier(0.1, 0.1, 0.1, 0.1)',
+            transition:
+              'left 10s cubic-bezier(0.1, 0.1, 0.1, 0.1), top 10s cubic-bezier(0.1, 0.1, 0.1, 0.1)',
             zIndex: 23,
             pointerEvents: 'none'
           }}
         >
-          <Radar 
+          <Radar
             size={80}
             style={{
               filter: `drop-shadow(0 0 15px rgba(139, 92, 246, 0.5))`
             }}
           />
         </div>
-        
+
         {/* Main text - randomly positioned and time-based animation only */}
-        <div 
+        <div
           className="text-gray-300 absolute"
           style={{
             left: `${50 + Math.sin(time * 0.3) * 3}%`,
             top: `${75 + Math.cos(time * 0.35) * 2}%`,
             width: '100%',
-            maxWidth: '500px',
+            maxWidth: '400px',
             transform: `translate(-50%, -50%) 
                        translate3d(${Math.sin(time * 0.4) * 5}px, 
                                   ${Math.cos(time * 0.45) * 5}px, 
@@ -373,12 +401,12 @@ export default function NotFound() {
             zIndex: 22
           }}
         >
+          <p className="text-sm text-gray-400 text-center">
+            Our digital compass seems to be a bit confused.
+          </p>
           <p className="mb-2 text-center">
             We've searched everywhere but couldn't locate the page you're
             looking for.
-          </p>
-          <p className="text-sm text-gray-400 text-center">
-            Our digital compass seems to be a bit confused.
           </p>
         </div>
 
@@ -417,7 +445,7 @@ export default function NotFound() {
         </div>
 
         {/* Back button - positioned in top left with animation */}
-        <div 
+        <div
           className="absolute"
           style={{
             left: `${10 + Math.cos(time * 0.35) * 2}%`,
@@ -441,10 +469,10 @@ export default function NotFound() {
               transition: 'none'
             }}
           >
-            <ArrowLeft 
-              size={16} 
+            <ArrowLeft
+              size={16}
               style={{
-                transform: `translateX(${Math.sin(time * 0.8) * 3}px)`,
+                transform: `translateX(${Math.sin(time * 0.8) * 3}px)`
               }}
             />
             <span>Go Back</span>
