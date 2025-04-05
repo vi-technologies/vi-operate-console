@@ -120,33 +120,32 @@ export function AppLauncher() {
               </TabsTrigger>
             </TabsList>
             <ScrollArea className="h-auto py-4 grid grid-cols-1 w-full overflow-x-visible overflow-visible banner">
-              {availableApps.length > 0 && (
-                <>
-                  {/* <div className="px-3 py-1 text-sm font-semibold text-white">
-                  Available Apps
-                </div> */}
-                  <div className="grid grid-cols-3 gap-2 pb-3">
-                    {availableApps.map((app) => (
+              <div className="grid grid-cols-3 gap-2 pb-3">
+                    {filteredApps.map((app) => (
                       <Tooltip key={app.name}>
                         <TooltipTrigger asChild>
                           <Link
                             key={app.name}
                             href={app.url}
                             className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                              pathname === app.url
-                                ? 'app-selected'
-                                : 'text-muted-foreground hover:text-white'
-                            }`}
+                              pathname === app.url ? 'app-selected' : 'text-muted-foreground hover:text-white'
+                            } ${app.category === 'coming-soon' ? 'cursor-not-allowed' : ''}`}
                           >
                             <div
-                              className={`flex h-10 w-10 items-center justify-center rounded-full 
-                            ${platformColors[app.platform]}`}
+                              className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                                app.category === 'coming-soon' ? \`\${platformColors[app.platform]} opacity-70\` : platformColors[app.platform]
+                              }`}
                             >
                               {app.icon}
                             </div>
                             <span className="mt-1 text-xs font-medium text-center">
                               {app.name}
                             </span>
+                            {app.category === 'coming-soon' && (
+                              <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
+                                Soon
+                              </span>
+                            )}
                           </Link>
                         </TooltipTrigger>
                         <TooltipContent sideOffset={5}>
@@ -154,45 +153,7 @@ export function AppLauncher() {
                         </TooltipContent>
                       </Tooltip>
                     ))}
-                  </div>
-                </>
-              )}
-              {comingSoonApps.length > 0 && (
-                <>
-                  {/* <div className="px-3 py-1 text-sm font-semibold text-white">
-                  Coming Soon
-                </div> */}
-                  <div className="grid grid-cols-3 gap-2 pb-3">
-                    {comingSoonApps.map((app) => (
-                      <Tooltip key={app.name}>
-                        <TooltipTrigger asChild>
-                          <Link
-                            key={app.name}
-                            href={app.url}
-                            className="flex flex-col items-center justify-center p-2 rounded transition-colors text-muted-foreground cursor-not-allowed"
-                          >
-                            <div
-                              className={`flex h-10 w-10 items-center justify-center rounded-full 
-                            ${platformColors[app.platform]} opacity-70`}
-                            >
-                              {app.icon}
-                            </div>
-                            <span className="mt-1 text-xs font-medium text-center">
-                              {app.name}
-                            </span>
-                            <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
-                              Soon
-                            </span>
-                          </Link>
-                        </TooltipTrigger>
-                        <TooltipContent sideOffset={5}>
-                          {app.tooltip}
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </div>
-                </>
-              )}
+              </div>
             </ScrollArea>
           </Tabs>
         </PopoverContent>
