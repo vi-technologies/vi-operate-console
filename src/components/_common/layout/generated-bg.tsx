@@ -9,7 +9,8 @@ export type Shape =
   | { type: 'platform'; key: string; frontFace: string; topFace: string; rightFace: string }
   | { type: 'stepped'; key: string; steps: Array<{ frontFace: string; topFace: string; rightFace: string }> }
   | { type: 'zigzag'; key: string; parts: Array<{ frontFace: string; topFace: string; rightFace: string }> }
-  | { type: 'hexagon'; key: string; frontFace: string };
+  | { type: 'hexagon'; key: string; frontFace: string }
+  | { type: 'sacred'; key: string; pattern: string };
 import { createHexagon } from '../../../../layout/generated-bg/hexagon';
 import { createBox } from '../../../../layout/generated-bg/box';
 import { createLShape } from '../../../../layout/generated-bg/l-shape';
@@ -19,6 +20,7 @@ import { createTShape } from '../../../../layout/generated-bg/t-shape';
 import { createPlatform } from '../../../../layout/generated-bg/platform';
 import { createSteppedShape } from '../../../../layout/generated-bg/stepped';
 import { createZigzag } from '../../../../layout/generated-bg/zigzag';
+import { createSacredGeometry } from '../../../../layout/generated-bg/sacred';
 
 interface BackgroundComponentProps {
   children: React.ReactNode;
@@ -209,6 +211,14 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({
             });
           }
           break;
+        case 9: // New sacred geometry shape
+          shape = createSacredGeometry(x, y, width, height);
+          shapes.push({
+            type: 'sacred',
+            key,
+            pattern: shape.pattern
+          });
+          break;
       }
     }
   
@@ -291,7 +301,7 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({
       case 'stepped':
         return (
           <g key={shape.key}>
-            {shape.steps.map((step: any, i: number) => (
+            {shape.steps.map((step, i) => (
               <g key={`${shape.key}-step-${i}`}>
                 <path d={step.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
                 <path d={step.topFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
@@ -303,7 +313,7 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({
       case 'zigzag':
         return (
           <g key={shape.key}>
-            {shape.parts.map((part: any, i: number) => (
+            {shape.parts.map((part, i) => (
               <g key={`${shape.key}-part-${i}`}>
                 <path d={part.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
                 <path d={part.topFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
@@ -318,6 +328,15 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({
             <path d={shape.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
           </g>
         );
+      case 'sacred':
+        return (
+          <g key={shape.key}>
+            <path d={shape.pattern} stroke={strokeColor} strokeWidth={strokeWidth} fill="none" />
+          </g>
+        );
+      default:
+        return null;
+    }
       default:
         return null;
     }
