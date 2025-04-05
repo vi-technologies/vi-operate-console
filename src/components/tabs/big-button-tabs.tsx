@@ -18,9 +18,9 @@ export default function BigButtonTabs({ tabs }: Props) {
             className={`tab-trigger ${tab.hover} border-2`}
           >
             <div
-              className={`h-8 w-8 rounded-full ${tab.iconBg} flex items-center justify-center`}
+              className={`h-24 w-24 rounded-full ${tab.iconBg} flex items-center justify-center`}
             >
-              <tab.icon className={`h-6 w-6 ${tab.iconColor}`} />
+              <tab.icon className={`${tab.iconColor} h-40 w-40 `} />
             </div>
             <span>{tab.name}</span>
           </TabsTrigger>
