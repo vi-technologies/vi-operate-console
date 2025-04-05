@@ -3,12 +3,12 @@
 }
 
 .header {
-  @apply sticky top-0 z-30 flex  items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 sm:py-2;
+  @apply sticky top-0 z-30 flex  items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 py-4;
   background-color: white !important;
 }
 
 .link {
-  @apply flex items-center gap-4 px-2.5 text-muted-foreground hover:text-white font-poppins transition-colors;
+  @apply flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground font-poppins transition-colors;
 }
 
 .nav-select {

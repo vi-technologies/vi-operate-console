@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/_common/ui/button';
 import { LineChart, BarChart } from '@/components/charts';
-import { MetricItem } from '@/components/dashboard/metrics-display';
+import { MetricItem } from '@/components/dashboards/metrics-display';
 
 interface OutboundDashboardProps {
   initialData?: {
@@ -32,9 +32,9 @@ interface OutboundDashboardProps {
         appointments: number;
         conversionRate: number;
         activeAgents: number;
-      }
+      };
     };
-  }
+  };
 }
 
 export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
@@ -43,7 +43,9 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { getDashboardData } = await import('@/lib/services/dashboard-service');
+        const { getDashboardData } = await import(
+          '@/lib/services/dashboard-service'
+        );
         const dashboardData = await getDashboardData('outbound-call-center');
         setData(dashboardData);
       } catch (error) {
@@ -99,18 +101,30 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
 
   // Calculate percent changes
   const percentChange = {
-    totalCalls: metrics.previousMonth ?
-      ((metrics.totalCalls - metrics.previousMonth.totalCalls) / metrics.previousMonth.totalCalls * 100).toFixed(0) :
-      '12',
-    appointments: metrics.previousMonth ?
-      ((metrics.appointments - metrics.previousMonth.appointments) / metrics.previousMonth.appointments * 100).toFixed(0) :
-      '8',
-    conversionRate: metrics.previousMonth ?
-      ((metrics.conversionRate - metrics.previousMonth.conversionRate) / metrics.previousMonth.conversionRate * 100).toFixed(0) :
-      '-2',
-    activeAgents: metrics.previousMonth ?
-      metrics.activeAgents - metrics.previousMonth.activeAgents :
-      2
+    totalCalls: metrics.previousMonth
+      ? (
+          ((metrics.totalCalls - metrics.previousMonth.totalCalls) /
+            metrics.previousMonth.totalCalls) *
+          100
+        ).toFixed(0)
+      : '12',
+    appointments: metrics.previousMonth
+      ? (
+          ((metrics.appointments - metrics.previousMonth.appointments) /
+            metrics.previousMonth.appointments) *
+          100
+        ).toFixed(0)
+      : '8',
+    conversionRate: metrics.previousMonth
+      ? (
+          ((metrics.conversionRate - metrics.previousMonth.conversionRate) /
+            metrics.previousMonth.conversionRate) *
+          100
+        ).toFixed(0)
+      : '-2',
+    activeAgents: metrics.previousMonth
+      ? metrics.activeAgents - metrics.previousMonth.activeAgents
+      : 2
   };
 
   return (
@@ -119,56 +133,82 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Total Calls</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Total Calls
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{metrics.totalCalls.toLocaleString()}</div>
+            <div className="text-3xl font-bold">
+              {metrics.totalCalls.toLocaleString()}
+            </div>
             <div className="text-xs text-muted-foreground mt-1">
-              <span className={`text-${parseInt(percentChange.totalCalls) >= 0 ? 'green' : 'red'}-500`}>
-                {parseInt(percentChange.totalCalls) >= 0 ? '↑' : '↓'} {Math.abs(parseInt(percentChange.totalCalls))}%
-              </span> from last month
+              <span
+                className={`text-${parseInt(percentChange.totalCalls) >= 0 ? 'green' : 'red'}-500`}
+              >
+                {parseInt(percentChange.totalCalls) >= 0 ? '↑' : '↓'}{' '}
+                {Math.abs(parseInt(percentChange.totalCalls))}%
+              </span>{' '}
+              from last month
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Appointments</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Appointments
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{metrics.appointments}</div>
             <div className="text-xs text-muted-foreground mt-1">
-              <span className={`text-${parseInt(percentChange.appointments) >= 0 ? 'green' : 'red'}-500`}>
-                {parseInt(percentChange.appointments) >= 0 ? '↑' : '↓'} {Math.abs(parseInt(percentChange.appointments))}%
-              </span> from last month
+              <span
+                className={`text-${parseInt(percentChange.appointments) >= 0 ? 'green' : 'red'}-500`}
+              >
+                {parseInt(percentChange.appointments) >= 0 ? '↑' : '↓'}{' '}
+                {Math.abs(parseInt(percentChange.appointments))}%
+              </span>{' '}
+              from last month
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Conversion Rate</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Conversion Rate
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{metrics.conversionRate}%</div>
             <div className="text-xs text-muted-foreground mt-1">
-              <span className={`text-${parseInt(percentChange.conversionRate) >= 0 ? 'green' : 'red'}-500`}>
-                {parseInt(percentChange.conversionRate) >= 0 ? '↑' : '↓'} {Math.abs(parseInt(percentChange.conversionRate))}%
-              </span> from last month
+              <span
+                className={`text-${parseInt(percentChange.conversionRate) >= 0 ? 'green' : 'red'}-500`}
+              >
+                {parseInt(percentChange.conversionRate) >= 0 ? '↑' : '↓'}{' '}
+                {Math.abs(parseInt(percentChange.conversionRate))}%
+              </span>{' '}
+              from last month
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Active Agents</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Active Agents
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{metrics.activeAgents}</div>
             <div className="text-xs text-muted-foreground mt-1">
-              <span className={`text-${percentChange.activeAgents >= 0 ? 'green' : 'red'}-500`}>
-                {percentChange.activeAgents >= 0 ? '↑' : '↓'} {Math.abs(percentChange.activeAgents)}
-              </span> from last month
+              <span
+                className={`text-${percentChange.activeAgents >= 0 ? 'green' : 'red'}-500`}
+              >
+                {percentChange.activeAgents >= 0 ? '↑' : '↓'}{' '}
+                {Math.abs(percentChange.activeAgents)}
+              </span>{' '}
+              from last month
             </div>
           </CardContent>
         </Card>
@@ -177,7 +217,9 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
       {/* Campaign Performance Chart */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-          <CardTitle className="text-lg font-medium">Campaign Performance Trend</CardTitle>
+          <CardTitle className="text-lg font-medium">
+            Campaign Performance Trend
+          </CardTitle>
           <LineChartIcon className="h-5 w-5 text-muted-foreground" />
         </CardHeader>
         <CardContent>
@@ -197,43 +239,58 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-lg font-medium">Agent Performance</CardTitle>
+            <CardTitle className="text-lg font-medium">
+              Agent Performance
+            </CardTitle>
             <Users className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <BarChart
               data={agentPerformance}
-              bars={[
-                { dataKey: 'Calls', fill: '#8884d8' }
-              ]}
+              bars={[{ dataKey: 'Calls', fill: '#8884d8' }]}
               height={300}
             />
-            <Button variant="link" size="sm" className="mt-4 text-sm flex items-center">
-              View Detailed Agent Metrics <ArrowRight className="ml-1 h-4 w-4" />
+            <Button
+              variant="link"
+              size="sm"
+              className="mt-4 text-sm flex items-center"
+            >
+              View Detailed Agent Metrics{' '}
+              <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-lg font-medium">Conversion by Agent</CardTitle>
+            <CardTitle className="text-lg font-medium">
+              Conversion by Agent
+            </CardTitle>
             <Target className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <BarChart
               data={agentPerformance}
               bars={[
-                { dataKey: 'Rate', fill: '#52c41a', name: 'Conversion Rate (%)' }
+                {
+                  dataKey: 'Rate',
+                  fill: '#52c41a',
+                  name: 'Conversion Rate (%)'
+                }
               ]}
               height={300}
             />
             <div className="mt-4 text-sm flex justify-between">
               <div>
-                <span className="text-xs text-muted-foreground">Team Average</span>
+                <span className="text-xs text-muted-foreground">
+                  Team Average
+                </span>
                 <div className="text-lg font-medium">14.6%</div>
               </div>
               <div>
-                <span className="text-xs text-muted-foreground">Top Performer</span>
+                <span className="text-xs text-muted-foreground">
+                  Top Performer
+                </span>
                 <div className="text-lg font-medium">Wilson (15.3%)</div>
               </div>
             </div>

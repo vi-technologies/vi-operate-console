@@ -57,7 +57,7 @@ export function DynamicBreadcrumb() {
   });
 
   return (
-    <Breadcrumb className="flex items-center mb-2 text-sm">
+    <Breadcrumb className="flex items-center text-sm">
       <BreadcrumbList>
         {crumbs.map((crumb, index) => (
           <React.Fragment key={crumb.href}>

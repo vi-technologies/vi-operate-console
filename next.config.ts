@@ -37,6 +37,11 @@ export default {
         destination: "/console/dashboards",
         permanent: true,
       },
+      {
+        source: "/console",
+        destination: "/console/dashboards",
+        permanent: true,
+      },
     ];
   },
 };
