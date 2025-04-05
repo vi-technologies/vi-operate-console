@@ -24,10 +24,14 @@ export function SourceConnectionTile({
       onClick={onClick}
     >
       <CardContent className="flex flex-col items-center justify-center py-6">
-        <div className={`h-12 w-12 rounded-full ${iconBg} flex items-center justify-center mb-3`}>
+        <div
+          className={`h-24 w-24 rounded-full ${iconBg} flex items-center justify-center mb-3`}
+        >
           {icon}
         </div>
-        <CardTitle className="text-center text-sm font-medium">{name}</CardTitle>
+        <CardTitle className="text-center text-sm font-medium">
+          {name}
+        </CardTitle>
       </CardContent>
     </Card>
   );

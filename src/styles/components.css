@@ -41,6 +41,10 @@
   border-radius: 0;
 }
 
+.text-purple {
+  color: #6146f6 !important;
+}
+
 .banner {
   width: 104%;
   margin-left: -2%;

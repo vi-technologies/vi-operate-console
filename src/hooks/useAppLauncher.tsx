@@ -27,11 +27,20 @@ import {
   Bot,
   Gift,
   Banknote,
-  Handshake
+  Handshake,
+  FileText,
+  Settings,
+  Calendar,
+  UserPlus,
+  Bell,
+  BookMarked,
+  Lock,
+  Award
 } from 'lucide-react';
 
 interface AppItem {
   name: string;
+  tooltip: string;
   icon: React.ReactNode;
   url: string;
   platform: 'operate' | 'acquire' | 'engage';
@@ -88,6 +97,31 @@ export function useAppLauncher(): {
       tooltip: 'Manage your data sources',
       icon: <ServerCog size={20} />,
       url: '/console/sources',
+      platform: 'operate',
+      category: 'core'
+    },
+    // New Operate apps
+    {
+      name: 'Documents',
+      tooltip: 'Manage organizational documents',
+      icon: <FileText size={20} />,
+      url: '/console/documents',
+      platform: 'operate',
+      category: 'core'
+    },
+    {
+      name: 'Teams',
+      tooltip: 'Manage team structures and members',
+      icon: <Users size={20} />,
+      url: '/console/teams',
+      platform: 'operate',
+      category: 'core'
+    },
+    {
+      name: 'Settings',
+      tooltip: 'Configure platform settings',
+      icon: <Settings size={20} />,
+      url: '/console/settings',
       platform: 'operate',
       category: 'core'
     },
@@ -208,14 +242,6 @@ export function useAppLauncher(): {
       category: 'coming-soon'
     },
     {
-      name: 'AI Chat',
-      tooltip: 'Interactive AI chat support',
-      icon: <Bot size={20} />,
-      url: '/engage/ai-chat',
-      platform: 'engage',
-      category: 'coming-soon'
-    },
-    {
       name: 'Loyalty',
       tooltip: 'Boost customer loyalty',
       icon: <Gift size={20} />,
@@ -228,6 +254,23 @@ export function useAppLauncher(): {
       tooltip: 'Track revenue insights',
       icon: <Banknote size={20} />,
       url: '/engage/revenue',
+      platform: 'engage',
+      category: 'coming-soon'
+    },
+    // New Engage apps
+    {
+      name: 'Notifications',
+      tooltip: 'Manage customer notifications',
+      icon: <Bell size={20} />,
+      url: '/engage/notifications',
+      platform: 'engage',
+      category: 'coming-soon'
+    },
+    {
+      name: 'Knowledge Base',
+      tooltip: 'Manage customer support resources',
+      icon: <BookMarked size={20} />,
+      url: '/engage/knowledge-base',
       platform: 'engage',
       category: 'coming-soon'
     }

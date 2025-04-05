@@ -147,37 +147,37 @@ export function useSources() {
   const connectionOptions: ConnectionOptionType[] = [
     {
       name: 'Azure Blob Storage',
-      icon: <Boxes className="h-6 w-6 text-red-600" />,
+      icon: <Boxes className="h-12 w-12 text-red-600" />,
       iconBg: 'bg-red-100',
       hoverBorder: 'hover:border-red-200'
     },
     {
       name: 'BigQuery',
-      icon: <Database className="h-6 w-6 text-blue-600" />,
+      icon: <Database className="h-12 w-12 text-blue-600" />,
       iconBg: 'bg-blue-100',
       hoverBorder: 'hover:border-blue-200'
     },
     {
       name: 'Snowflake',
-      icon: <Snowflake className="h-6 w-6 text-cyan-600" />,
+      icon: <Snowflake className="h-12 w-12 text-cyan-600" />,
       iconBg: 'bg-cyan-100',
       hoverBorder: 'hover:border-cyan-200'
     },
     {
       name: 'Databricks',
-      icon: <Layers className="h-6 w-6 text-red-600" />,
+      icon: <Layers className="h-12 w-12 text-reh-600" />,
       iconBg: 'bg-red-100',
       hoverBorder: 'hover:border-red-200'
     },
     {
       name: 'Google Analytics',
-      icon: <BarChart4 className="h-6 w-6 text-amber-600" />,
+      icon: <BarChart4 className="h-12 w-12 text-amber-600" />,
       iconBg: 'bg-amber-100',
       hoverBorder: 'hover:border-amber-200'
     },
     {
       name: 'Custom Source',
-      icon: <LayoutGrid className="h-6 w-6 text-slate-600" />,
+      icon: <LayoutGrid className="h-12 w-12 text-slate-600" />,
       iconBg: 'bg-slate-100',
       hoverBorder: 'hover:border-slate-200'
     }
