@@ -92,10 +92,10 @@ export function AppLauncher() {
                 width={50}
               />
             </div>
-            <TabsList className="grid grid-cols-3 w-full rounded-none cursor-pointer bg-accent/40 transition-all">
-              <TabsTrigger value="operate">Operate</TabsTrigger>
-              <TabsTrigger value="acquire">Acquire</TabsTrigger>
-              <TabsTrigger value="engage">Engage</TabsTrigger>
+            <TabsList className="grid grid-cols-3 w-full rounded-none cursor-pointer bg-transparent transition-all">
+              <TabsTrigger value="operate" className="link data-[state=active]:app-selected">Operate</TabsTrigger>
+              <TabsTrigger value="acquire" className="link data-[state=active]:app-selected">Acquire</TabsTrigger>
+              <TabsTrigger value="engage" className="link data-[state=active]:app-selected">Engage</TabsTrigger>
             </TabsList>
           </Tabs>
 
