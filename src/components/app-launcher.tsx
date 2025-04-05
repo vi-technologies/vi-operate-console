@@ -41,6 +41,7 @@ import {
   Handshake
 } from 'lucide-react';
 import { Button } from './_common/ui/button';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/_common/ui/tooltip';
 import { Tabs, TabsList, TabsTrigger } from './_common/ui/tabs';
 import { useAppLauncher, platformColors } from '@/hooks/useAppLauncher';
 
@@ -65,16 +66,23 @@ export function AppLauncher() {
   return (
     <div className="relative p-0">
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="overflow-hidden rounded-full cursor-pointer"
-            aria-label="App Launcher"
-          >
-            <Grip className="h-6 w-6" />
-          </Button>
-        </PopoverTrigger>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="overflow-hidden rounded-full cursor-pointer"
+                aria-label="App Launcher"
+              >
+                <Grip className="h-6 w-6" />
+              </Button>
+            </PopoverTrigger>
+          </TooltipTrigger>
+          <TooltipContent>
+            App Launcher
+          </TooltipContent>
+        </Tooltip>
         <PopoverContent
           className="w-[380px] p-0 nav rounded-none shadow-lg"
           align="end"
