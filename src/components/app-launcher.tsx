@@ -55,13 +55,11 @@ export function AppLauncher() {
   // Filter apps based on active platform
   const filteredApps = apps.filter((app) => app.platform === activePlatform);
 
-  // Platform color schemes
+  // Platform color schemes optimized for dark background
   const platformColors = {
-    operate: 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300',
-    acquire:
-      'bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300',
-    engage:
-      'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
+    operate: 'bg-blue-600 text-white',
+    acquire: 'bg-purple-600 text-white',
+    engage: 'bg-emerald-600 text-white'
   };
 
   return (
@@ -108,8 +106,8 @@ export function AppLauncher() {
                   key={app.name}
                   href={app.url}
                   onClick={() => setOpen(false)}
-                  className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                    pathname === app.url ? 'app-selected' : 'hover:bg-muted'
+                  className={`flex flex-col items-center justify-center p-2 rounded transition-colors text-white ${
+                    pathname === app.url ? 'app-selected' : 'hover:bg-gray-700'
                   }`}
                 >
                   <div
@@ -119,7 +117,7 @@ export function AppLauncher() {
                   >
                     {app.icon}
                   </div>
-                  <span className="mt-1 text-xs font-medium text-center">
+                  <span className="mt-1 text-xs font-medium text-white text-center">
                     {app.name}
                   </span>
                   {app.category === 'coming-soon' && (
