@@ -135,8 +135,8 @@ export function AppLauncher() {
                             }`}
                           >
                             <div
-                              className={`flex h-10 w-10 items-center justify-center rounded-full 
-                            ${platformColors[app.platform]}`}
+                              className={`flex h-10 w-10 items-center justify-center rounded-full border-2 
+                            ${app.platform === 'operate' ? 'border-blue-900 text-gray-200' : app.platform === 'acquire' ? 'border-purple-900 text-gray-200' : 'border-emerald-900 text-gray-200'}`}
                             >
                               {app.icon}
                             </div>
@@ -168,8 +168,8 @@ export function AppLauncher() {
                             className="flex flex-col items-center justify-center p-2 rounded transition-colors text-muted-foreground cursor-not-allowed"
                           >
                             <div
-                              className={`flex h-10 w-10 items-center justify-center rounded-full 
-                            ${platformColors[app.platform]} opacity-70`}
+                              className={`flex h-10 w-10 items-center justify-center rounded-full border-2 
+                            ${app.platform === 'operate' ? 'border-blue-900 text-gray-200' : app.platform === 'acquire' ? 'border-purple-900 text-gray-200' : 'border-emerald-900 text-gray-200'} opacity-70`}
                             >
                               {app.icon}
                             </div>
