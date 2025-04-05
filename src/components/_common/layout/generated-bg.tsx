@@ -244,139 +244,34 @@ const BackgroundComponent = ({
     };
   };
 
-  // Generate shapes for the background
+  // Generate pixel art style squares for the background
   const generatedShapes = useMemo(() => {
     const shapes = [];
     const viewWidth = 1200;
     const viewHeight = 800;
+    const tileSize = 20;
+    const columns = Math.floor(viewWidth / tileSize);
+    const rows = Math.floor(viewHeight / tileSize);
+    const palette = ['#A8A8A8', '#CCCCCC', '#888888', '#EEEEEE', '#666666'];
   
-    // Array to hold placed bounding boxes for collision detection
-    const placedBoxes = [];
-  
-    // Helper function to check overlap between two boxes
-    const doesOverlap = (box, boxes) => {
-      return boxes.some(b =>
-        box.x < b.x + b.w &&
-        box.x + box.w > b.x &&
-        box.y < b.y + b.h &&
-        box.y + box.h > b.y
-      );
-    };
-  
-    // Helper function to get a candidate position that doesn't overlap
-    const getCandidate = (w, h) => {
-      let attempts = 0;
-      while (attempts < 100) {
-        const x = randomRange(0, viewWidth - w);
-        const y = randomRange(0, viewHeight - h);
-        const candidate = { x, y, w, h };
-        if (!doesOverlap(candidate, placedBoxes)) {
-          return candidate;
-        }
-        attempts++;
-      }
-      return null;
-    };
-  
-    for (let i = 0; i < shapeCount; i++) {
-      const width = randomRange(60, 100);
-      const height = randomRange(60, 100);
-      const depth = randomRange(20, 40);
-      const armWidth = randomRange(20, 30);
-  
-      const candidate = getCandidate(width, height);
-      if (!candidate) continue; // Skip if no non-overlapping position found
-  
-      placedBoxes.push(candidate);
-      const { x, y } = candidate;
-      const shapeType = Math.floor(random() * 9); // More shape varieties, including sacred geometry hexagon
-  
-      let shape;
-      let key = `shape-${i}`;
-  
-      switch (shapeType) {
-        case 0: // Simple box
-          shape = createBox(x, y, width, height, depth);
-          shapes.push({
-            type: 'box',
-            key,
-            ...shape
-          });
-          break;
-        case 1: // L shape
-          shape = createLShape(x, y, width, height, depth, armWidth);
-          shapes.push({
-            type: 'l-shape',
-            key,
-            ...shape
-          });
-          break;
-        case 2: // U shape
-          shape = createUShape(x, y, width, height, depth, armWidth);
-          shapes.push({
-            type: 'u-shape',
-            key,
-            ...shape
-          });
-          break;
-        case 3: // C shape
-          shape = createCShape(x, y, width, height, depth, armWidth);
-          shapes.push({
-            type: 'c-shape',
-            key,
-            ...shape
-          });
-          break;
-        case 4: // T shape
-          shape = createTShape(x, y, width, height, depth, armWidth);
-          shapes.push({
-            type: 't-shape',
-            key,
-            ...shape
-          });
-          break;
-        case 5: // Platform (flat rectangle)
-          shape = createPlatform(x, y, width * 1.5, depth);
-          shapes.push({
-            type: 'platform',
-            key,
-            ...shape
-          });
-          break;
-        case 6: // Stepped/stair shape
-          shape = createSteppedShape(x, y, width, height, depth);
-          shapes.push({
-            type: 'stepped',
-            key,
-            steps: shape.steps
-          });
-          break;
-        case 7: // Zigzag shape
-          shape = createZigzag(x, y, width, height, depth);
-          shapes.push({
-            type: 'zigzag',
-            key,
-            parts: shape.parts
-          });
-          break;
-        case 8: // Hexagon (sacred geometry)
-          {
-            const centerX = x + width / 2;
-            const centerY = y + height / 2;
-            const radius = Math.min(width, height) / 2;
-            shape = createHexagon(centerX, centerY, radius);
-            shapes.push({
-              type: 'hexagon',
-              key,
-              ...shape
-            });
-          }
-          break;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < columns; c++) {
+        // 30% chance to leave the tile blank for variation
+        if (Math.random() < 0.3) continue;
+        const x = c * tileSize;
+        const y = r * tileSize;
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        shapes.push({
+          key: `tile-${r}-${c}`,
+          x,
+          y,
+          tileSize,
+          color
+        });
       }
     }
-  
     return shapes;
-  }, [shapeCount, seed]);
+  }, [seed]);
 
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -394,322 +289,17 @@ const BackgroundComponent = ({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-          {/* Render the generated shapes */}
-          {generatedShapes.map((shape) => {
-            if (shape.type === 'box') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.frontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'l-shape') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.frontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.armFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.armTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.armRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'u-shape') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.leftFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'c-shape') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.topFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 't-shape') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.verticalFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.verticalTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.verticalRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.horizontalFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.horizontalTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.horizontalRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'platform') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.frontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'stepped') {
-              return (
-                <g key={shape.key}>
-                  {shape.steps.map((step, i) => (
-                    <g key={`${shape.key}-step-${i}`}>
-                      <path
-                        d={step.frontFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                      <path
-                        d={step.topFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                      <path
-                        d={step.rightFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                    </g>
-                  ))}
-                </g>
-              );
-            } else if (shape.type === 'zigzag') {
-              return (
-                <g key={shape.key}>
-                  {shape.parts.map((part, i) => (
-                    <g key={`${shape.key}-part-${i}`}>
-                      <path
-                        d={part.frontFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                      <path
-                        d={part.topFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                      <path
-                        d={part.rightFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                    </g>
-                  ))}
-                </g>
-              );
-            } else if (shape.type === 'hexagon') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.frontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            }
-            return null;
-          })}
+          {/* Render the pixel art style squares */}
+          {generatedShapes.map((tile) => (
+            <rect
+              key={tile.key}
+              x={tile.x}
+              y={tile.y}
+              width={tile.tileSize}
+              height={tile.tileSize}
+              fill={tile.color}
+            />
+          ))}
           </svg>
         )}
       </div>
