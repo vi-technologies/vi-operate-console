@@ -16,9 +16,10 @@ export default function DesktopNav() {
       <nav className="flex flex-col items-center gap-8 px-2 sm:py-5">
         <Link
           href="/"
-          className="group flex h-14 w-14 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground"
+          className="group flex h-14 w-14 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-primary-foreground"
         >
-          <span className="font-poppins font-bold text-white text-xl">VI</span>
+          {/* <span className="font-poppins font-bold text-white text-xl">VI</span> */}
+          <img src="/assets/images/Logo.svg" alt="logo" />
           <span className="sr-only">VI Operate</span>
         </Link>
 
