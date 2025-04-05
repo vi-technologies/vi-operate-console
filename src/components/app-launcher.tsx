@@ -75,7 +75,7 @@ export function AppLauncher() {
             <Grip className="h-6 w-6" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[380px] p-0" align="end" sideOffset={8}>
+        <PopoverContent className="w-[380px] p-0 nav-select" align="end" sideOffset={8}>
           <Tabs
             defaultValue="operate"
             value={activePlatform}
