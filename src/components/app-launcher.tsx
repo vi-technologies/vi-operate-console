@@ -106,7 +106,9 @@ export function AppLauncher() {
                   key={app.name}
                   href={app.url}
                   onClick={() => setOpen(false)}
-                  className="flex flex-col items-center justify-center p-2 rounded hover:bg-muted transition-colors"
+                  className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
+                    app.platform === activePlatform ? 'bg-purple-100 text-purple-700' : 'hover:bg-muted'
+                  }`}
                 >
                   <div
                     className={`flex h-10 w-10 items-center justify-center rounded-full 
