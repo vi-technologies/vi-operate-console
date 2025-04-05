@@ -55,11 +55,15 @@ export function AppLauncher() {
 
   // Filter apps based on active platform
   const filteredApps = apps.filter((app) => app.platform === activePlatform);
-  const availableApps = filteredApps.filter(app => app.category !== 'coming-soon');
-  const comingSoonApps = filteredApps.filter(app => app.category === 'coming-soon');
+  const availableApps = filteredApps.filter(
+    (app) => app.category !== 'coming-soon'
+  );
+  const comingSoonApps = filteredApps.filter(
+    (app) => app.category === 'coming-soon'
+  );
 
   return (
-    <div className="relative">
+    <div className="relative p-0">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -72,7 +76,7 @@ export function AppLauncher() {
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className="w-[380px] p-0 nav"
+          className="w-[380px] p-0 nav rounded-none shadow-lg"
           align="end"
           sideOffset={8}
         >
@@ -92,70 +96,79 @@ export function AppLauncher() {
                 width={50}
               />
             </div>
-            <TabsList className="grid grid-cols-3 w-full rounded-none cursor-pointer bg-transparent transition-all">
-              <TabsTrigger value="operate" className="link data-[state=active]:app-selected">Operate</TabsTrigger>
-              <TabsTrigger value="acquire" className="link data-[state=active]:app-selected">Acquire</TabsTrigger>
-              <TabsTrigger value="engage" className="link data-[state=active]:app-selected">Engage</TabsTrigger>
+            <TabsList className="m-0 p-0 grid grid-cols-3 w-full rounded-none cursor-pointer bg-transparent transition-all banner">
+              <TabsTrigger value="operate" className="link">
+                Operate
+              </TabsTrigger>
+              <TabsTrigger value="acquire" className="link">
+                Acquire
+              </TabsTrigger>
+              <TabsTrigger value="engage" className="link">
+                Engage
+              </TabsTrigger>
             </TabsList>
-          </Tabs>
-
-          <ScrollArea className="h-auto">
-            {availableApps.length > 0 && (
-              <>
-                <div className="px-3 py-1 text-sm font-semibold">Available Apps</div>
-                <div className="grid grid-cols-3 gap-2 px-3 pb-3">
-                  {availableApps.map((app) => (
-                    <Link
-                      key={app.name}
-                      href={app.url}
-                      className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                        pathname === app.url
-                          ? 'app-selected'
-                          : 'text-muted-foreground hover:text-white'
-                      }`}
-                    >
-                      <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-full 
+            <ScrollArea className="h-auto py-4 grid grid-cols-1 w-full overflow-x-visible overflow-visible banner">
+              {availableApps.length > 0 && (
+                <>
+                  {/* <div className="px-3 py-1 text-sm font-semibold text-white">
+                  Available Apps
+                </div> */}
+                  <div className="grid grid-cols-3 gap-2 pb-3">
+                    {availableApps.map((app) => (
+                      <Link
+                        key={app.name}
+                        href={app.url}
+                        className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
+                          pathname === app.url
+                            ? 'app-selected'
+                            : 'text-muted-foreground hover:text-white'
+                        }`}
+                      >
+                        <div
+                          className={`flex h-10 w-10 items-center justify-center rounded-full 
                         ${platformColors[app.platform]}`}
+                        >
+                          {app.icon}
+                        </div>
+                        <span className="mt-1 text-xs font-medium text-center">
+                          {app.name}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
+              {comingSoonApps.length > 0 && (
+                <>
+                  {/* <div className="px-3 py-1 text-sm font-semibold text-white">
+                  Coming Soon
+                </div> */}
+                  <div className="grid grid-cols-3 gap-2 pb-3">
+                    {comingSoonApps.map((app) => (
+                      <Link
+                        key={app.name}
+                        href={app.url}
+                        className="flex flex-col items-center justify-center p-2 rounded transition-colors text-muted-foreground cursor-not-allowed"
                       >
-                        {app.icon}
-                      </div>
-                      <span className="mt-1 text-xs font-medium text-center">
-                        {app.name}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </>
-            )}
-            {comingSoonApps.length > 0 && (
-              <>
-                <div className="px-3 py-1 text-sm font-semibold">Coming Soon</div>
-                <div className="grid grid-cols-3 gap-2 px-3 pb-3">
-                  {comingSoonApps.map((app) => (
-                    <Link
-                      key={app.name}
-                      href={app.url}
-                      className="flex flex-col items-center justify-center p-2 rounded transition-colors text-muted-foreground cursor-not-allowed"
-                    >
-                      <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-full 
+                        <div
+                          className={`flex h-10 w-10 items-center justify-center rounded-full 
                         ${platformColors[app.platform]} opacity-70`}
-                      >
-                        {app.icon}
-                      </div>
-                      <span className="mt-1 text-xs font-medium text-center">
-                        {app.name}
-                      </span>
-                      <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
-                        Soon
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </>
-            )}
-          </ScrollArea>
+                        >
+                          {app.icon}
+                        </div>
+                        <span className="mt-1 text-xs font-medium text-center">
+                          {app.name}
+                        </span>
+                        <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
+                          Soon
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
+            </ScrollArea>
+          </Tabs>
         </PopoverContent>
       </Popover>
     </div>
