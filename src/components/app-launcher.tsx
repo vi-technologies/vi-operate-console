@@ -107,7 +107,7 @@ export function AppLauncher() {
                   href={app.url}
                   onClick={() => setOpen(false)}
                   className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                    app.platform === activePlatform ? 'bg-purple-100 text-purple-700' : 'hover:bg-muted'
+                    app.platform === activePlatform ? 'nav-select' : 'hover:bg-muted'
                   }`}
                 >
                   <div
