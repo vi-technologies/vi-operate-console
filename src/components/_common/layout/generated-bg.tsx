@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { createHexagon } from '../../../layout/generated-bg/hexagon';
 
 const BackgroundComponent = ({
   children,
@@ -17,7 +18,6 @@ const BackgroundComponent = ({
     };
   };
 
-  import { createHexagon } from '../../../layout/generated-bg/hexagon';
 
   const random = createRandomGenerator(seed);
 
