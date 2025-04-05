@@ -56,8 +56,6 @@ export function AppLauncher() {
   // Filter apps based on active platform
   const filteredApps = apps.filter((app) => app.platform === activePlatform);
 
-  
-
   return (
     <div className="relative">
       <Popover open={open} onOpenChange={setOpen}>
@@ -71,7 +69,11 @@ export function AppLauncher() {
             <Grip className="h-6 w-6" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[380px] p-0 nav" align="end" sideOffset={8}>
+        <PopoverContent
+          className="w-[380px] p-0 nav"
+          align="end"
+          sideOffset={8}
+        >
           <Tabs
             defaultValue="operate"
             value={activePlatform}
@@ -88,7 +90,7 @@ export function AppLauncher() {
                 width={50}
               />
             </div>
-            <TabsList className="grid grid-cols-3 w-full rounded-none cursor-pointer bg-accent/40">
+            <TabsList className="grid grid-cols-3 w-full rounded-none cursor-pointer bg-accent/40 transition-all">
               <TabsTrigger value="operate">Operate</TabsTrigger>
               <TabsTrigger value="acquire">Acquire</TabsTrigger>
               <TabsTrigger value="engage">Engage</TabsTrigger>
@@ -102,7 +104,9 @@ export function AppLauncher() {
                   key={app.name}
                   href={app.url}
                   className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                    pathname === app.url ? 'app-selected' : 'text-muted-foreground hover:text-white'
+                    pathname === app.url
+                      ? 'app-selected'
+                      : 'text-muted-foreground hover:text-white'
                   } ${app.category === 'coming-soon' ? 'cursor-not-allowed' : ''}`}
                 >
                   <div
