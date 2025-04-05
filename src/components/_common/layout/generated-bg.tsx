@@ -378,16 +378,22 @@ const BackgroundComponent = ({
     return shapes;
   }, [shapeCount, seed]);
 
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   return (
     <div className="relative w-full h-screen overflow-hidden bg-white">
       {/* Isometric 3D shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        <svg
-          className="absolute top-0 left-0 w-full h-full"
-          viewBox="0 0 1200 800"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+      <div suppressHydrationWarning className="absolute inset-0 overflow-hidden">
+        {mounted && (
+          <svg
+            className="absolute top-0 left-0 w-full h-full"
+            viewBox="0 0 1200 800"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
           {/* Render the generated shapes */}
           {generatedShapes.map((shape) => {
             if (shape.type === 'box') {
@@ -704,7 +710,8 @@ const BackgroundComponent = ({
             }
             return null;
           })}
-        </svg>
+          </svg>
+        )}
       </div>
 
       {/* Center content */}
