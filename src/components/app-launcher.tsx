@@ -109,7 +109,7 @@ export function AppLauncher() {
                   onClick={() => setOpen(false)}
                   className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
                     pathname === app.url ? 'app-selected' : 'text-muted-foreground hover:text-white'
-                  }`}
+                  } ${app.category === 'coming-soon' ? 'cursor-not-allowed pointer-events-none' : ''}`}
                 >
                   <div
                     className={`flex h-10 w-10 items-center justify-center rounded-full 
