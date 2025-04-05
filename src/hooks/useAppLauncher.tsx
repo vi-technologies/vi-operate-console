@@ -47,8 +47,8 @@ export function useAppLauncher(): {
       name: 'Console',
       icon: <LayoutDashboard size={20} />,
       url: '/console/dashboards',
-      platform: 'operate',
-      category: 'core'
+      platform: 'engage',
+      category: 'coming-soon'
     },
     {
       name: 'Reports',
@@ -85,7 +85,7 @@ export function useAppLauncher(): {
       icon: <Target size={20} />,
       url: '/acquire/campaigns',
       platform: 'acquire',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Audiences',
@@ -136,7 +136,7 @@ export function useAppLauncher(): {
       icon: <MessageSquare size={20} />,
       url: '/engage/messaging',
       platform: 'engage',
-      category: 'core'
+      category: 'coming-soon'
     },
     {
       name: 'Campaigns',
