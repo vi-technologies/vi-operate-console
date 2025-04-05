@@ -38,7 +38,44 @@ export default function NotFound() {
     }));
   }, []);
 
-  // Generate floating icons scattered across the screen with better distribution
+  // Helper function to compute background element style.
+  const computeBackgroundStyle = (elem, t, mousePos) => {
+    const floatY = Math.sin(t * elem.movementSpeed + elem.floatPhase) * elem.movementAmplitude * 15;
+    const floatX = Math.cos(t * elem.movementSpeed + elem.floatPhase) * elem.movementAmplitude * 10;
+    const shiftX = mousePos.x * elem.depth * 150 + floatX;
+    const shiftY = mousePos.y * elem.depth * 150 + floatY;
+    const rotateX = mousePos.y * elem.rotationFactor;
+    const rotateY = -mousePos.x * elem.rotationFactor;
+    const rotateZ = mousePos.x * mousePos.y * elem.rotationFactor * 2;
+    const translateZ = elem.depth * mousePos.x * mousePos.y * 50;
+    const roundedWidth = Math.round(elem.width * 100) / 100;
+    const roundedHeight = Math.round(elem.height * 100) / 100;
+    const roundedLeft = Math.round(elem.left * 100) / 100;
+    const roundedTop = Math.round(elem.top * 100) / 100;
+    const roundedOpacity = Math.round(elem.opacity * 1000) / 1000;
+    const roundedShiftX = Math.round(shiftX * 100) / 100;
+    const roundedShiftY = Math.round(shiftY * 100) / 100;
+    const roundedTranslateZ = Math.round(translateZ * 100) / 100;
+    const roundedRotateX = Math.round(rotateX * 100) / 100;
+    const roundedRotateY = Math.round(rotateY * 100) / 100;
+    const roundedRotateZ = Math.round(rotateZ * 100) / 100;
+    const roundedBlur = Math.round(elem.depth * 15 * 100) / 100;
+    const roundedShadow = Math.round(elem.depth * 50 * 100) / 100;
+    return {
+      width: `${roundedWidth}px`,
+      height: `${roundedHeight}px`,
+      left: `${roundedLeft}%`,
+      top: `${roundedTop}%`,
+      opacity: roundedOpacity,
+      transform: `translate3d(${roundedShiftX}px, ${roundedShiftY}px, ${roundedTranslateZ}px) rotateX(${roundedRotateX}deg) rotateY(${roundedRotateY}deg) rotateZ(${roundedRotateZ}deg)`,
+      filter: `blur(${roundedBlur}px)`,
+      boxShadow: `0 0 ${roundedShadow}px rgba(139, 92, 246, 0.3)`,
+      backfaceVisibility: 'hidden',
+      transformStyle: 'preserve-3d'
+    };
+  };
+
+  // Generate floating icons scattered around with better distribution
   const floatingIcons = useMemo(() => {
     // Use a different seed for icons to get different random values than background
     const random = seededRandom(789012);
@@ -101,6 +138,39 @@ export default function NotFound() {
       };
     });
   }, []);
+
+  const computeIconStyle = (iconData, t, mousePos, index) => {
+    const orbitX = Math.cos(t * iconData.orbitSpeed + iconData.orbitPhase) * iconData.orbitRadius;
+    const orbitY = Math.sin(t * iconData.orbitSpeed + iconData.orbitPhase) * iconData.orbitRadius;
+    const bounce = Math.sin(t * iconData.bounceSpeed + iconData.bouncePhase) * iconData.bounceHeight;
+    const mouseX = mousePos.x * iconData.depth * 40;
+    const mouseY = mousePos.y * iconData.depth * 40;
+    const rotation = t * iconData.rotationSpeed * 360;
+    const translateZ = iconData.depth * 100 + bounce;
+    const iconRandom = seededRandom(1000 + index);
+    const hasBoxShadow = iconRandom() > 0.5;
+    const boxShadowSize = Math.round((iconRandom() * 10 + 5) * 100) / 100;
+    const shadowOpacity = Math.round((0.3 + Math.sin(t * 0.4) * 0.2) * 100) / 100;
+    const roundedLeft = Math.round(iconData.left * 100) / 100;
+    const roundedTop = Math.round(iconData.top * 100) / 100;
+    const roundedOpacity = Math.round(iconData.opacity * 1000) / 1000;
+    const roundedOrbitX = Math.round((orbitX + mouseX) * 100) / 100;
+    const roundedOrbitY = Math.round((orbitY + mouseY) * 100) / 100;
+    const roundedTranslateZ = Math.round(translateZ * 100) / 100;
+    const roundedRotation = Math.round(rotation * 100) / 100;
+    const roundedBlur = Math.round((1 - iconData.depth) * 2 * 100) / 100;
+    return {
+      left: `${roundedLeft}%`,
+      top: `${roundedTop}%`,
+      opacity: roundedOpacity,
+      transform: `translate3d(${roundedOrbitX}px, ${roundedOrbitY}px, ${roundedTranslateZ}px) rotate(${roundedRotation}deg)`,
+      filter: `blur(${roundedBlur}px)`,
+      zIndex: iconData.zIndex,
+      boxShadow: hasBoxShadow ? `0 0 ${boxShadowSize}px rgba(139, 92, 246, ${shadowOpacity})` : 'none',
+      transition: 'none',
+      transformStyle: 'preserve-3d'
+    };
+  };
 
   // Add subtle floating animation
   const [time, setTime] = useState(0);
@@ -168,129 +238,28 @@ export default function NotFound() {
         style={{ transition: 'opacity 0.5s ease-in' }}
       >
         {/* Background elements */}
-        {backgroundElements.map((style, i) => {
-          // Calculate floating movement
-          const floatY =
-            Math.sin(time * style.movementSpeed + style.floatPhase) *
-            style.movementAmplitude *
-            15;
-          const floatX =
-            Math.cos(time * style.movementSpeed + style.floatPhase) *
-            style.movementAmplitude *
-            10;
-
-          // Calculate position shift based on mouse and depth
-          const shiftX = mousePosition.x * style.depth * 150 + floatX;
-          const shiftY = mousePosition.y * style.depth * 150 + floatY;
-
-          // Calculate rotation based on mouse movement and element properties
-          const rotateX = mousePosition.y * style.rotationFactor;
-          const rotateY = -mousePosition.x * style.rotationFactor;
-          const rotateZ =
-            mousePosition.x * mousePosition.y * style.rotationFactor * 2;
-
-          // Z-translation for more pronounced 3D effect
-          const translateZ =
-            style.depth * mousePosition.x * mousePosition.y * 50;
-
-          // Round values to 2 decimal places to ensure server/client consistency
-          const roundedWidth = Math.round(style.width * 100) / 100;
-          const roundedHeight = Math.round(style.height * 100) / 100;
-          const roundedLeft = Math.round(style.left * 100) / 100;
-          const roundedTop = Math.round(style.top * 100) / 100;
-          const roundedOpacity = Math.round(style.opacity * 1000) / 1000;
-          const roundedShiftX = Math.round(shiftX * 100) / 100;
-          const roundedShiftY = Math.round(shiftY * 100) / 100;
-          const roundedTranslateZ = Math.round(translateZ * 100) / 100;
-          const roundedRotateX = Math.round(rotateX * 100) / 100;
-          const roundedRotateY = Math.round(rotateY * 100) / 100;
-          const roundedRotateZ = Math.round(rotateZ * 100) / 100;
-          const roundedBlur = Math.round(style.depth * 15 * 100) / 100;
-          const roundedShadow = Math.round(style.depth * 50 * 100) / 100;
-
+        {backgroundElements.map((elem, i) => {
+          const bgStyle = computeBackgroundStyle(elem, time, mousePosition);
           return (
             <div
               key={`bg-${i}`}
               className="absolute bg-violet-800 shadow-lg rounded-lg"
-              style={{
-                width: `${roundedWidth}px`,
-                height: `${roundedHeight}px`,
-                left: `${roundedLeft}%`,
-                top: `${roundedTop}%`,
-                opacity: roundedOpacity,
-                transform: `translate3d(${roundedShiftX}px, ${roundedShiftY}px, ${roundedTranslateZ}px) rotateX(${roundedRotateX}deg) rotateY(${roundedRotateY}deg) rotateZ(${roundedRotateZ}deg)`,
-                transition: 'none',
-                filter: `blur(${roundedBlur}px)`,
-                boxShadow: `0 0 ${roundedShadow}px rgba(139, 92, 246, 0.3)`,
-                backfaceVisibility: 'hidden',
-                transformStyle: 'preserve-3d'
-              }}
+              style={{ ...bgStyle, transition: 'none' }}
             />
           );
         })}
 
         {/* Floating icons scattered around */}
         {floatingIcons.map((icon, i) => {
-          // Calculate complex movement pattern (orbiting + bouncing)
-          const orbitX =
-            Math.cos(time * icon.orbitSpeed + icon.orbitPhase) *
-            icon.orbitRadius;
-          const orbitY =
-            Math.sin(time * icon.orbitSpeed + icon.orbitPhase) *
-            icon.orbitRadius;
-          const bounce =
-            Math.sin(time * icon.bounceSpeed + icon.bouncePhase) *
-            icon.bounceHeight;
-
-          // Mouse influence based on depth
-          const mouseX = mousePosition.x * icon.depth * 40;
-          const mouseY = mousePosition.y * icon.depth * 40;
-
-          // Rotation animation
-          const rotation = time * icon.rotationSpeed * 360;
-
-          // Z-translation for depth
-          const translateZ = icon.depth * 100 + bounce;
-
+          const iconStyle = computeIconStyle(icon, time, mousePosition, i);
           const { Icon } = icon;
-
-          // Use a seeded random function based on the icon index for the boxShadow
-          const iconRandom = seededRandom(1000 + i);
-          const hasBoxShadow = iconRandom() > 0.5;
-          const boxShadowSize = Math.round((iconRandom() * 10 + 5) * 100) / 100;
-          const shadowOpacity =
-            Math.round((0.3 + Math.sin(time * 0.4) * 0.2) * 100) / 100;
-
-          // Round values to 2 decimal places
-          const roundedLeft = Math.round(icon.left * 100) / 100;
-          const roundedTop = Math.round(icon.top * 100) / 100;
-          const roundedOpacity = Math.round(icon.opacity * 1000) / 1000;
-          const roundedOrbitX = Math.round((orbitX + mouseX) * 100) / 100;
-          const roundedOrbitY = Math.round((orbitY + mouseY) * 100) / 100;
-          const roundedTranslateZ = Math.round(translateZ * 100) / 100;
-          const roundedRotation = Math.round(rotation * 100) / 100;
-          const roundedBlur = Math.round((1 - icon.depth) * 2 * 100) / 100;
-          const roundedSize = Math.round(icon.size * 100) / 100;
-
           return (
             <div
               key={`icon-${i}`}
               className={`absolute ${icon.color}`}
-              style={{
-                left: `${roundedLeft}%`,
-                top: `${roundedTop}%`,
-                opacity: roundedOpacity,
-                transform: `translate3d(${roundedOrbitX}px, ${roundedOrbitY}px, ${roundedTranslateZ}px) rotate(${roundedRotation}deg)`,
-                filter: `blur(${roundedBlur}px)`,
-                transition: 'none',
-                transformStyle: 'preserve-3d',
-                zIndex: icon.zIndex,
-                boxShadow: hasBoxShadow
-                  ? `0 0 ${boxShadowSize}px rgba(139, 92, 246, ${shadowOpacity})`
-                  : 'none'
-              }}
+              style={iconStyle}
             >
-              <Icon size={roundedSize} />
+              <Icon size={Math.round(icon.size * 100) / 100} />
             </div>
           );
         })}
