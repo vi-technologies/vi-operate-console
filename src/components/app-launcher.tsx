@@ -125,7 +125,6 @@ export function AppLauncher() {
                       <Tooltip key={app.name}>
                         <TooltipTrigger asChild>
                           <Link
-                            key={app.name}
                             href={app.url}
                             className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
                               pathname === app.url ? 'app-selected' : 'text-muted-foreground hover:text-white'
