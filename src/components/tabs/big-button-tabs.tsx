@@ -20,7 +20,7 @@ export default function BigButtonTabs({ tabs }: Props) {
             <div
               className={`h-24 w-24 rounded-full ${tab.iconBg} flex items-center justify-center`}
             >
-              <tab.icon className={`${tab.iconColor} h-40 w-40 `} />
+              <tab.icon className={`${tab.iconColor} h-40 w-40`} width={160} height={160} />
             </div>
             <span>{tab.name}</span>
           </TabsTrigger>
