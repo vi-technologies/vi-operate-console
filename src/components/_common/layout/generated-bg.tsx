@@ -640,8 +640,8 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
           </filter>
         </defs>
 
-        {/* Plain white background */}
-        <rect width="1200" height="800" fill="#FFFFFF" />
+        {/* Blueprint background */}
+        <rect width="1200" height="800" fill="#0d1b2a" />
 
         {/* Group for all shapes with subtle shadow */}
         <g filter="url(#shadow)">{renderedShapes}</g>
