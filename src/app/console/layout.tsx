@@ -21,7 +21,7 @@ export default function ConsoleLayout({
     <Providers>
       <main className="flex min-h-screen w-full flex-col bg-muted/40">
         <DesktopNav />
-        <div className="flex flex-col sm:gap-4 sm:ml-24">
+        <div className="flex flex-col gap-0 sm:ml-24">
           <header className="header">
             <MobileNav />
             <DynamicBreadcrumb />
