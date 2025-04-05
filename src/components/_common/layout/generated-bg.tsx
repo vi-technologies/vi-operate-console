@@ -9,16 +9,25 @@ import { createPlatform } from '../../../../layout/generated-bg/platform';
 import { createSteppedShape } from '../../../../layout/generated-bg/stepped';
 import { createZigzag } from '../../../../layout/generated-bg/zigzag';
 
-const BackgroundComponent = ({
+interface BackgroundComponentProps {
+  children: React.ReactNode;
+  shapeCount?: number;
+  strokeColor?: string;
+  strokeWidth?: number;
+  fillColor?: string;
+  seed?: number;
+}
+
+const BackgroundComponent: React.FC<BackgroundComponentProps> = ({
   children,
   shapeCount = 15,
   strokeColor = '#D0D0D0',
   strokeWidth = 1.5,
   fillColor = 'white',
   seed = Date.now()
-}) => {
+}): JSX.Element => {
   // Helper functions for randomization with seed
-  const createRandomGenerator = (seed) => {
+  const createRandomGenerator = (seed: number): () => number => {
     let s = seed;
     return () => {
       s = (s * 16807) % 2147483647;
@@ -30,7 +39,7 @@ const BackgroundComponent = ({
   const random = createRandomGenerator(seed);
 
   // Generate random number in range
-  const randomRange = (min, max) => min + random() * (max - min);
+  const randomRange = (min: number, max: number): number => min + random() * (max - min);
 
 
   
