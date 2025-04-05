@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import {
   Popover,
   PopoverContent,
@@ -49,6 +50,7 @@ export function AppLauncher() {
   >('operate');
 
   const { apps } = useAppLauncher();
+  const pathname = usePathname();
 
   // Filter apps based on active platform
   const filteredApps = apps.filter((app) => app.platform === activePlatform);
@@ -107,7 +109,7 @@ export function AppLauncher() {
                   href={app.url}
                   onClick={() => setOpen(false)}
                   className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                    app.platform === activePlatform ? 'nav-select' : 'hover:bg-muted'
+                    pathname === app.url ? 'nav-select' : 'hover:bg-muted'
                   }`}
                 >
                   <div
