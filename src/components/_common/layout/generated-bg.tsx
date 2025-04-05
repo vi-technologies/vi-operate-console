@@ -200,6 +200,109 @@ const BackgroundComponent = ({
     setMounted(true);
   }, []);
   
+  const renderShape = (shape: any): JSX.Element | null => {
+    switch (shape.type) {
+      case 'box':
+        return (
+          <g key={shape.key}>
+            <path d={shape.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.topFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.rightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+          </g>
+        );
+      case 'l-shape':
+        return (
+          <g key={shape.key}>
+            <path d={shape.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.topFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.rightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.armFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.armTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.armRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+          </g>
+        );
+      case 'u-shape':
+        return (
+          <g key={shape.key}>
+            <path d={shape.leftFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.leftTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.leftRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.rightFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.rightTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.rightRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.bottomFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.bottomTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.bottomRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+          </g>
+        );
+      case 'c-shape':
+        return (
+          <g key={shape.key}>
+            <path d={shape.topFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.topTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.topRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.leftFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.leftTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.leftRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.bottomFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.bottomTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.bottomRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+          </g>
+        );
+      case 't-shape':
+        return (
+          <g key={shape.key}>
+            <path d={shape.verticalFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.verticalTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.verticalRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.horizontalFrontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.horizontalTopFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.horizontalRightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+          </g>
+        );
+      case 'platform':
+        return (
+          <g key={shape.key}>
+            <path d={shape.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.topFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+            <path d={shape.rightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+          </g>
+        );
+      case 'stepped':
+        return (
+          <g key={shape.key}>
+            {shape.steps.map((step: any, i: number) => (
+              <g key={`${shape.key}-step-${i}`}>
+                <path d={step.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+                <path d={step.topFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+                <path d={step.rightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+              </g>
+            ))}
+          </g>
+        );
+      case 'zigzag':
+        return (
+          <g key={shape.key}>
+            {shape.parts.map((part: any, i: number) => (
+              <g key={`${shape.key}-part-${i}`}>
+                <path d={part.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+                <path d={part.topFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+                <path d={part.rightFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+              </g>
+            ))}
+          </g>
+        );
+      case 'hexagon':
+        return (
+          <g key={shape.key}>
+            <path d={shape.frontFace} stroke={strokeColor} strokeWidth={strokeWidth} fill={fillColor} />
+          </g>
+        );
+      default:
+        return null;
+    }
+  };
+  
   return (
     <div className="relative w-full h-screen overflow-hidden bg-white">
       {/* Isometric 3D shapes */}
@@ -212,321 +315,7 @@ const BackgroundComponent = ({
             xmlns="http://www.w3.org/2000/svg"
           >
           {/* Render the generated shapes */}
-          {generatedShapes.map((shape) => {
-            if (shape.type === 'box') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.frontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'l-shape') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.frontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.armFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.armTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.armRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'u-shape') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.leftFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'c-shape') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.topFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.leftRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.bottomRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 't-shape') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.verticalFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.verticalTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.verticalRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.horizontalFrontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.horizontalTopFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.horizontalRightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'platform') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.frontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.topFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                  <path
-                    d={shape.rightFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            } else if (shape.type === 'stepped') {
-              return (
-                <g key={shape.key}>
-                  {shape.steps.map((step, i) => (
-                    <g key={`${shape.key}-step-${i}`}>
-                      <path
-                        d={step.frontFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                      <path
-                        d={step.topFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                      <path
-                        d={step.rightFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                    </g>
-                  ))}
-                </g>
-              );
-            } else if (shape.type === 'zigzag') {
-              return (
-                <g key={shape.key}>
-                  {shape.parts.map((part, i) => (
-                    <g key={`${shape.key}-part-${i}`}>
-                      <path
-                        d={part.frontFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                      <path
-                        d={part.topFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                      <path
-                        d={part.rightFace}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        fill={fillColor}
-                      />
-                    </g>
-                  ))}
-                </g>
-              );
-            } else if (shape.type === 'hexagon') {
-              return (
-                <g key={shape.key}>
-                  <path
-                    d={shape.frontFace}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                  />
-                </g>
-              );
-            }
-            return null;
-          })}
+          {generatedShapes.map((shape) => renderShape(shape))}
           </svg>
         )}
       </div>
