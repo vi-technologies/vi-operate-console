@@ -6,7 +6,7 @@ const BackgroundComponent = ({
   strokeColor = '#D0D0D0',
   strokeWidth = 1.5,
   fillColor = 'white',
-  seed = 42
+  seed = Date.now()
 }) => {
   // Helper functions for randomization with seed
   const createRandomGenerator = (seed) => {
@@ -15,6 +15,20 @@ const BackgroundComponent = ({
       s = (s * 16807) % 2147483647;
       return s / 2147483647;
     };
+  };
+
+  // Create a hexagon shape (sacred geometry)
+  const createHexagon = (x, y, radius) => {
+    const angle = Math.PI / 3; // 60 degrees
+    let path = '';
+    for (let i = 0; i < 6; i++) {
+      const theta = angle * i;
+      const px = x + radius * Math.cos(theta);
+      const py = y + radius * Math.sin(theta);
+      path += (i === 0 ? `M ${px} ${py}` : ` L ${px} ${py}`);
+    }
+    path += ' Z';
+    return { frontFace: path };
   };
 
   const random = createRandomGenerator(seed);
@@ -275,7 +289,7 @@ const BackgroundComponent = ({
   
       placedBoxes.push(candidate);
       const { x, y } = candidate;
-      const shapeType = Math.floor(random() * 8); // More shape varieties
+      const shapeType = Math.floor(random() * 9); // More shape varieties, including sacred geometry hexagon
   
       let shape;
       let key = `shape-${i}`;
@@ -344,6 +358,19 @@ const BackgroundComponent = ({
             key,
             parts: shape.parts
           });
+          break;
+        case 8: // Hexagon (sacred geometry)
+          {
+            const centerX = x + width / 2;
+            const centerY = y + height / 2;
+            const radius = Math.min(width, height) / 2;
+            shape = createHexagon(centerX, centerY, radius);
+            shapes.push({
+              type: 'hexagon',
+              key,
+              ...shape
+            });
+          }
           break;
       }
     }
@@ -661,6 +688,17 @@ const BackgroundComponent = ({
                       />
                     </g>
                   ))}
+                </g>
+              );
+            } else if (shape.type === 'hexagon') {
+              return (
+                <g key={shape.key}>
+                  <path
+                    d={shape.frontFace}
+                    stroke={strokeColor}
+                    strokeWidth={strokeWidth}
+                    fill={fillColor}
+                  />
                 </g>
               );
             }
