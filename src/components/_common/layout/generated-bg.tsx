@@ -17,19 +17,7 @@ const BackgroundComponent = ({
     };
   };
 
-  // Create a hexagon shape (sacred geometry)
-  const createHexagon = (x, y, radius) => {
-    const angle = Math.PI / 3; // 60 degrees
-    let path = '';
-    for (let i = 0; i < 6; i++) {
-      const theta = angle * i;
-      const px = x + radius * Math.cos(theta);
-      const py = y + radius * Math.sin(theta);
-      path += (i === 0 ? `M ${px} ${py}` : ` L ${px} ${py}`);
-    }
-    path += ' Z';
-    return { frontFace: path };
-  };
+  import { createHexagon } from '../../../layout/generated-bg/hexagon';
 
   const random = createRandomGenerator(seed);
 
