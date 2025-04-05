@@ -303,7 +303,7 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
             }
         }
 
-        const candidate = { x, y: tableBase - h, w, h };
+        const candidate = { x, y, w, h };
         
         // Enhanced collision detection with minimum spacing
         if (!doesOverlap(candidate, placedBoxes, buffer)) {
