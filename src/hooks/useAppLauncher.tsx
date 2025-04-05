@@ -250,7 +250,7 @@ export function useAppLauncher(): {
   };
 
   return {
-    apps
+    apps: organizedApps
   };
 }
 
