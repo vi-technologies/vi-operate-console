@@ -20,13 +20,30 @@
   font-weight: 200;
   box-shadow: 2px 0 3px rgba(0, 0, 0, 0.2);
 }
+
+.bg-selected {
+  background-color: #6146f6 !important;
+}
+
 .app-selected {
   @apply text-white;
-  background-color: #6146f6;
+  background-color: #6146f6 !important;
   padding: 0.5rem 1rem;
   font-weight: 500;
-  border-radius: 0.375rem;
-  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+  border-radius: 0;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Override Tabs component data-state for active tabs */
+[data-state='active'].link {
+  background-color: #6146f6 !important;
+  color: white !important;
+  border-radius: 0;
+}
+
+.banner {
+  width: 104%;
+  margin-left: -2%;
 }
 
 /* Chrome, Safari, Edge, Opera */
