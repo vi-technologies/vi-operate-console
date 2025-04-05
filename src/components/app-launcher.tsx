@@ -122,7 +122,7 @@ export function AppLauncher() {
                     {app.name}
                   </span>
                   {app.category === 'coming-soon' && (
-                    <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
+                    <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full cursor-not-allowed">
                       Soon
                     </span>
                   )}
