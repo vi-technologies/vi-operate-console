@@ -44,6 +44,13 @@ export function useAppLauncher(): {
   const apps: AppItem[] = [
     // Vi Operate - Workforce Management Platform
     {
+      name: 'Ai Agent',
+      icon: <Bot size={20} />,
+      url: '/console/ai-agent',
+      platform: 'operate',
+      category: 'coming-soon'
+    },
+    {
       name: 'Console',
       icon: <LayoutDashboard size={20} />,
       url: '/console/dashboards',
@@ -80,6 +87,13 @@ export function useAppLauncher(): {
     },
 
     // Vi Acquire - Customer Acquisition Platform
+    {
+      name: 'Ai Agent',
+      icon: <Bot size={20} />,
+      url: '/acquire/ai-agent',
+      platform: 'acquire',
+      category: 'coming-soon'
+    },
     {
       name: 'Campaigns',
       icon: <Target size={20} />,
@@ -138,6 +152,13 @@ export function useAppLauncher(): {
     },
 
     // Vi Engage - Customer Engagement Platform
+    {
+      name: 'Ai Agent',
+      icon: <Bot size={20} />,
+      url: '/engage/ai-agent',
+      platform: 'engage',
+      category: 'coming-soon'
+    },
     {
       name: 'Messaging',
       icon: <MessageSquare size={20} />,
