@@ -1,4 +1,4 @@
-import { createBox } from './box';
+import { createBox, isoAngle } from './box';
 
 export function createSteppedShape(x: number, y: number, width: number, height: number, depth: number) {
   // Create a more visually appealing stepped shape
@@ -10,7 +10,6 @@ export function createSteppedShape(x: number, y: number, width: number, height: 
   let currentY = y + height; // Start from the bottom
   
   // Calculate isometric projection factors for decorative elements
-  const isoAngle = Math.PI / 6; // 30 degrees
   const depthX = depth * Math.cos(isoAngle);
   const depthY = depth * Math.sin(isoAngle);
   

@@ -1,4 +1,4 @@
-import { createBox } from './box';
+import { createBox, isoAngle } from './box';
 
 export function createZigzag(
   x: number, 
@@ -9,7 +9,6 @@ export function createZigzag(
   segments = 4
 ) {
   // Create a clean zigzag pattern
-  const isoAngle = Math.PI / 6; // 30 degrees for isometric view
   const depthX = depth * Math.cos(isoAngle);
   const depthY = depth * Math.sin(isoAngle);
   

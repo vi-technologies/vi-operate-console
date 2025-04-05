@@ -1,6 +1,7 @@
+export const isoAngle = Math.PI / 6; // 30 degrees for isometric view
+
 export function createBox(x: number, y: number, width: number, height: number, depth: number) {
   // Ensure proper isometric projection
-  const isoAngle = Math.PI / 6; // 30 degrees for isometric view
   const depthX = depth * Math.cos(isoAngle);
   const depthY = depth * Math.sin(isoAngle);
   

@@ -1,6 +1,6 @@
+import { isoAngle } from './box';
 export function createPyramid(x: number, y: number, width: number, height: number, depth: number) {
   // Create a pyramid shape with isometric projection
-  const isoAngle = Math.PI / 6; // 30 degrees for isometric view
   const depthX = depth * Math.cos(isoAngle);
   const depthY = depth * Math.sin(isoAngle);
   

@@ -1,4 +1,4 @@
-import { createBox } from './box';
+import { createBox, isoAngle } from './box';
 
 export function createPlatform(x: number, y: number, width: number, depth: number) {
   // Create a more interesting platform with subtle details
@@ -6,7 +6,6 @@ export function createPlatform(x: number, y: number, width: number, depth: numbe
   const platformBox = createBox(x, y, width, height, depth);
   
   // Calculate isometric projection factors
-  const isoAngle = Math.PI / 6; // 30 degrees for isometric view
   const depthX = depth * Math.cos(isoAngle);
   const depthY = depth * Math.sin(isoAngle);
   
