@@ -1,6 +1,8 @@
 'use client';
 
 import { sourcesConnectionsMockData, connectionOptionsMockData } from '@/lib/mock-data';
+import * as LucideIcons from 'lucide-react';
+import React from 'react';
 
 export type SourceConnectionType = {
   id: number;
@@ -34,9 +36,30 @@ export type ConnectionOptionType = {
   hoverBorder: string;
 };
 
+// Helper function to render icon data objects
+const renderIcon = (iconData: any): React.ReactNode => {
+  if (!iconData) return null;
+  
+  const IconComponent = (LucideIcons as any)[iconData.type];
+  if (!IconComponent) return null;
+  
+  return React.createElement(IconComponent, iconData.props);
+};
+
 export function useSources() {
+  // Convert icon data objects to React elements
+  const sources = sourcesConnectionsMockData.map(source => ({
+    ...source,
+    icon: renderIcon(source.icon)
+  }));
+  
+  const connectionOptions = connectionOptionsMockData.map(option => ({
+    ...option,
+    icon: renderIcon(option.icon)
+  }));
+  
   return {
-    sources: sourcesConnectionsMockData,
-    connectionOptions: connectionOptionsMockData
+    sources,
+    connectionOptions
   };
 }

@@ -1,13 +1,21 @@
 import { Database, Snowflake, CloudCog, Boxes, BarChart4, LayoutGrid, Layers } from 'lucide-react';
 import React from 'react';
 
+// Create a function to generate the icon data
+const createIconData = (Icon: any, color: string, size: 'sm' | 'md' = 'md') => ({
+  type: Icon.name,
+  props: {
+    className: `h-${size === 'sm' ? '4' : '5'} w-${size === 'sm' ? '4' : '5'} text-${color}`
+  }
+});
+
 export const sourcesConnectionsMockData = [
   {
     id: 1,
     name: 'Primary Data Lake',
     type: 'BigQuery',
     status: 'healthy',
-    icon: <Database className="h-5 w-5 text-blue-600" />,
+    icon: createIconData(Database, 'blue-600'),
     iconBg: 'bg-blue-100',
     datasets: 42,
     models: 6,
@@ -31,7 +39,7 @@ export const sourcesConnectionsMockData = [
     name: 'Patient Demographics and History',
     type: 'Snowflake',
     status: 'healthy',
-    icon: <Snowflake className="h-5 w-5 text-cyan-600" />,
+    icon: createIconData(Snowflake, 'cyan-600'),
     iconBg: 'bg-cyan-100',
     datasets: 18,
     models: 4,
@@ -55,7 +63,7 @@ export const sourcesConnectionsMockData = [
     name: 'Specialist Scheduling Data',
     type: 'Amazon Redshift',
     status: 'profiling',
-    icon: <CloudCog className="h-5 w-5 text-purple-600" />,
+    icon: createIconData(CloudCog, 'purple-600'),
     iconBg: 'bg-purple-100',
     datasets: 12,
     models: 3,
@@ -79,7 +87,7 @@ export const sourcesConnectionsMockData = [
     name: 'Discharge and Follow-Up Logs',
     type: 'PostgreSQL',
     status: 'healthy',
-    icon: <Database className="h-5 w-5 text-green-600" />,
+    icon: createIconData(Database, 'green-600'),
     iconBg: 'bg-green-100',
     datasets: 9,
     models: 2,
@@ -103,37 +111,37 @@ export const sourcesConnectionsMockData = [
 export const connectionOptionsMockData = [
   {
     name: 'Azure Blob Storage',
-    icon: <Boxes className="h-12 w-12 text-red-600" />,
+    icon: createIconData(Boxes, 'red-600', 'md'),
     iconBg: 'bg-red-100',
     hoverBorder: 'hover:border-red-200'
   },
   {
     name: 'BigQuery',
-    icon: <Database className="h-12 w-12 text-blue-600" />,
+    icon: createIconData(Database, 'blue-600', 'md'),
     iconBg: 'bg-blue-100',
     hoverBorder: 'hover:border-blue-200'
   },
   {
     name: 'Snowflake',
-    icon: <Snowflake className="h-12 w-12 text-cyan-600" />,
+    icon: createIconData(Snowflake, 'cyan-600', 'md'),
     iconBg: 'bg-cyan-100',
     hoverBorder: 'hover:border-cyan-200'
   },
   {
     name: 'Databricks',
-    icon: <Layers className="h-12 w-12 text-reh-600" />,
+    icon: createIconData(Layers, 'red-600', 'md'),
     iconBg: 'bg-red-100',
     hoverBorder: 'hover:border-red-200'
   },
   {
     name: 'Google Analytics',
-    icon: <BarChart4 className="h-12 w-12 text-amber-600" />,
+    icon: createIconData(BarChart4, 'amber-600', 'md'),
     iconBg: 'bg-amber-100',
     hoverBorder: 'hover:border-amber-200'
   },
   {
     name: 'Custom Source',
-    icon: <LayoutGrid className="h-12 w-12 text-slate-600" />,
+    icon: createIconData(LayoutGrid, 'slate-600', 'md'),
     iconBg: 'bg-slate-100',
     hoverBorder: 'hover:border-slate-200'
   }
