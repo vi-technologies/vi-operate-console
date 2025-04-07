@@ -19,7 +19,7 @@
       "@/*": ["./src/*"],
       "@/public/assets/*": ["./public/assets/*"],
       "@/common/*": ["./src/components/_common/*"],
-      "@/ui/*": ["./src/components/_common/ui/*"]
+      "@/ui/*": ["src/components/_common/ui/*"]
     },
     "plugins": [
       {
