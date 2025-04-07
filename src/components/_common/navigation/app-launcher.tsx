@@ -1,53 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/_common/ui/popover';
-import { ScrollArea } from '@/components/_common/ui/scroll-area';
-import {
-  LayoutDashboard,
-  Grip,
-  Cog,
-  BookOpen,
-  Users,
-  LineChart,
-  Briefcase,
-  Network,
-  ServerCog,
-  Sparkle,
-  HeartPulse,
-  Building2,
-  Factory,
-  Truck,
-  Store,
-  ShoppingBag,
-  CalendarClock,
-  HardHat,
-  Phone,
-  SearchCheck,
-  MessageSquare,
-  Megaphone,
-  Target,
-  Mail,
-  BarChart4,
-  Bot,
-  Gift,
-  Banknote,
-  Handshake
-} from 'lucide-react';
-import { Button } from './_common/ui/button';
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent
 } from '@/components/_common/ui/tooltip';
-import { Tabs, TabsList, TabsTrigger } from './_common/ui/tabs';
+import { Button } from '../ui/button';
+import { Grip } from 'lucide-react';
+import { ScrollArea } from '@/components/_common/ui/scroll-area';
+import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import { useAppLauncher, platformColors } from '@/hooks/useAppLauncher';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 export function AppLauncher() {
   const [open, setOpen] = useState(false);

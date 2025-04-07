@@ -1,17 +1,17 @@
 import React, { useMemo, useEffect, useState, memo, useRef } from 'react';
 
 // Import shape generators in proper order
-import { createBox } from './generated-bg/box';
-import { createLShape } from './generated-bg/l-shape';
-import { createUShape } from './generated-bg/u-shape';
-import { createCShape } from './generated-bg/c-shape';
-import { createTShape } from './generated-bg/t-shape';
-import { createPlatform } from './generated-bg/platform';
-import { createSteppedShape } from './generated-bg/stepped';
-import { createZigzag } from './generated-bg/zigzag';
-import { createHexagon } from './generated-bg/hexagon';
-import { createSacredGeometry } from './generated-bg/sacred';
-import { createPyramid } from './generated-bg/pyramid';
+import { createBox } from './box';
+import { createLShape } from './l-shape';
+import { createUShape } from './u-shape';
+import { createCShape } from './c-shape';
+import { createTShape } from './t-shape';
+import { createPlatform } from './platform';
+import { createSteppedShape } from './stepped';
+import { createZigzag } from './zigzag';
+import { createHexagon } from './hexagon';
+import { createSacredGeometry } from './sacred';
+import { createPyramid } from './pyramid';
 
 export type Shape =
   | {
@@ -156,25 +156,23 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
       boxes: Array<{ x: number; y: number; w: number; h: number }>,
       minSpacing: number = 10
     ): boolean => {
-      return boxes.some(
-        (b) => {
-          // Expand the bounding box by minSpacing in all directions
-          const expandedBox = {
-            x: box.x - minSpacing,
-            y: box.y - minSpacing,
-            w: box.w + 2 * minSpacing,
-            h: box.h + 2 * minSpacing
-          };
-          
-          // Check if the expanded box overlaps with any existing box
-          return (
-            expandedBox.x < b.x + b.w &&
-            expandedBox.x + expandedBox.w > b.x &&
-            expandedBox.y < b.y + b.h &&
-            expandedBox.y + expandedBox.h > b.y
-          );
-        }
-      );
+      return boxes.some((b) => {
+        // Expand the bounding box by minSpacing in all directions
+        const expandedBox = {
+          x: box.x - minSpacing,
+          y: box.y - minSpacing,
+          w: box.w + 2 * minSpacing,
+          h: box.h + 2 * minSpacing
+        };
+
+        // Check if the expanded box overlaps with any existing box
+        return (
+          expandedBox.x < b.x + b.w &&
+          expandedBox.x + expandedBox.w > b.x &&
+          expandedBox.y < b.y + b.h &&
+          expandedBox.y + expandedBox.h > b.y
+        );
+      });
     };
 
     // Get a position based on the distribution preference
@@ -187,12 +185,13 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
       const centerAvoidance = 200; // Size of center area to avoid
       const viewCenterX = viewWidth / 2;
       const viewCenterY = viewHeight / 2;
-      
+
       // Calculate the safety margin to keep shapes from the edges
       const edgeMargin = 30;
       const tableBase = viewHeight - 50;
 
-      while (attempts < 150) { // Increased attempts for better positioning
+      while (attempts < 150) {
+        // Increased attempts for better positioning
         let x, y;
 
         switch (distribution) {
@@ -205,7 +204,10 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
               y = randomRange(edgeMargin, viewHeight - h - edgeMargin);
             } else if (edgeChoice < 0.5) {
               // Right edge
-              x = randomRange(viewWidth - 250 + edgeMargin, viewWidth - w - edgeMargin);
+              x = randomRange(
+                viewWidth - 250 + edgeMargin,
+                viewWidth - w - edgeMargin
+              );
               y = randomRange(edgeMargin, viewHeight - h - edgeMargin);
             } else if (edgeChoice < 0.75) {
               // Top edge
@@ -214,7 +216,10 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
             } else {
               // Bottom edge
               x = randomRange(edgeMargin, viewWidth - w - edgeMargin);
-              y = randomRange(viewHeight - 200 + edgeMargin, viewHeight - h - edgeMargin);
+              y = randomRange(
+                viewHeight - 200 + edgeMargin,
+                viewHeight - h - edgeMargin
+              );
             }
             break;
 
@@ -227,16 +232,28 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
               y = randomRange(edgeMargin, 250 - h - edgeMargin);
             } else if (cornerChoice === 1) {
               // Top-right
-              x = randomRange(viewWidth - 300 + edgeMargin, viewWidth - w - edgeMargin);
+              x = randomRange(
+                viewWidth - 300 + edgeMargin,
+                viewWidth - w - edgeMargin
+              );
               y = randomRange(edgeMargin, 250 - h - edgeMargin);
             } else if (cornerChoice === 2) {
               // Bottom-left
               x = randomRange(edgeMargin, 300 - w - edgeMargin);
-              y = randomRange(viewHeight - 250 + edgeMargin, viewHeight - h - edgeMargin);
+              y = randomRange(
+                viewHeight - 250 + edgeMargin,
+                viewHeight - h - edgeMargin
+              );
             } else {
               // Bottom-right
-              x = randomRange(viewWidth - 300 + edgeMargin, viewWidth - w - edgeMargin);
-              y = randomRange(viewHeight - 250 + edgeMargin, viewHeight - h - edgeMargin);
+              x = randomRange(
+                viewWidth - 300 + edgeMargin,
+                viewWidth - w - edgeMargin
+              );
+              y = randomRange(
+                viewHeight - 250 + edgeMargin,
+                viewHeight - h - edgeMargin
+              );
             }
             break;
 
@@ -246,20 +263,44 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
             const quadrant = randomInt(0, 3);
             if (quadrant === 0) {
               // Top-left quadrant
-              x = randomRange(edgeMargin, viewCenterX - centerAvoidance/2 - edgeMargin);
-              y = randomRange(edgeMargin, viewCenterY - centerAvoidance/2 - edgeMargin);
+              x = randomRange(
+                edgeMargin,
+                viewCenterX - centerAvoidance / 2 - edgeMargin
+              );
+              y = randomRange(
+                edgeMargin,
+                viewCenterY - centerAvoidance / 2 - edgeMargin
+              );
             } else if (quadrant === 1) {
               // Top-right quadrant
-              x = randomRange(viewCenterX + centerAvoidance/2 + edgeMargin, viewWidth - w - edgeMargin);
-              y = randomRange(edgeMargin, viewCenterY - centerAvoidance/2 - edgeMargin);
+              x = randomRange(
+                viewCenterX + centerAvoidance / 2 + edgeMargin,
+                viewWidth - w - edgeMargin
+              );
+              y = randomRange(
+                edgeMargin,
+                viewCenterY - centerAvoidance / 2 - edgeMargin
+              );
             } else if (quadrant === 2) {
               // Bottom-left quadrant
-              x = randomRange(edgeMargin, viewCenterX - centerAvoidance/2 - edgeMargin);
-              y = randomRange(viewCenterY + centerAvoidance/2 + edgeMargin, viewHeight - h - edgeMargin);
+              x = randomRange(
+                edgeMargin,
+                viewCenterX - centerAvoidance / 2 - edgeMargin
+              );
+              y = randomRange(
+                viewCenterY + centerAvoidance / 2 + edgeMargin,
+                viewHeight - h - edgeMargin
+              );
             } else {
               // Bottom-right quadrant
-              x = randomRange(viewCenterX + centerAvoidance/2 + edgeMargin, viewWidth - w - edgeMargin);
-              y = randomRange(viewCenterY + centerAvoidance/2 + edgeMargin, viewHeight - h - edgeMargin);
+              x = randomRange(
+                viewCenterX + centerAvoidance / 2 + edgeMargin,
+                viewWidth - w - edgeMargin
+              );
+              y = randomRange(
+                viewCenterY + centerAvoidance / 2 + edgeMargin,
+                viewHeight - h - edgeMargin
+              );
             }
             break;
 
@@ -277,34 +318,48 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
               row = randomInt(0, gridRows - 1);
               // Skip center cells
             } while (
-              (col >= gridCols/2 - 1 && col <= gridCols/2) && 
-              (row >= gridRows/2 - 1 && row <= gridRows/2)
+              col >= gridCols / 2 - 1 &&
+              col <= gridCols / 2 &&
+              row >= gridRows / 2 - 1 &&
+              row <= gridRows / 2
             );
 
             // Get position within that cell with some jitter
-            x = col * cellWidth + randomRange(edgeMargin, cellWidth - w - edgeMargin);
-            y = row * cellHeight + randomRange(edgeMargin, cellHeight - h - edgeMargin);
+            x =
+              col * cellWidth +
+              randomRange(edgeMargin, cellWidth - w - edgeMargin);
+            y =
+              row * cellHeight +
+              randomRange(edgeMargin, cellHeight - h - edgeMargin);
             break;
 
           default:
             // Fallback to edges, avoiding center
             if (random() < 0.5) {
               // Left or right edge
-              x = random() < 0.5 
-                ? randomRange(edgeMargin, viewCenterX - centerAvoidance - w)
-                : randomRange(viewCenterX + centerAvoidance, viewWidth - w - edgeMargin);
+              x =
+                random() < 0.5
+                  ? randomRange(edgeMargin, viewCenterX - centerAvoidance - w)
+                  : randomRange(
+                      viewCenterX + centerAvoidance,
+                      viewWidth - w - edgeMargin
+                    );
               y = randomRange(edgeMargin, viewHeight - h - edgeMargin);
             } else {
               // Top or bottom edge
               x = randomRange(edgeMargin, viewWidth - w - edgeMargin);
-              y = random() < 0.5
-                ? randomRange(edgeMargin, viewCenterY - centerAvoidance - h)
-                : randomRange(viewCenterY + centerAvoidance, viewHeight - h - edgeMargin);
+              y =
+                random() < 0.5
+                  ? randomRange(edgeMargin, viewCenterY - centerAvoidance - h)
+                  : randomRange(
+                      viewCenterY + centerAvoidance,
+                      viewHeight - h - edgeMargin
+                    );
             }
         }
 
         const candidate = { x, y, w, h };
-        
+
         // Enhanced collision detection with minimum spacing
         if (!doesOverlap(candidate, placedBoxes, buffer)) {
           return candidate;
@@ -660,9 +715,7 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
       </div>
 
       {/* Content layer that must remain interactive */}
-      <div className="absolute inset-0 w-full h-full z-10">
-        {children}
-      </div>
+      <div className="absolute inset-0 w-full h-full z-10">{children}</div>
     </div>
   );
 };

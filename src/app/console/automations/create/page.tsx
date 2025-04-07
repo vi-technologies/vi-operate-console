@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react';
-import BackgroundComponent from '@/components/_common/layout/generated-bg';
+import BackgroundComponent from '@/components/_common/layout/generated-bg/generated-bg';
 
 // UI Components
 import { Button } from '@/components/_common/ui/button';
@@ -36,9 +36,12 @@ export default function AutomationCreatePage() {
     destination: 'REDUCE ATTRITION'
   });
   const [userPrompt, setUserPrompt] = useState('');
-  
+
   // Create a stable seed value for the background component that won't change on re-renders
-  const backgroundSeed = useMemo(() => Math.floor(Math.random() * 10000000), []);
+  const backgroundSeed = useMemo(
+    () => Math.floor(Math.random() * 10000000),
+    []
+  );
 
   const handlePromptSubmit = (e: React.FormEvent) => {
     e.preventDefault();
