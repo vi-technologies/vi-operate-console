@@ -2,8 +2,7 @@
 
 import { useReports } from '@/hooks/useReports';
 import { LineChart, Calendar } from 'lucide-react';
-import { ReportCard } from '@/components/cards/report-card';
-import { ScheduledReportCard } from '@/components/cards/scheduled-report-card';
+import { ReportCard, ScheduledReportCard } from '@/app/console/reports/cards';
 import { useRouter } from 'next/navigation';
 
 export function ReportsList() {
@@ -60,7 +59,7 @@ export function ScheduledReportsList() {
             icon={report.icon}
           />
         ))}
-        
+
         <ScheduledReportCard
           title="Schedule a New Report"
           description="Set up automated report delivery to your team"

@@ -1,4 +1,4 @@
-import BigButtonTabs from '@/components/tabs/big-button-tabs';
+import BigButtonTabs from '@/components/_common/ux/tabs/big-button-tabs';
 import { useReportTabs } from '@/hooks/useReports';
 
 export default function ReportTabs() {

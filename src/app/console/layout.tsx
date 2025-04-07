@@ -1,12 +1,16 @@
 import { Analytics } from '@vercel/analytics/react';
-import { DynamicBreadcrumb } from '@/common/navigation/dynamic-breadcrumb';
+import { DynamicBreadcrumb } from '@/components/_common/navigation/dynamic-breadcrumb';
 import { SearchInput } from './dashboards/search';
 import { User } from './dashboards/user';
 import { AppLauncher } from '@/components/_common/navigation/app-launcher';
 import dynamic from 'next/dynamic';
 import Providers from './dashboards/providers';
-const DesktopNav = dynamic(() => import('@/common/navigation/desktop-nav'));
-const MobileNav = dynamic(() => import('@/common/navigation/mobile-nav'));
+const DesktopNav = dynamic(
+  () => import('@/components/_common/navigation/desktop-nav')
+);
+const MobileNav = dynamic(
+  () => import('@/components/_common/navigation/mobile-nav')
+);
 
 export default function ConsoleLayout({
   children

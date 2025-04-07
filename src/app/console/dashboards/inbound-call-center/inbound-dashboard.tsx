@@ -23,8 +23,8 @@ import {
   BarChart,
   ScatterChart,
   CalendarHeatmap
-} from '@/components/charts';
-import { InsightAlert } from '@/components/dashboards/insight-alert';
+} from '@/components/_common/ux/charts';
+import { InsightAlert } from '@/app/console/dashboards/insight-alert';
 import { PageLayout } from '@/components/_common/layout/page-layout';
 import { DashboardData } from '@/lib/services/dashboard-service';
 import { inboundCallCenterMockData } from '@/lib/mock-data';
@@ -34,13 +34,17 @@ interface InboundDashboardProps {
 }
 
 export function InboundDashboard({ initialData }: InboundDashboardProps) {
-  const [dashboardData, setDashboardData] = useState<DashboardData | undefined>(initialData);
+  const [dashboardData, setDashboardData] = useState<DashboardData | undefined>(
+    initialData
+  );
   const [isLoading, setIsLoading] = useState(!initialData);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const { getDashboardData } = await import('@/lib/services/dashboard-service');
+        const { getDashboardData } = await import(
+          '@/lib/services/dashboard-service'
+        );
         const fetchedData = await getDashboardData('inbound-call-center');
         setDashboardData(fetchedData);
       } catch (error) {
@@ -60,14 +64,14 @@ export function InboundDashboard({ initialData }: InboundDashboardProps) {
   }
 
   const data = dashboardData || inboundCallCenterMockData;
-  
-  const { 
-    callVolumeData, 
-    staffingRequirements, 
-    quarterlyVolume, 
-    historicalCallData, 
-    weekDemand, 
-    calendarData 
+
+  const {
+    callVolumeData,
+    staffingRequirements,
+    quarterlyVolume,
+    historicalCallData,
+    weekDemand,
+    calendarData
   } = data;
 
   return (

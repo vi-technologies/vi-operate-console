@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import ConnectionOptions from './connection-options';
 import ExistingSources from './existing-sources';
-import { Page } from '@/common/layout';
+import { Page } from '@/components/_common/layout';
 import { actionButton } from './artifacts';
 
 export default function SourcesClientPage() {

@@ -55,7 +55,9 @@ export function DataTable<T>({
   }
 
   function nextPage() {
-    router.push(`${basePath}?offset=${currentOffset + itemsPerPage}`, { scroll: false });
+    router.push(`${basePath}?offset=${currentOffset + itemsPerPage}`, {
+      scroll: false
+    });
   }
 
   return (
@@ -71,7 +73,13 @@ export function DataTable<T>({
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
-                  className={column.hideOnMobile ? 'hidden md:table-cell' : column.hidden ? 'hidden' : undefined}
+                  className={
+                    column.hideOnMobile
+                      ? 'hidden md:table-cell'
+                      : column.hidden
+                        ? 'hidden'
+                        : undefined
+                  }
                 >
                   {column.label === 'sr-only' ? (
                     <span className="sr-only">{column.key}</span>
@@ -92,7 +100,11 @@ export function DataTable<T>({
           <div className="text-xs text-muted-foreground">
             Showing{' '}
             <strong>
-              {Math.max(0, Math.min(currentOffset - itemsPerPage, totalItems) + 1)}-{currentOffset}
+              {Math.max(
+                0,
+                Math.min(currentOffset - itemsPerPage, totalItems) + 1
+              )}
+              -{currentOffset}
             </strong>{' '}
             of <strong>{totalItems}</strong> items
           </div>

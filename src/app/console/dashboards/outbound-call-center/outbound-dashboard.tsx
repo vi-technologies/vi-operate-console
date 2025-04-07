@@ -15,8 +15,8 @@ import {
   Target
 } from 'lucide-react';
 import { Button } from '@/components/_common/ui/button';
-import { LineChart, BarChart } from '@/components/charts';
-import { MetricItem } from '@/components/dashboards/metrics-display';
+import { LineChart, BarChart } from '@/components/_common/ux/charts';
+import { MetricItem } from '@/app/console/dashboards/metrics-display';
 import { DashboardData } from '@/lib/services/dashboard-service';
 import { outboundCallCenterMockData } from '@/lib/mock-data';
 
@@ -25,13 +25,17 @@ interface OutboundDashboardProps {
 }
 
 export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
-  const [dashboardData, setDashboardData] = useState<DashboardData | undefined>(initialData);
+  const [dashboardData, setDashboardData] = useState<DashboardData | undefined>(
+    initialData
+  );
   const [isLoading, setIsLoading] = useState(!initialData);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const { getDashboardData } = await import('@/lib/services/dashboard-service');
+        const { getDashboardData } = await import(
+          '@/lib/services/dashboard-service'
+        );
         const fetchedData = await getDashboardData('outbound-call-center');
         setDashboardData(fetchedData);
       } catch (error) {
@@ -51,22 +55,31 @@ export function OutboundDashboard({ initialData }: OutboundDashboardProps) {
   }
 
   const data = dashboardData || outboundCallCenterMockData;
-  
+
   const { campaignPerformance, agentPerformance, metrics } = data;
-  
+
   const calculatePercentChange = (current: number, previous: number) => {
-    return ((current - previous) / previous * 100).toFixed(0);
+    return (((current - previous) / previous) * 100).toFixed(0);
   };
 
   const percentChange = {
     totalCalls: metrics?.previousMonth
-      ? calculatePercentChange(metrics.totalCalls, metrics.previousMonth.totalCalls)
+      ? calculatePercentChange(
+          metrics.totalCalls,
+          metrics.previousMonth.totalCalls
+        )
       : '12',
     appointments: metrics?.previousMonth
-      ? calculatePercentChange(metrics.appointments, metrics.previousMonth.appointments)
+      ? calculatePercentChange(
+          metrics.appointments,
+          metrics.previousMonth.appointments
+        )
       : '8',
     conversionRate: metrics?.previousMonth
-      ? calculatePercentChange(metrics.conversionRate, metrics.previousMonth.conversionRate)
+      ? calculatePercentChange(
+          metrics.conversionRate,
+          metrics.previousMonth.conversionRate
+        )
       : '-2',
     activeAgents: metrics?.previousMonth
       ? metrics.activeAgents - metrics.previousMonth.activeAgents

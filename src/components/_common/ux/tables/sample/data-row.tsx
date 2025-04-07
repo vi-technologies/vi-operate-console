@@ -25,11 +25,7 @@ interface DataRowProps<T> {
   }[];
 }
 
-export function DataRow<T>({
-  item,
-  columns,
-  actions
-}: DataRowProps<T>) {
+export function DataRow<T>({ item, columns, actions }: DataRowProps<T>) {
   return (
     <TableRow>
       {columns.map((column) => (
@@ -37,7 +33,9 @@ export function DataRow<T>({
           key={column.key}
           className={column.hideOnMobile ? 'hidden md:table-cell' : undefined}
         >
-          {column.renderCell ? column.renderCell(item) : String((item as any)[column.key] || '')}
+          {column.renderCell
+            ? column.renderCell(item)
+            : String((item as any)[column.key] || '')}
         </TableCell>
       ))}
 

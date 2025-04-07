@@ -1,5 +1,10 @@
 import { Tab } from '@/hooks/useAutomations';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger
+} from '@/components/_common/ui/tabs';
 
 type Props = {
   tabs: Tab[];
@@ -20,7 +25,12 @@ export default function BigButtonTabs({ tabs }: Props) {
             <div
               className={`h-24 w-24 rounded-full ${tab.iconBg} flex items-center justify-center`}
             >
-              <tab.icon className={`${tab.iconColor}`} width={40} height={40} style={{ width: '40px', height: '40px' }} />
+              <tab.icon
+                className={`${tab.iconColor}`}
+                width={40}
+                height={40}
+                style={{ width: '40px', height: '40px' }}
+              />
             </div>
             <span>{tab.name}</span>
           </TabsTrigger>

@@ -7,12 +7,7 @@ import BackgroundComponent from '@/components/_common/layout/generated-bg/genera
 // UI Components
 import { Button } from '@/components/_common/ui/button';
 import { Input } from '@/components/_common/ui/input';
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardTitle
-} from '@/components/_common/ui/card';
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/_common/ui/card';
 
 // Local Components
 import AutomationSheet from './sheet';

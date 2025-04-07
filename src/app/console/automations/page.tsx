@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Page } from '@/common/layout';
+import { Page } from '@/components/_common/layout';
 import { actionButton } from './artifacts';
 import AutomationTabs from './tabs';
 

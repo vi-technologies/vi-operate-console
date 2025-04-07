@@ -8,9 +8,9 @@ import {
   useEvents,
   useWorkflows
 } from '@/hooks';
-import { CardIcon } from '@/components/cards/card-icon';
+import { CardIcon } from '@/components/_common/ux/cards/card-icon';
 import { Cog, Flower, Calendar, Layers, Cpu, Link2, Grid } from 'lucide-react';
-import CardList, { mapCardIcon } from '@/components/lists/card-list';
+import CardList, { mapCardIcon } from '@/components/_common/ux/lists/card-list';
 import { useRouter } from 'next/navigation';
 
 export function WorkflowsList() {

@@ -6,7 +6,7 @@ import {
   CardTitle
 } from '@/components/_common/ui/card';
 
-export interface AutomationCardProps {
+interface CardIconProps {
   title: string;
   icon: React.ReactNode;
   children: React.ReactNode;
@@ -20,7 +20,7 @@ export function CardIcon({
   children: children,
   onClick,
   className
-}: AutomationCardProps) {
+}: CardIconProps) {
   const processedIcon = isValidElement(icon)
     ? cloneElement(icon as React.ReactElement<{ className?: string }>, {
         className:

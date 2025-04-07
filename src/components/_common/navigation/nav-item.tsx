@@ -37,7 +37,9 @@ export function NavItem({
           <span className="sr-only">{label}</span>
         </Link>
       </TooltipTrigger>
-      <TooltipContent side="right" className="font-poppins">{label}</TooltipContent>
+      <TooltipContent side="right" className="font-poppins">
+        {label}
+      </TooltipContent>
     </Tooltip>
   );
 }

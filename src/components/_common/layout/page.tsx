@@ -20,13 +20,9 @@ export function Page({
 }: StandardPageProps) {
   // Splash variant - meant to be used with BackgroundComponent
   if (variant === 'splash') {
-    return (
-      <div className="w-full h-full">
-        {children}
-      </div>
-    );
+    return <div className="w-full h-full">{children}</div>;
   }
-  
+
   // Full variant - removes padding and lets content use full width
   if (variant === 'full') {
     return (
@@ -34,8 +30,8 @@ export function Page({
         <div className="flex justify-between items-center p-4 border-b bg-background sticky top-0 z-10">
           <h1 className="text-3xl font-bold">{title}</h1>
           {actionButton && (
-            <Button 
-              variant={actionButton.variant || 'default'} 
+            <Button
+              variant={actionButton.variant || 'default'}
               onClick={actionButton.onClick}
               {...(actionButton.href ? { asChild: true } : {})}
             >
@@ -43,13 +39,11 @@ export function Page({
             </Button>
           )}
         </div>
-        <div className="w-full">
-          {children}
-        </div>
+        <div className="w-full">{children}</div>
       </div>
     );
   }
-  
+
   // Default and container variants - use the standard PageLayout
   return (
     <PageLayout title={title} actionButton={actionButton}>
