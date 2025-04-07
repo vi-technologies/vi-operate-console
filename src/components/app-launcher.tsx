@@ -121,35 +121,37 @@ export function AppLauncher() {
             </TabsList>
             <ScrollArea className="h-auto py-4 grid grid-cols-1 w-full overflow-x-visible overflow-visible banner">
               <div className="grid grid-cols-3 gap-2 pb-3">
-                    {filteredApps.map((app) => (
-                      <Tooltip key={app.name}>
-                        <TooltipTrigger asChild>
-                          <Link
-                            href={app.url}
-                            className={`flex flex-col items-center justify-center p-2 rounded transition-colors ${
-                              pathname === app.url ? 'app-selected' : 'text-muted-foreground hover:text-white'
-                            } ${app.category === 'coming-soon' ? 'cursor-not-allowed' : ''}`}
-                          >
-                            <div
-                              className={`flex h-10 w-10 items-center justify-center rounded-full ${platformColors[app.platform]} ${app.category === 'coming-soon' ? "opacity-70" : ""}`}
-                            >
-                              {app.icon}
-                            </div>
-                            <span className="mt-1 text-xs font-medium text-center">
-                              {app.name}
-                            </span>
-                            {app.category === 'coming-soon' && (
-                              <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
-                                Soon
-                              </span>
-                            )}
-                          </Link>
-                        </TooltipTrigger>
-                        <TooltipContent sideOffset={5}>
-                          {app.tooltip}
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
+                {filteredApps.map((app) => (
+                  <Tooltip key={app.name}>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={app.url}
+                        className={`flex flex-col items-center justify-center p-4 rounded transition-colors ${
+                          pathname === app.url
+                            ? 'app-selected'
+                            : 'text-muted-foreground hover:text-white'
+                        } ${app.category === 'coming-soon' ? 'cursor-not-allowed' : ''}`}
+                      >
+                        <div
+                          className={`flex h-10 w-10 items-center justify-center rounded-full ${platformColors[app.platform]} ${app.category === 'coming-soon' ? 'opacity-70' : ''}`}
+                        >
+                          {app.icon}
+                        </div>
+                        <span className="mt-1 text-xs font-medium text-center">
+                          {app.name}
+                        </span>
+                        {app.category === 'coming-soon' && (
+                          <span className="mt-1 text-[9px] px-1 py-0.5 bg-gray-800 text-gray-400 rounded-full">
+                            Soon
+                          </span>
+                        )}
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent sideOffset={5}>
+                      {app.tooltip}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
               </div>
             </ScrollArea>
           </Tabs>

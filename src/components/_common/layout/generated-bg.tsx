@@ -510,51 +510,51 @@ const BackgroundComponentBase: React.FC<BackgroundComponentProps> = ({
         case 'l-shape':
           return (
             <g key={shape.key}>
-              <path d={shape.frontFace} {...pathStyle} />
-              <path d={shape.topFace} {...pathStyle} />
-              <path d={shape.rightFace} {...pathStyle} />
-              <path d={shape.armFrontFace} {...pathStyle} />
-              <path d={shape.armTopFace} {...pathStyle} />
               <path d={shape.armRightFace} {...pathStyle} />
+              <path d={shape.armTopFace} {...pathStyle} />
+              <path d={shape.armFrontFace} {...pathStyle} />
+              <path d={shape.rightFace} {...pathStyle} />
+              <path d={shape.topFace} {...pathStyle} />
+              <path d={shape.frontFace} {...pathStyle} />
             </g>
           );
         case 'u-shape':
           return (
             <g key={shape.key}>
-              <path d={shape.leftFrontFace} {...pathStyle} />
-              <path d={shape.leftTopFace} {...pathStyle} />
-              <path d={shape.leftRightFace} {...pathStyle} />
-              <path d={shape.rightFrontFace} {...pathStyle} />
-              <path d={shape.rightTopFace} {...pathStyle} />
-              <path d={shape.rightRightFace} {...pathStyle} />
-              <path d={shape.bottomFrontFace} {...pathStyle} />
-              <path d={shape.bottomTopFace} {...pathStyle} />
               <path d={shape.bottomRightFace} {...pathStyle} />
+              <path d={shape.bottomTopFace} {...pathStyle} />
+              <path d={shape.bottomFrontFace} {...pathStyle} />
+              <path d={shape.rightRightFace} {...pathStyle} />
+              <path d={shape.rightTopFace} {...pathStyle} />
+              <path d={shape.rightFrontFace} {...pathStyle} />
+              <path d={shape.leftRightFace} {...pathStyle} />
+              <path d={shape.leftTopFace} {...pathStyle} />
+              <path d={shape.leftFrontFace} {...pathStyle} />
             </g>
           );
         case 'c-shape':
           return (
             <g key={shape.key}>
-              <path d={shape.topFrontFace} {...pathStyle} />
-              <path d={shape.topTopFace} {...pathStyle} />
-              <path d={shape.topRightFace} {...pathStyle} />
-              <path d={shape.leftFrontFace} {...pathStyle} />
-              <path d={shape.leftTopFace} {...pathStyle} />
-              <path d={shape.leftRightFace} {...pathStyle} />
-              <path d={shape.bottomFrontFace} {...pathStyle} />
-              <path d={shape.bottomTopFace} {...pathStyle} />
               <path d={shape.bottomRightFace} {...pathStyle} />
+              <path d={shape.bottomTopFace} {...pathStyle} />
+              <path d={shape.bottomFrontFace} {...pathStyle} />
+              <path d={shape.leftRightFace} {...pathStyle} />
+              <path d={shape.leftTopFace} {...pathStyle} />
+              <path d={shape.leftFrontFace} {...pathStyle} />
+              <path d={shape.topRightFace} {...pathStyle} />
+              <path d={shape.topTopFace} {...pathStyle} />
+              <path d={shape.topFrontFace} {...pathStyle} />
             </g>
           );
         case 't-shape':
           return (
             <g key={shape.key}>
-              <path d={shape.verticalFrontFace} {...pathStyle} />
-              <path d={shape.verticalTopFace} {...pathStyle} />
-              <path d={shape.verticalRightFace} {...pathStyle} />
-              <path d={shape.horizontalFrontFace} {...pathStyle} />
-              <path d={shape.horizontalTopFace} {...pathStyle} />
               <path d={shape.horizontalRightFace} {...pathStyle} />
+              <path d={shape.horizontalTopFace} {...pathStyle} />
+              <path d={shape.horizontalFrontFace} {...pathStyle} />
+              <path d={shape.verticalRightFace} {...pathStyle} />
+              <path d={shape.verticalTopFace} {...pathStyle} />
+              <path d={shape.verticalFrontFace} {...pathStyle} />
             </g>
           );
         case 'platform':
