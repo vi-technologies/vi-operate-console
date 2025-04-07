@@ -3,50 +3,35 @@
 import { sourcesConnectionsMockData, connectionOptionsMockData } from '@/lib/mock-data';
 import * as LucideIcons from 'lucide-react';
 import React from 'react';
+import { SourceConnection, ConnectionOption, IconData } from '@/lib/mock-data/types';
 
-export type SourceConnectionType = {
-  id: number;
-  name: string;
-  type: string;
-  status: 'healthy' | 'profiling' | 'error';
+export interface SourceConnectionWithReactNode extends Omit<SourceConnection, 'icon'> {
   icon: React.ReactNode;
-  iconBg: string;
-  datasets: number;
-  models: number;
-  lastRefresh: string;
-  refreshInterval: string;
-  schema: {
-    tables: number;
-    views: number;
-  };
-  health: {
-    status: string;
-    metrics: {
-      availability: string;
-      latency: string;
-      errors: string;
-    };
-  };
-};
+}
 
-export type ConnectionOptionType = {
-  name: string;
+export interface ConnectionOptionWithReactNode extends Omit<ConnectionOption, 'icon'> {
   icon: React.ReactNode;
-  iconBg: string;
-  hoverBorder: string;
-};
+}
 
-// Helper function to render icon data objects
-const renderIcon = (iconData: any): React.ReactNode => {
+/**
+ * Converts an IconData object to a React element
+ * 
+ * @param iconData - The icon data object to render
+ * @returns A React element representing the icon
+ */
+const renderIcon = (iconData: IconData): React.ReactNode => {
   if (!iconData) return null;
   
-  const IconComponent = (LucideIcons as any)[iconData.type];
+  const IconComponent = (LucideIcons as Record<string, React.ComponentType<any>>)[iconData.type];
   if (!IconComponent) return null;
   
   return React.createElement(IconComponent, iconData.props);
 };
 
-export function useSources() {
+export function useSources(): {
+  sources: SourceConnectionWithReactNode[];
+  connectionOptions: ConnectionOptionWithReactNode[];
+} {
   // Convert icon data objects to React elements
   const sources = sourcesConnectionsMockData.map(source => ({
     ...source,

@@ -1,13 +1,6 @@
 import { Database, Snowflake, CloudCog, Boxes, BarChart4, LayoutGrid, Layers } from 'lucide-react';
-import React from 'react';
-
-// Create a function to generate the icon data
-const createIconData = (Icon: any, color: string, size: 'sm' | 'md' = 'md') => ({
-  type: Icon.name,
-  props: {
-    className: `h-${size === 'sm' ? '4' : '5'} w-${size === 'sm' ? '4' : '5'} text-${color}`
-  }
-});
+import { createIconData } from './helpers';
+import { SourceConnection, ConnectionOption } from './types';
 
 export const sourcesConnectionsMockData = [
   {
