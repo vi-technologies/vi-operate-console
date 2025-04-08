@@ -24,10 +24,7 @@ export function InteractiveBackground({ className }: { className?: string }) {
   const [initialized, setInitialized] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [time, setTime] = useState(0);
-  const activeElementRef = useRef<number | null>(null);
-  const setActiveElement = (index: number | null) => {
-    activeElementRef.current = index;
-  };
+  const [activeElement, setActiveElement] = useState<number | null>(null);
 
   const interactiveElements = useMemo(() => {
     const random = seededRandom(654321);
@@ -152,7 +149,7 @@ export function InteractiveBackground({ className }: { className?: string }) {
       
       {/* Interactive elements */}
       {interactiveElements.map((elem, i) => {
-        const isActive = activeElementRef.current === i;
+        const isActive = activeElement === i;
         const elemStyle = computeElementStyle(elem, time, mousePosition, isActive);
         
         return (
@@ -161,12 +158,8 @@ export function InteractiveBackground({ className }: { className?: string }) {
               <div
                 className="absolute flex items-center justify-center text-white font-medium"
                 style={elemStyle}
-                onMouseEnter={() => {
-                  requestAnimationFrame(() => setActiveElement(i));
-                }}
-                onMouseLeave={() => {
-                  requestAnimationFrame(() => setActiveElement(null));
-                }}
+                onMouseEnter={() => setActiveElement(i)}
+                onMouseLeave={() => setActiveElement(null)}
               >
                 <div className="relative z-10 p-4 text-center">
                   <span className="opacity-70">{elem.content}</span>
