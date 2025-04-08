@@ -35,6 +35,8 @@ export default function DashboardsPage() {
         setDashboardData(data);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
+        // Set default data even if there's an error to prevent infinite loading
+        setDashboardData({ dashboards: [], recentReports: [] });
       }
     };
 
@@ -42,6 +44,13 @@ export default function DashboardsPage() {
   }, []);
 
   if (!dashboardData) {
+    // Add a fallback timeout to prevent infinite loading
+    setTimeout(() => {
+      if (!dashboardData) {
+        setDashboardData({ dashboards: [], recentReports: [] });
+      }
+    }, 5000);
+    
     return <Page title="Dashboards">Loading dashboards...</Page>;
   }
 
