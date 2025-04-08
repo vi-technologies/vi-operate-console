@@ -17,6 +17,9 @@ import {
 } from 'lucide-react';
 import { AnimatedBackground } from '@/components/_common/layout/animated-background';
 import { InteractiveBackground } from '@/components/_common/ux/interactive-background/interactive-background';
+import { BarChart } from '@/components/_common/ux/charts/bar-chart';
+import { LineChart } from '@/components/_common/ux/charts/line-chart';
+import { CalendarHeatmap } from '@/components/_common/ux/charts/calendar-heatmap';
 import { useRef, useCallback } from 'react';
 import {
   Card,
@@ -183,117 +186,134 @@ export default function ConsolePage() {
         {/* Interactive background elements with hover cards */}
         <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pb-8">
           {/* System Status */}
-          <HoverCard openDelay={0} closeDelay={200}>
-            <HoverCardTrigger asChild>
-              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors">
-                <div className="flex items-center text-white mb-2">
-                  <Activity className="w-5 h-5 mr-2 text-primary" />
-                  <h3 className="font-medium">System Status</h3>
-                </div>
-                <p className="text-sm text-white/70">All systems operational</p>
+          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm overflow-hidden">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center text-white">
+                <Activity className="w-5 h-5 mr-2 text-primary" />
+                System Status
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="h-40 w-full">
+                <BarChart 
+                  data={systemStatus.map(s => ({ 
+                    name: s.name, 
+                    latency: parseInt(s.latency), 
+                    threshold: 100 
+                  }))} 
+                  bars={[
+                    { dataKey: 'latency', fill: '#8b5cf6', name: 'Current Latency (ms)' },
+                    { dataKey: 'threshold', fill: '#4c1d95', name: 'Threshold' }
+                  ]} 
+                  height={140} 
+                  xAxisDataKey="name"
+                />
               </div>
-            </HoverCardTrigger>
-            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center text-sm font-medium text-white">
-                  <Activity className="w-4 h-4 mr-2 text-primary" />
-                  System Status
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {systemStatus.map((system, index) => (
-                    <div key={index} className="flex items-center justify-between">
-                      <span className="text-sm text-white">{system.name}</span>
-                      <div className="flex items-center">
-                        <Badge
-                          variant="outline"
-                          className="mr-2 bg-green-500/10 text-green-400 border-green-500/30"
-                        >
-                          {system.status}
-                        </Badge>
-                        <span className="text-xs text-white/70">
-                          {system.latency}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </HoverCardContent>
-          </HoverCard>
-
-          {/* Recent Activity */}
-          <HoverCard openDelay={0} closeDelay={200}>
-            <HoverCardTrigger asChild>
-              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors">
-                <div className="flex items-center text-white mb-2">
-                  <Clock className="w-5 h-5 mr-2 text-primary" />
-                  <h3 className="font-medium">Recent Activity</h3>
-                </div>
-                <p className="text-sm text-white/70">4 recent activities</p>
-              </div>
-            </HoverCardTrigger>
-            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center text-sm font-medium text-white">
-                  <Clock className="w-4 h-4 mr-2 text-primary" />
-                  Recent Activity
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {recentActivities.map((activity, index) => (
-                    <div key={index} className="flex flex-col">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-white">
-                          {activity.action}
-                        </span>
-                        <span className="text-xs text-white/50">
-                          {activity.time}
-                        </span>
-                      </div>
+              <div className="space-y-1 p-4 pt-2">
+                {systemStatus.map((system, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <span className="text-sm text-white">{system.name}</span>
+                    <div className="flex items-center">
+                      <Badge
+                        variant="outline"
+                        className="mr-2 bg-green-500/10 text-green-400 border-green-500/30"
+                      >
+                        {system.status}
+                      </Badge>
                       <span className="text-xs text-white/70">
-                        {activity.resource}
+                        {system.latency}
                       </span>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </HoverCardContent>
-          </HoverCard>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Recent Activity */}
+          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm overflow-hidden">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center text-white">
+                <Clock className="w-5 h-5 mr-2 text-primary" />
+                Recent Activity
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="h-40 w-full">
+                <LineChart 
+                  data={[
+                    { name: '3h ago', events: 1 },
+                    { name: '2h ago', events: 0 },
+                    { name: '1h ago', events: 1 },
+                    { name: '30m ago', events: 0 },
+                    { name: '15m ago', events: 1 },
+                    { name: 'Now', events: 1 }
+                  ]} 
+                  lines={[
+                    { dataKey: 'events', stroke: '#8b5cf6', name: 'Events' }
+                  ]} 
+                  height={140} 
+                  xAxisDataKey="name"
+                  showGrid={false}
+                />
+              </div>
+              <div className="space-y-2 p-4 pt-2">
+                {recentActivities.map((activity, index) => (
+                  <div key={index} className="flex flex-col">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-white">
+                        {activity.action}
+                      </span>
+                      <span className="text-xs text-white/50">
+                        {activity.time}
+                      </span>
+                    </div>
+                    <span className="text-xs text-white/70">
+                      {activity.resource}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Alerts & Notifications */}
-          <HoverCard openDelay={0} closeDelay={200}>
-            <HoverCardTrigger asChild>
-              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors">
-                <div className="flex items-center text-white mb-2">
-                  <AlertCircle className="w-5 h-5 mr-2 text-primary" />
-                  <h3 className="font-medium">Alerts</h3>
-                </div>
-                <p className="text-sm text-white/70">No active alerts</p>
+          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm overflow-hidden">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center text-white">
+                <AlertCircle className="w-5 h-5 mr-2 text-primary" />
+                Alerts & Activity
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="h-40 w-full">
+                <CalendarHeatmap 
+                  data={Array.from({ length: 60 }).map((_, i) => {
+                    const date = new Date();
+                    date.setDate(date.getDate() - i);
+                    // Generate some random alert data - mostly zeros with occasional values
+                    const value = Math.random() > 0.8 ? Math.floor(Math.random() * 3) + 1 : 0;
+                    return {
+                      date: date.toISOString().split('T')[0],
+                      value
+                    };
+                  })} 
+                  height={140} 
+                  width="100%"
+                  colorScale={['#f3f4f6', '#c4b5fd', '#a78bfa', '#8b5cf6']}
+                />
               </div>
-            </HoverCardTrigger>
-            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center text-sm font-medium text-white">
-                  <AlertCircle className="w-4 h-4 mr-2 text-primary" />
-                  Alerts & Notifications
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col items-center justify-center py-4 text-center">
-                  <div className="p-3 mb-2 rounded-full bg-gray-800/60">
-                    <AlertCircle className="w-6 h-6 text-white/70" />
-                  </div>
-                  <p className="text-sm text-white">No active alerts</p>
-                  <p className="text-xs text-white/50">
-                    All systems operating normally
-                  </p>
+              <div className="flex flex-col items-center justify-center py-3 text-center">
+                <div className="p-2 mb-1 rounded-full bg-gray-800/60">
+                  <AlertCircle className="w-5 h-5 text-white/70" />
                 </div>
-              </CardContent>
-            </HoverCardContent>
-          </HoverCard>
+                <p className="text-sm text-white">No active alerts</p>
+                <p className="text-xs text-white/50">
+                  All systems operating normally
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
