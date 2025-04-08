@@ -99,8 +99,6 @@ const dashboardSummaryMockData: DashboardSummaryResponse = {
 export async function getDashboardSummary(): Promise<DashboardSummaryResponse> {
   try {
     // In a real application, this would fetch from a database
-    console.log('Fetching dashboard summary data');
-    console.log('Data to return:', JSON.stringify(dashboardSummaryMockData));
     return dashboardSummaryMockData;
   } catch (error) {
     console.error('Error fetching dashboard summary:', error);

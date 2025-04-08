@@ -29,28 +29,40 @@ export default function DashboardsPage() {
   const [dashboardData, setDashboardData] = useState<any>(null);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const fetchData = async () => {
       try {
         const data = await getDashboardSummary();
-        setDashboardData(data);
+        if (isMounted) {
+          setDashboardData(data);
+        }
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
-        // Set default data even if there's an error to prevent infinite loading
-        setDashboardData({ dashboards: [], recentReports: [] });
+        if (isMounted) {
+          // Set default data even if there's an error to prevent infinite loading
+          setDashboardData({ dashboards: [], recentReports: [] });
+        }
       }
     };
 
     fetchData();
+    
+    // Set a fallback timeout to prevent infinite loading
+    const timeoutId = setTimeout(() => {
+      if (isMounted && !dashboardData) {
+        setDashboardData({ dashboards: [], recentReports: [] });
+      }
+    }, 3000);
+    
+    // Cleanup function to prevent memory leaks and state updates on unmounted components
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   if (!dashboardData) {
-    // Add a fallback timeout to prevent infinite loading
-    setTimeout(() => {
-      if (!dashboardData) {
-        setDashboardData({ dashboards: [], recentReports: [] });
-      }
-    }, 5000);
-    
     return <Page title="Dashboards">Loading dashboards...</Page>;
   }
 
