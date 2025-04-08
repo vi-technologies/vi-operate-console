@@ -12,7 +12,7 @@ import { NavItem } from './nav-item';
 
 export default function DesktopNav() {
   return (
-    <aside className="fixed inset-y-0 left-0 z-10 hidden w-24 flex-col border-r bg-background sm:flex nav">
+    <aside className="fixed inset-y-0 left-0 z-10 hidden w-24 flex-col bg-background sm:flex nav">
       <nav className="flex flex-col items-center gap-8 px-2 sm:py-5">
         <Link
           href="/"
