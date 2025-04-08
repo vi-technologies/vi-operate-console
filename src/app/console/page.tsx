@@ -1,120 +1,166 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/_common/ui/button';
 import { 
+  Search, 
   BarChart3, 
   Database, 
   Layers, 
   Zap, 
-  ArrowRight,
   FileText,
-  Code
+  Code,
+  Command,
+  AlertCircle,
+  Clock,
+  Activity
 } from 'lucide-react';
 import { AnimatedBackground } from '@/components/_common/layout/animated-background';
-import { Card, CardContent } from '@/components/_common/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/_common/ui/card';
+import { Input } from '@/components/_common/ui/input';
+import { Badge } from '@/components/_common/ui/badge';
 
 export default function ConsolePage() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [commandInput, setCommandInput] = useState('');
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  const platformFeatures = [
-    {
-      title: 'Data Sources',
-      description: 'Connect and manage your data sources in one place',
-      icon: <Database className="h-6 w-6" />,
-      href: '/console/sources',
-      color: 'from-blue-500 to-cyan-400'
-    },
-    {
-      title: 'Archetypes',
-      description: 'Define data models and relationships',
-      icon: <Layers className="h-6 w-6" />,
-      href: '/console/archetypes',
-      color: 'from-purple-500 to-violet-400'
-    },
-    {
-      title: 'Dashboards',
-      description: 'Visualize insights with AI-powered dashboards',
-      icon: <BarChart3 className="h-6 w-6" />,
-      href: '/console/dashboards',
-      color: 'from-orange-500 to-amber-400'
-    },
-    {
-      title: 'Automations',
-      description: 'Create intelligent workflows and processes',
-      icon: <Zap className="h-6 w-6" />,
-      href: '/console/automations',
-      color: 'from-green-500 to-emerald-400'
-    },
-    {
-      title: 'Reports',
-      description: 'Generate and schedule detailed reports',
-      icon: <FileText className="h-6 w-6" />,
-      href: '/console/reports',
-      color: 'from-red-500 to-pink-400'
-    },
-    {
-      title: 'API Access',
-      description: 'Integrate with our platform programmatically',
-      icon: <Code className="h-6 w-6" />,
-      href: '/console/api',
-      color: 'from-yellow-500 to-amber-400'
-    }
+  // Mock data for real-time metrics
+  const systemStatus = [
+    { name: 'API Gateway', status: 'operational', latency: '24ms' },
+    { name: 'Data Pipeline', status: 'operational', latency: '46ms' },
+    { name: 'ML Services', status: 'operational', latency: '112ms' },
+    { name: 'Storage', status: 'operational', latency: '18ms' }
+  ];
+
+  const recentActivities = [
+    { action: 'Data sync completed', resource: 'MySQL Connector', time: '2 minutes ago' },
+    { action: 'Report generated', resource: 'Q1 Performance', time: '15 minutes ago' },
+    { action: 'Automation triggered', resource: 'Daily ETL Process', time: '1 hour ago' },
+    { action: 'New model trained', resource: 'Customer Churn Predictor', time: '3 hours ago' }
+  ];
+
+  const quickCommands = [
+    { command: 'sync data', description: 'Trigger a data synchronization' },
+    { command: 'generate report', description: 'Create a new report' },
+    { command: 'system status', description: 'Check system health' },
+    { command: 'help', description: 'Show available commands' }
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-black overflow-x-hidden overflow-y-auto">
+    <div className="relative w-full h-[calc(100vh-4rem)]">
       <AnimatedBackground />
       
-      <div className={`relative z-20 flex flex-col items-center justify-center min-h-screen px-4 py-12 transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="text-center mb-12 pt-16">
-          <div className="flex justify-center mb-6">
+      <div className={`relative z-20 flex flex-col items-center w-full h-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        {/* Central command input */}
+        <div className="flex flex-col items-center justify-center flex-grow w-full max-w-3xl px-4">
+          <div className="w-24 h-24 mb-6 opacity-80">
             <img 
               src="/assets/images/Logo.svg" 
               alt="Logo" 
-              className="w-24 h-24 animate-float"
+              className="w-full h-full"
             />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-title">
-            Vi Operate Console
-          </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto animate-fade-in">
-            Transform your data into actionable insights with our intelligent platform
-          </p>
+          
+          <div className="relative w-full mb-8">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Command className="w-5 h-5 text-gray-400" />
+            </div>
+            <Input
+              type="text"
+              placeholder="Type a command or search..."
+              className="w-full py-6 pl-10 pr-4 text-lg bg-black/40 border-gray-700 focus:border-primary focus:ring-primary"
+              value={commandInput}
+              onChange={(e) => setCommandInput(e.target.value)}
+            />
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+              <kbd className="px-2 py-1 text-xs font-semibold text-gray-400 bg-gray-800 rounded">⌘K</kbd>
+            </div>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            {quickCommands.map((cmd, index) => (
+              <button 
+                key={index}
+                onClick={() => setCommandInput(cmd.command)}
+                className="px-3 py-1 text-sm text-gray-300 bg-gray-800/60 rounded-full hover:bg-gray-700/80 transition-colors"
+              >
+                {cmd.command}
+              </button>
+            ))}
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full mb-12 animate-fade-in-up">
-          {platformFeatures.map((feature, index) => (
-            <Link href={feature.href} key={index}>
-              <Card className="h-full bg-black/40 border border-gray-800 backdrop-blur-sm hover:bg-black/60 transition-all duration-300 group overflow-hidden">
-                <CardContent className="p-6">
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    {feature.icon}
+        
+        {/* Real-time metrics and status cards */}
+        <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pb-8">
+          {/* System Status */}
+          <Card className="bg-black/40 border-gray-800 backdrop-blur-sm">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center text-sm font-medium text-gray-400">
+                <Activity className="w-4 h-4 mr-2" />
+                System Status
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {systemStatus.map((system, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <span className="text-sm text-gray-300">{system.name}</span>
+                    <div className="flex items-center">
+                      <Badge variant="outline" className="mr-2 bg-green-500/10 text-green-400 border-green-500/30">
+                        {system.status}
+                      </Badge>
+                      <span className="text-xs text-gray-400">{system.latency}</span>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.description}</p>
-                  <div className="mt-4 text-sm text-primary flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span>Explore</span>
-                    <ArrowRight className="ml-1 h-4 w-4" />
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* Recent Activity */}
+          <Card className="bg-black/40 border-gray-800 backdrop-blur-sm">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center text-sm font-medium text-gray-400">
+                <Clock className="w-4 h-4 mr-2" />
+                Recent Activity
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {recentActivities.map((activity, index) => (
+                  <div key={index} className="flex flex-col">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-300">{activity.action}</span>
+                      <span className="text-xs text-gray-500">{activity.time}</span>
+                    </div>
+                    <span className="text-xs text-gray-400">{activity.resource}</span>
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
-
-        <div className="animate-fade-in">
-          <Link href="/console/dashboards">
-            <Button className="px-8 py-6 text-lg bg-primary hover:bg-primary/90 text-white">
-              View Dashboards
-              <BarChart3 className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* Quick Access */}
+          <Card className="bg-black/40 border-gray-800 backdrop-blur-sm">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center text-sm font-medium text-gray-400">
+                <AlertCircle className="w-4 h-4 mr-2" />
+                Alerts & Notifications
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col items-center justify-center h-full py-6 text-center">
+                <div className="p-3 mb-2 rounded-full bg-gray-800/60">
+                  <AlertCircle className="w-6 h-6 text-gray-400" />
+                </div>
+                <p className="text-sm text-gray-300">No active alerts</p>
+                <p className="text-xs text-gray-500">All systems operating normally</p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

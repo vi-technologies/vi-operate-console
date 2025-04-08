@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useState, useRef } from 'react';
 import { seededRandom } from '@/lib/utils/random';
+import { cn } from '@/lib/utils';
 
-export function AnimatedBackground() {
+export function AnimatedBackground({ className }: { className?: string }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [initialized, setInitialized] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -153,7 +154,7 @@ export function AnimatedBackground() {
   return (
     <div
       ref={containerRef}
-      className={`absolute inset-0 overflow-hidden ${!initialized ? 'opacity-0' : 'opacity-100'}`}
+      className={cn(`absolute inset-0 overflow-hidden ${!initialized ? 'opacity-0' : 'opacity-100'}`, className)}
       style={{ transition: 'opacity 0.5s ease-in' }}
     >
       {backgroundElements.map((elem, i) => {
