@@ -1,3 +1,5 @@
+'use client';
+
 import { Analytics } from '@vercel/analytics/react';
 import { DynamicBreadcrumb } from '@/components/_common/navigation/dynamic-breadcrumb';
 import { SearchInput } from './dashboards/search';
