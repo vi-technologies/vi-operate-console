@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { signOut } from '@/lib/auth';
 
 // Placeholder for future data actions
 export async function fetchDashboardData() {
@@ -18,4 +19,8 @@ export async function runAutomation(formData: FormData) {
   // Implementation will trigger automations
   const workflowId = formData.get('workflowId');
   revalidatePath('/automations');
+}
+
+export async function signOutAction() {
+  await signOut();
 }
