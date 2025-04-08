@@ -50,7 +50,7 @@ export default function ConsolePage() {
   ];
 
   return (
-    <div className="relative w-full h-[calc(100vh-4rem)]">
+    <div className="relative w-full h-[calc(100vh-4rem)] bg-sidebar">
       <AnimatedBackground />
       
       <div className={`relative z-20 flex flex-col items-center w-full h-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -71,7 +71,7 @@ export default function ConsolePage() {
             <Input
               type="text"
               placeholder="Type a command or search..."
-              className="w-full py-6 pl-10 pr-4 text-lg bg-black/40 border-gray-700 focus:border-primary focus:ring-primary"
+              className="w-full py-6 pl-10 pr-4 text-lg bg-sidebar-accent/10 border-gray-700 focus:border-primary focus:ring-primary"
               value={commandInput}
               onChange={(e) => setCommandInput(e.target.value)}
             />
@@ -96,7 +96,7 @@ export default function ConsolePage() {
         {/* Real-time metrics and status cards */}
         <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pb-8">
           {/* System Status */}
-          <Card className="bg-black/40 border-gray-800 backdrop-blur-sm">
+          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center text-sm font-medium text-gray-400">
                 <Activity className="w-4 h-4 mr-2" />
@@ -121,7 +121,7 @@ export default function ConsolePage() {
           </Card>
           
           {/* Recent Activity */}
-          <Card className="bg-black/40 border-gray-800 backdrop-blur-sm">
+          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center text-sm font-medium text-gray-400">
                 <Clock className="w-4 h-4 mr-2" />
@@ -144,7 +144,7 @@ export default function ConsolePage() {
           </Card>
           
           {/* Quick Access */}
-          <Card className="bg-black/40 border-gray-800 backdrop-blur-sm">
+          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center text-sm font-medium text-gray-400">
                 <AlertCircle className="w-4 h-4 mr-2" />
