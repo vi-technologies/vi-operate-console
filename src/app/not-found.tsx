@@ -280,7 +280,7 @@ export default function NotFound() {
           className="absolute"
           style={{
             left: `${48 + Math.sin(time * 0.7) * 5}%`,
-            top: `${15 + Math.cos(time * 0.5) * 3}%`,
+            top: `${25 + Math.cos(time * 0.5) * 3}%`,
             transform: `translate(-50%, -50%) 
                        translate3d(0, 0, ${40 + Math.sin(time) * 20}px) 
                        rotateY(${Math.sin(time * 0.3) * 10}deg)

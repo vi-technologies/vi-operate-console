@@ -68,11 +68,11 @@ export default function ConsolePage() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-black overflow-hidden">
+    <div className="relative min-h-screen w-full bg-black overflow-x-hidden overflow-y-auto">
       <AnimatedBackground />
       
       <div className={`relative z-20 flex flex-col items-center justify-center min-h-screen px-4 py-12 transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="text-center mb-12 mt-[-80px]">
+        <div className="text-center mb-12 pt-16">
           <div className="flex justify-center mb-6">
             <img 
               src="/assets/images/Logo.svg" 
@@ -88,7 +88,7 @@ export default function ConsolePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full mb-12 animate-fade-in-up">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full mb-12 animate-fade-in-up">
           {platformFeatures.map((feature, index) => (
             <Link href={feature.href} key={index}>
               <Card className="h-full bg-black/40 border border-gray-800 backdrop-blur-sm hover:bg-black/60 transition-all duration-300 group overflow-hidden">

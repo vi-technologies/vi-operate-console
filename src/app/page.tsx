@@ -54,11 +54,11 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-black overflow-hidden">
+    <div className="relative min-h-screen w-full bg-black overflow-x-hidden overflow-y-auto">
       <AnimatedBackground />
       
       <div className={`relative z-20 flex flex-col items-center justify-center min-h-screen px-4 py-12 transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="text-center mb-12 mt-[-80px]">
+        <div className="text-center mb-12 pt-16">
           <div className="flex justify-center mb-6">
             <img 
               src="/assets/images/Logo.svg" 
@@ -74,16 +74,16 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-16 animate-fade-in">
+        <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in">
           {impactMetrics.map((metric, index) => (
-            <div key={index} className="bg-black/30 backdrop-blur-sm border border-gray-800 rounded-lg p-4 text-center w-[180px]">
+            <div key={index} className="bg-black/30 backdrop-blur-sm border border-gray-800 rounded-lg p-3 text-center w-[160px] md:w-[180px]">
               <div className="text-3xl font-bold text-primary mb-1">{metric.value}</div>
               <div className="text-sm text-gray-400">{metric.label}</div>
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-12 animate-fade-in-up">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full mb-12 animate-fade-in-up">
           {viProducts.map((product, index) => (
             <Link href={product.href} key={index}>
               <Card className="h-full bg-black/40 border border-gray-800 backdrop-blur-sm hover:bg-black/60 transition-all duration-300 group overflow-hidden">
