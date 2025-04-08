@@ -183,18 +183,21 @@ export default function ConsolePage() {
           </div>
         </div>
 
-        {/* Interactive background elements with hover cards */}
+        {/* Interactive cards with hover effects */}
         <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pb-8">
           {/* System Status */}
-          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm overflow-hidden">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center text-white">
-                <Activity className="w-5 h-5 mr-2 text-primary" />
-                System Status
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-              <div className="h-40 w-full">
+          <HoverCard openDelay={0} closeDelay={200}>
+            <HoverCardTrigger asChild>
+              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors shadow-lg hover:shadow-purple-500/20">
+                <div className="flex items-center text-white mb-2">
+                  <Activity className="w-5 h-5 mr-2 text-primary" />
+                  <h3 className="font-medium">System Status</h3>
+                </div>
+                <p className="text-sm text-white/70">All systems operational</p>
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-96 p-0 overflow-hidden">
+              <div className="h-48 w-full">
                 <BarChart 
                   data={systemStatus.map(s => ({ 
                     name: s.name, 
@@ -205,11 +208,11 @@ export default function ConsolePage() {
                     { dataKey: 'latency', fill: '#8b5cf6', name: 'Current Latency (ms)' },
                     { dataKey: 'threshold', fill: '#4c1d95', name: 'Threshold' }
                   ]} 
-                  height={140} 
+                  height={180} 
                   xAxisDataKey="name"
                 />
               </div>
-              <div className="space-y-1 p-4 pt-2">
+              <div className="space-y-1 p-4">
                 {systemStatus.map((system, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <span className="text-sm text-white">{system.name}</span>
@@ -227,37 +230,39 @@ export default function ConsolePage() {
                   </div>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </HoverCardContent>
+          </HoverCard>
 
           {/* Recent Activity */}
-          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm overflow-hidden">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center text-white">
-                <Clock className="w-5 h-5 mr-2 text-primary" />
-                Recent Activity
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-              <div className="h-40 w-full">
+          <HoverCard openDelay={0} closeDelay={200}>
+            <HoverCardTrigger asChild>
+              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors shadow-lg hover:shadow-purple-500/20">
+                <div className="flex items-center text-white mb-2">
+                  <Clock className="w-5 h-5 mr-2 text-primary" />
+                  <h3 className="font-medium">Recent Activity</h3>
+                </div>
+                <p className="text-sm text-white/70">4 recent activities</p>
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-96 p-0 overflow-hidden">
+              <div className="h-48 w-full">
                 <LineChart 
                   data={[
-                    { name: '3h ago', events: 1 },
-                    { name: '2h ago', events: 0 },
-                    { name: '1h ago', events: 1 },
-                    { name: '30m ago', events: 0 },
-                    { name: '15m ago', events: 1 },
+                    { name: '3h', events: 1 },
+                    { name: '2h', events: 0 },
+                    { name: '1h', events: 1 },
+                    { name: '30m', events: 0 },
                     { name: 'Now', events: 1 }
                   ]} 
                   lines={[
                     { dataKey: 'events', stroke: '#8b5cf6', name: 'Events' }
                   ]} 
-                  height={140} 
+                  height={180} 
                   xAxisDataKey="name"
                   showGrid={false}
                 />
               </div>
-              <div className="space-y-2 p-4 pt-2">
+              <div className="space-y-2 p-4">
                 {recentActivities.map((activity, index) => (
                   <div key={index} className="flex flex-col">
                     <div className="flex items-center justify-between">
@@ -274,19 +279,22 @@ export default function ConsolePage() {
                   </div>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </HoverCardContent>
+          </HoverCard>
 
           {/* Alerts & Notifications */}
-          <Card className="bg-sidebar-accent/10 border-gray-800 backdrop-blur-sm overflow-hidden">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center text-white">
-                <AlertCircle className="w-5 h-5 mr-2 text-primary" />
-                Alerts & Activity
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-              <div className="h-40 w-full">
+          <HoverCard openDelay={0} closeDelay={200}>
+            <HoverCardTrigger asChild>
+              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors shadow-lg hover:shadow-purple-500/20">
+                <div className="flex items-center text-white mb-2">
+                  <AlertCircle className="w-5 h-5 mr-2 text-primary" />
+                  <h3 className="font-medium">Alerts & Activity</h3>
+                </div>
+                <p className="text-sm text-white/70">No active alerts</p>
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-96 p-0 overflow-hidden">
+              <div className="h-48 w-full">
                 <CalendarHeatmap 
                   data={Array.from({ length: 60 }).map((_, i) => {
                     const date = new Date();
@@ -298,13 +306,13 @@ export default function ConsolePage() {
                       value
                     };
                   })} 
-                  height={140} 
+                  height={180} 
                   width="100%"
                   colorScale={['#f3f4f6', '#c4b5fd', '#a78bfa', '#8b5cf6']}
                 />
               </div>
-              <div className="flex flex-col items-center justify-center py-3 text-center">
-                <div className="p-2 mb-1 rounded-full bg-gray-800/60">
+              <div className="flex flex-col items-center justify-center py-4 text-center">
+                <div className="p-2 mb-2 rounded-full bg-gray-800/60">
                   <AlertCircle className="w-5 h-5 text-white/70" />
                 </div>
                 <p className="text-sm text-white">No active alerts</p>
@@ -312,8 +320,8 @@ export default function ConsolePage() {
                   All systems operating normally
                 </p>
               </div>
-            </CardContent>
-          </Card>
+            </HoverCardContent>
+          </HoverCard>
         </div>
       </div>
     </div>
