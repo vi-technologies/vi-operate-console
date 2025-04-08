@@ -12,7 +12,8 @@ import {
   Command,
   AlertCircle,
   Clock,
-  Activity
+  Activity,
+  Info
 } from 'lucide-react';
 import { AnimatedBackground } from '@/components/_common/layout/animated-background';
 import {
@@ -23,6 +24,11 @@ import {
 } from '@/components/_common/ui/card';
 import { Input } from '@/components/_common/ui/input';
 import { Badge } from '@/components/_common/ui/badge';
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent
+} from '@/components/_common/ui/hover-card';
 
 export default function ConsolePage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -107,13 +113,25 @@ export default function ConsolePage() {
 
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {quickCommands.map((cmd, index) => (
-              <button
-                key={index}
-                onClick={() => setCommandInput(cmd.command)}
-                className="px-3 py-1 text-sm text-gray-300 bg-gray-800/60 rounded-full hover:bg-gray-700/80 transition-colors"
-              >
-                {cmd.command}
-              </button>
+              <HoverCard key={index}>
+                <HoverCardTrigger asChild>
+                  <button
+                    onClick={() => setCommandInput(cmd.command)}
+                    className="px-3 py-1 text-sm text-gray-300 bg-gray-800/60 rounded-full hover:bg-gray-700/80 transition-colors"
+                  >
+                    {cmd.command}
+                  </button>
+                </HoverCardTrigger>
+                <HoverCardContent className="bg-gray-900/95 border-gray-700 text-gray-200">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center">
+                      <Info className="w-4 h-4 mr-2 text-primary" />
+                      <span className="font-medium">{cmd.command}</span>
+                    </div>
+                    <p className="text-sm text-gray-400">{cmd.description}</p>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
             ))}
           </div>
         </div>
@@ -131,23 +149,49 @@ export default function ConsolePage() {
             <CardContent>
               <div className="space-y-2">
                 {systemStatus.map((system, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between"
-                  >
-                    <span className="text-sm text-gray-300">{system.name}</span>
-                    <div className="flex items-center">
-                      <Badge
-                        variant="outline"
-                        className="mr-2 bg-green-500/10 text-green-400 border-green-500/30"
+                  <HoverCard key={index}>
+                    <HoverCardTrigger asChild>
+                      <div
+                        className="flex items-center justify-between cursor-pointer hover:bg-gray-800/30 p-1 rounded transition-colors"
                       >
-                        {system.status}
-                      </Badge>
-                      <span className="text-xs text-gray-400">
-                        {system.latency}
-                      </span>
-                    </div>
-                  </div>
+                        <span className="text-sm text-gray-300">{system.name}</span>
+                        <div className="flex items-center">
+                          <Badge
+                            variant="outline"
+                            className="mr-2 bg-green-500/10 text-green-400 border-green-500/30"
+                          >
+                            {system.status}
+                          </Badge>
+                          <span className="text-xs text-gray-400">
+                            {system.latency}
+                          </span>
+                        </div>
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="bg-gray-900/95 border-gray-700 text-gray-200">
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">{system.name}</span>
+                          <Badge
+                            variant="outline"
+                            className="bg-green-500/10 text-green-400 border-green-500/30"
+                          >
+                            {system.status}
+                          </Badge>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-xs text-gray-400">
+                          <div>
+                            <p className="text-gray-500">Current Latency</p>
+                            <p className="text-gray-300">{system.latency}</p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500">Uptime</p>
+                            <p className="text-gray-300">99.9%</p>
+                          </div>
+                        </div>
+                      </div>
+                    </HoverCardContent>
+                  </HoverCard>
                 ))}
               </div>
             </CardContent>
@@ -164,19 +208,36 @@ export default function ConsolePage() {
             <CardContent>
               <div className="space-y-2">
                 {recentActivities.map((activity, index) => (
-                  <div key={index} className="flex flex-col">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-300">
-                        {activity.action}
-                      </span>
-                      <span className="text-xs text-gray-500">
-                        {activity.time}
-                      </span>
-                    </div>
-                    <span className="text-xs text-gray-400">
-                      {activity.resource}
-                    </span>
-                  </div>
+                  <HoverCard key={index}>
+                    <HoverCardTrigger asChild>
+                      <div className="flex flex-col cursor-pointer hover:bg-gray-800/30 p-1 rounded transition-colors">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-300">
+                            {activity.action}
+                          </span>
+                          <span className="text-xs text-gray-500">
+                            {activity.time}
+                          </span>
+                        </div>
+                        <span className="text-xs text-gray-400">
+                          {activity.resource}
+                        </span>
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="bg-gray-900/95 border-gray-700 text-gray-200">
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center">
+                          <Activity className="w-4 h-4 mr-2 text-primary" />
+                          <span className="font-medium">{activity.action}</span>
+                        </div>
+                        <p className="text-sm text-gray-300">{activity.resource}</p>
+                        <div className="flex items-center mt-1">
+                          <Clock className="w-3 h-3 mr-1 text-gray-500" />
+                          <span className="text-xs text-gray-500">{activity.time}</span>
+                        </div>
+                      </div>
+                    </HoverCardContent>
+                  </HoverCard>
                 ))}
               </div>
             </CardContent>
