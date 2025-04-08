@@ -32,16 +32,16 @@ export default {
   },
   async redirects() {
     return [
-      {
-        source: "/",
-        destination: "/console/dashboards",
-        permanent: true,
-      },
-      {
-        source: "/console",
-        destination: "/console/dashboards",
-        permanent: true,
-      },
+      // {
+      //   source: "/",
+      //   destination: "/console/dashboards",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/console",
+      //   destination: "/console/dashboards",
+      //   permanent: true,
+      // },
     ];
   },
 };
