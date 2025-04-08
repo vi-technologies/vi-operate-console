@@ -16,6 +16,7 @@ import {
   Info
 } from 'lucide-react';
 import { AnimatedBackground } from '@/components/_common/layout/animated-background';
+import { InteractiveBackground } from '@/components/_common/ux/interactive-background/interactive-background';
 import { useRef, useCallback } from 'react';
 import {
   Card,
@@ -104,6 +105,7 @@ export default function ConsolePage() {
   return (
     <div className="relative w-full h-[100vh] bg-sidebar">
       <AnimatedBackground />
+      <InteractiveBackground className="z-10" />
 
       <div
         className={`relative z-20 flex flex-col items-center w-full h-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
