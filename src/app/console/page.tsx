@@ -183,16 +183,15 @@ export default function ConsolePage() {
           {/* System Status */}
           <HoverCard openDelay={0} closeDelay={200}>
             <HoverCardTrigger asChild>
-              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="flex items-center text-white mb-2 relative z-10">
+              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors">
+                <div className="flex items-center text-white mb-2">
                   <Activity className="w-5 h-5 mr-2 text-primary" />
                   <h3 className="font-medium">System Status</h3>
                 </div>
-                <p className="text-sm text-white/70 relative z-10">All systems operational</p>
+                <p className="text-sm text-white/70">All systems operational</p>
               </div>
             </HoverCardTrigger>
-            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80 backdrop-blur-md">
+            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center text-sm font-medium text-white">
                   <Activity className="w-4 h-4 mr-2 text-primary" />
@@ -225,16 +224,15 @@ export default function ConsolePage() {
           {/* Recent Activity */}
           <HoverCard openDelay={0} closeDelay={200}>
             <HoverCardTrigger asChild>
-              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="flex items-center text-white mb-2 relative z-10">
+              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors">
+                <div className="flex items-center text-white mb-2">
                   <Clock className="w-5 h-5 mr-2 text-primary" />
                   <h3 className="font-medium">Recent Activity</h3>
                 </div>
-                <p className="text-sm text-white/70 relative z-10">4 recent activities</p>
+                <p className="text-sm text-white/70">4 recent activities</p>
               </div>
             </HoverCardTrigger>
-            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80 backdrop-blur-md">
+            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center text-sm font-medium text-white">
                   <Clock className="w-4 h-4 mr-2 text-primary" />
@@ -266,16 +264,15 @@ export default function ConsolePage() {
           {/* Alerts & Notifications */}
           <HoverCard openDelay={0} closeDelay={200}>
             <HoverCardTrigger asChild>
-              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="flex items-center text-white mb-2 relative z-10">
+              <div className="bg-sidebar-accent/10 border border-gray-800 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-sidebar-accent/20 transition-colors">
+                <div className="flex items-center text-white mb-2">
                   <AlertCircle className="w-5 h-5 mr-2 text-primary" />
                   <h3 className="font-medium">Alerts</h3>
                 </div>
-                <p className="text-sm text-white/70 relative z-10">No active alerts</p>
+                <p className="text-sm text-white/70">No active alerts</p>
               </div>
             </HoverCardTrigger>
-            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80 backdrop-blur-md">
+            <HoverCardContent className="bg-gray-900/95 border-gray-700 text-white w-80">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center text-sm font-medium text-white">
                   <AlertCircle className="w-4 h-4 mr-2 text-primary" />
