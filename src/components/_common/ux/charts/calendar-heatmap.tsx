@@ -1,16 +1,7 @@
 'use client';
 
 import React from 'react';
-
-interface CalendarHeatmapProps {
-  data: {
-    date: string;
-    value: number;
-  }[];
-  colorScale?: string[];
-  height?: number;
-  width?: number | string;
-}
+import { CalendarHeatmapProps, CalendarDataPoint } from '@/types/charts';
 
 export function CalendarHeatmap({
   data,

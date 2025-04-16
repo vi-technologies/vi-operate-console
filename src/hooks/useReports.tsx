@@ -1,38 +1,24 @@
 import { ReportsList, ScheduledReportsList } from '@/app/console/reports/lists';
 import { reportsMockData, scheduledReportsMockData, reportTabsMockData } from '@/lib/mock-data';
-import { Tab } from './useAutomations';
+import { AutomationTab } from '@/types/automation';
+import { ReportViewModel, ScheduledReportCardProps, ReportTab } from '@/types/report';
+import { IconData } from '@/types/common';
 import * as LucideIcons from 'lucide-react';
 import React from 'react';
 
-export type Report = {
-  title: string;
-  description: string;
-  badges?: string[];
-  lastUpdated?: string;
-  icon?: React.ReactNode;
-};
-
-export type ScheduledReport = {
-  title: string;
-  description: string;
-  nextDelivery: string;
-  frequency: string;
-  icon?: React.ReactNode;
-};
-
 // Helper function to render icon data objects
-const renderIcon = (iconData: any): React.ReactNode => {
+const renderIcon = (iconData: IconData): React.ReactNode => {
   if (!iconData) return null;
   
-  const IconComponent = (LucideIcons as any)[iconData.type];
+  const IconComponent = (LucideIcons as Record<string, React.ComponentType<any>>)[iconData.type];
   if (!IconComponent) return null;
   
   return React.createElement(IconComponent, iconData.props);
 };
 
 export function useReports(): {
-  reports: Report[];
-  scheduledReports: ScheduledReport[];
+  reports: ReportViewModel[];
+  scheduledReports: ScheduledReportCardProps[];
 } {
   // Convert icon data objects to React elements
   const reports = reportsMockData.map(report => ({
@@ -51,7 +37,9 @@ export function useReports(): {
   };
 }
 
-export function useReportTabs(): { tabs: Tab[] } {
+type TabWithComponent = ReportTab & { children: React.ReactNode };
+
+export function useReportTabs(): { tabs: TabWithComponent[] } {
   const tabComponents = {
     reports: <ReportsList />,
     scheduled: <ScheduledReportsList />

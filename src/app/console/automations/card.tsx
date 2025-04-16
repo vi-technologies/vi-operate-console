@@ -2,15 +2,7 @@
 
 import React from 'react';
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/_common/ui/card';
-
-export interface AutomationCardProps {
-  title: string;
-  description: string;
-  icon?: React.ReactNode;
-  additionalInfo?: string;
-  onClick?: () => void;
-  className?: string;
-}
+import { AutomationCardProps } from '@/types/automation';
 
 export function AutomationCard({
   title,

@@ -26,8 +26,13 @@ import {
 } from '@/components/_common/ux/charts';
 import { InsightAlert } from '@/app/console/dashboards/insight-alert';
 import { PageLayout } from '@/components/_common/layout/page-layout';
-import { DashboardData } from '@/lib/services/dashboard-service';
+import { DashboardData } from '@/types/dashboard';
 import { inboundCallCenterMockData } from '@/lib/mock-data';
+import { 
+  CallVolumeDataPoint, 
+  StaffingRequirement, 
+  QuarterlyVolumeData 
+} from '@/types/charts';
 
 interface InboundDashboardProps {
   initialData?: DashboardData;

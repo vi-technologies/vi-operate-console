@@ -1,91 +1,36 @@
 import { ReactNode } from 'react';
-
-/**
- * Icon data structure that can be serialized in TypeScript files
- * and converted to React elements in TSX files
- */
-export interface IconData {
-  type: string;
-  props: {
-    className: string;
-    [key: string]: any;
-  };
-}
+import { IconData } from '@/types/common';
+import {
+  CallVolumeDataPoint,
+  StaffingRequirement,
+  QuarterlyVolumeData,
+  HistoricalCallDataSeries,
+  WeekDemandDataPoint,
+  CalendarDataPoint,
+  CampaignPerformanceDataPoint,
+  AgentPerformanceDataPoint
+} from '@/types/charts';
+import { DashboardData } from '@/types/dashboard';
+import { SourceViewModel, ConnectionOption } from '@/types/source';
+import { ReportViewModel, ScheduledReportCardProps, ReportTab } from '@/types/report';
+import { AutomationTab } from '@/types/automation';
 
 /**
  * Dashboard data types
  */
-export interface CallVolumeDataPoint {
-  name: string;
-  General: number;
-  Appointment: number;
-  Technical: number;
-  Billing: number;
-}
-
-export interface StaffingRequirement {
-  name: string;
-  Current: number;
-  Projected: number;
-}
-
-export interface QuarterlyVolumeData {
-  name: string;
-  General: number;
-  Appointment: number;
-  Technical: number;
-  Billing: number;
-}
-
-export interface HistoricalCallDataPoint {
-  x: number;
-  y: number;
-}
-
-export interface HistoricalCallDataSeries {
-  name: string;
-  color: string;
-  points: HistoricalCallDataPoint[];
-}
-
 export interface HistoricalCallData {
   weekday: HistoricalCallDataSeries;
   saturday: HistoricalCallDataSeries;
   holiday: HistoricalCallDataSeries;
 }
 
-export interface WeekDemandDataPoint {
-  name: string;
-  'Call Volume': number;
-  'Service Level': number;
-}
-
-export interface CalendarDataPoint {
-  date: string;
-  value: number;
-}
-
-export interface InboundCallCenterData {
+export interface InboundCallCenterData extends DashboardData {
   callVolumeData: CallVolumeDataPoint[];
   staffingRequirements: StaffingRequirement[];
   quarterlyVolume: QuarterlyVolumeData[];
   historicalCallData: HistoricalCallData;
   weekDemand: WeekDemandDataPoint[];
   calendarData: CalendarDataPoint[];
-}
-
-export interface CampaignPerformanceDataPoint {
-  name: string;
-  Appointments: number;
-  Callbacks: number;
-  Conversions: number;
-}
-
-export interface AgentPerformanceDataPoint {
-  name: string;
-  Calls: number;
-  Conversions: number;
-  Rate: number;
 }
 
 export interface OutboundMetrics {
@@ -101,7 +46,7 @@ export interface OutboundMetrics {
   };
 }
 
-export interface OutboundCallCenterData {
+export interface OutboundCallCenterData extends DashboardData {
   campaignPerformance: CampaignPerformanceDataPoint[];
   agentPerformance: AgentPerformanceDataPoint[];
   metrics: OutboundMetrics;

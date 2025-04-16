@@ -3,9 +3,9 @@
 import { Analytics } from '@vercel/analytics/react';
 import { DynamicBreadcrumb } from '@/components/_common/navigation/dynamic-breadcrumb';
 import { SearchInput } from './dashboards/search';
-import { User } from './dashboards/user';
 import { AppLauncher } from '@/components/_common/navigation/app-launcher';
 import dynamic from 'next/dynamic';
+const User = dynamic(() => import('./dashboards/user').then(mod => mod.ClientUser));
 import Providers from './dashboards/providers';
 import { usePathname } from 'next/navigation';
 const DesktopNav = dynamic(

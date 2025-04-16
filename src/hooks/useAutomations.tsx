@@ -7,19 +7,13 @@ import {
   WorkflowsList
 } from '@/app/console/automations/lists';
 import { automationTabsMockData } from '@/lib/mock-data';
+import { AutomationTab } from '@/types/automation';
+import React from 'react';
 
-export type Tab = {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  iconBg: string;
-  iconColor: string;
-  hover: string;
-  value: string;
-  name: string;
-  children?: React.ReactNode;
-};
+type TabWithComponent = AutomationTab & { children: React.ReactNode };
 
 export function useAutomationTabs(): {
-  tabs: Tab[];
+  tabs: TabWithComponent[];
 } {
   const tabComponents = {
     workflows: <WorkflowsList />,

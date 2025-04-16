@@ -4,20 +4,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/_common/ui/card';
 import { Badge } from '@/components/_common/ui/badge';
 import { Check, Clock, ChevronRight, ChevronDown } from 'lucide-react';
-
-export interface SourceConnectionCardProps {
-  id: number;
-  name: string;
-  type: string;
-  status: 'healthy' | 'profiling' | 'error';
-  icon: React.ReactNode;
-  iconBg: string;
-  datasets: number;
-  models: number;
-  expandedId: number | null;
-  onToggleExpand: (id: number) => void;
-  children?: React.ReactNode; // For expanded content
-}
+import { SourceConnectionCardProps } from '@/types/source';
 
 export function SourceConnectionCard({
   id,

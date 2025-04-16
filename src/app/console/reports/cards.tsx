@@ -12,15 +12,7 @@ import { Clock } from 'lucide-react';
 import { Badge } from '@/components/_common/ui/badge';
 import { Button } from '@/components/_common/ui/button';
 import { Download } from 'lucide-react';
-
-export interface ScheduledReportCardProps {
-  title: string;
-  description: string;
-  icon?: React.ReactNode;
-  nextDelivery: string;
-  frequency: string;
-  className?: string;
-}
+import { ReportCardProps, ScheduledReportCardProps } from '@/types/report';
 
 export function ScheduledReportCard({
   title,
@@ -48,17 +40,6 @@ export function ScheduledReportCard({
       </CardContent>
     </Card>
   );
-}
-
-export interface ReportCardProps {
-  title: string;
-  description: string;
-  icon?: React.ReactNode;
-  badges?: string[];
-  lastUpdated?: string;
-  onViewReport?: () => void;
-  onExport?: () => void;
-  className?: string;
 }
 
 export function ReportCard({

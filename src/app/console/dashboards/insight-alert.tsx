@@ -4,25 +4,13 @@ import React from 'react';
 import { Card, CardHeader, CardContent, CardFooter, CardTitle } from '@/components/_common/ui/card';
 import { Badge } from '@/components/_common/ui/badge';
 import { Button } from '@/components/_common/ui/button';
-
-export interface InsightAlertProps {
-  title: string;
-  message: string;
-  icon?: React.ReactNode;
-  severity?: 'info' | 'warning' | 'critical';
-  badgeText?: string;
-  primaryActionLabel?: string;
-  secondaryActionLabel?: string;
-  onPrimaryAction?: () => void;
-  onSecondaryAction?: () => void;
-}
+import { InsightAlertProps } from '@/types/charts';
 
 export function InsightAlert({
   title,
   message,
   icon,
   severity = 'warning',
-  badgeText = 'Insight Alert',
   primaryActionLabel,
   secondaryActionLabel,
   onPrimaryAction,
@@ -47,7 +35,7 @@ export function InsightAlert({
       primaryButton: 'bg-amber-600 hover:bg-amber-700 text-white',
       secondaryButton: 'border-amber-500 text-amber-700 hover:bg-amber-100 dark:text-amber-400 dark:hover:bg-amber-950/50'
     },
-    critical: {
+    error: {
       border: 'border-red-500',
       bg: 'bg-red-50 dark:bg-red-950/10',
       title: 'text-red-800 dark:text-red-400',
@@ -55,10 +43,20 @@ export function InsightAlert({
       badge: 'border-red-500 text-red-700 dark:text-red-400',
       primaryButton: 'bg-red-600 hover:bg-red-700 text-white',
       secondaryButton: 'border-red-500 text-red-700 hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-950/50'
+    },
+    success: {
+      border: 'border-green-500',
+      bg: 'bg-green-50 dark:bg-green-950/10',
+      title: 'text-green-800 dark:text-green-400',
+      text: 'text-green-700 dark:text-green-300',
+      badge: 'border-green-500 text-green-700 dark:text-green-400',
+      primaryButton: 'bg-green-600 hover:bg-green-700 text-white',
+      secondaryButton: 'border-green-500 text-green-700 hover:bg-green-100 dark:text-green-400 dark:hover:bg-green-950/50'
     }
   };
 
-  const colors = colorMap[severity];
+  const colors = colorMap[severity] || colorMap.warning;
+  const badgeText = severity.charAt(0).toUpperCase() + severity.slice(1);
 
   return (
     <Card className={`${colors.border} ${colors.bg}`}>

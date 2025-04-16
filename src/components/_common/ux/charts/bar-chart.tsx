@@ -11,25 +11,7 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-
-interface DataPoint {
-  name: string;
-  [key: string]: string | number;
-}
-
-interface BarChartProps {
-  data: DataPoint[];
-  bars: {
-    dataKey: string;
-    fill: string;
-    name?: string;
-  }[];
-  xAxisDataKey?: string;
-  height?: number;
-  stackId?: string;
-  showGrid?: boolean;
-  showLegend?: boolean;
-}
+import { BarChartProps, DataPoint } from '@/types/charts';
 
 export function BarChart({
   data,

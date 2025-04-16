@@ -11,24 +11,7 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-
-interface DataPoint {
-  name: string;
-  [key: string]: string | number;
-}
-
-interface LineChartProps {
-  data: DataPoint[];
-  lines: {
-    dataKey: string;
-    stroke: string;
-    name?: string;
-  }[];
-  xAxisDataKey?: string;
-  height?: number;
-  showGrid?: boolean;
-  showLegend?: boolean;
-}
+import { LineChartProps, DataPoint } from '@/types/charts';
 
 export function LineChart({
   data,

@@ -1,10 +1,10 @@
 @import url('https://fonts.cdnfonts.com/css/helvetica-neue-55');
 
 @import 'tailwindcss';
-
 @plugin 'tailwindcss-animate';
 
 @import './base.css';
 @import './theme.css';
 @import './components.css';
 @import './utilities.css';
+@import './animations.css';

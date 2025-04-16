@@ -16,7 +16,7 @@ import {
   Info
 } from 'lucide-react';
 import { AnimatedBackground } from '@/components/_common/layout/animated-background';
-import { InteractiveBackground } from '@/components/_common/ux/interactive-background/interactive-background';
+import { InteractiveBackground } from '@/components/_common/layout/interactive-background/interactive-background';
 import { BarChart } from '@/components/_common/ux/charts/bar-chart';
 import { LineChart } from '@/components/_common/ux/charts/line-chart';
 import { CalendarHeatmap } from '@/components/_common/ux/charts/calendar-heatmap';

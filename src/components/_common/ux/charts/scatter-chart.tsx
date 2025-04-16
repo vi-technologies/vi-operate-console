@@ -12,26 +12,7 @@ import {
   ResponsiveContainer,
   Line
 } from 'recharts';
-
-interface DataPoint {
-  x: number;
-  y: number;
-  name?: string;
-}
-
-interface ScatterChartProps {
-  data: {
-    name: string;
-    color: string;
-    points: DataPoint[];
-  }[];
-  height?: number;
-  showTrendLine?: boolean;
-  showGrid?: boolean;
-  showLegend?: boolean;
-  xAxisName?: string;
-  yAxisName?: string;
-}
+import { ScatterChartProps, ScatterDataPoint, ScatterSeries } from '@/types/charts';
 
 export function ScatterChart({
   data,

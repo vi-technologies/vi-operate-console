@@ -1,45 +1,12 @@
 import { db } from '@/lib/db';
 import { inboundCallCenterMockData } from '@/lib/mock-data/inbound-call-center';
 import { outboundCallCenterMockData } from '@/lib/mock-data/outbound-call-center';
-
-export interface DashboardData {
-  callVolumeData?: any[];
-  staffingRequirements?: any[];
-  quarterlyVolume?: any[];
-  historicalCallData?: any;
-  weekDemand?: any[];
-  calendarData?: any[];
-  campaignPerformance?: any[];
-  agentPerformance?: any[];
-  metrics?: any;
-}
-
-export interface DashboardSummary {
-  id: string;
-  title: string;
-  description: string;
-  metrics: Array<{ label: string; value: string | number }>;
-  status: string;
-  badges: string[];
-  trend?: {
-    direction: 'up' | 'down' | 'neutral';
-    value: string;
-    text: string;
-  };
-  lastUpdated?: string;
-}
-
-export interface RecentReport {
-  id: string;
-  title: string;
-  description: string;
-  lastUpdated: string;
-}
-
-export interface DashboardSummaryResponse {
-  dashboards: DashboardSummary[];
-  recentReports: RecentReport[];
-}
+import { 
+  DashboardData, 
+  DashboardSummary, 
+  RecentReport, 
+  DashboardSummaryResponse 
+} from '@/types/dashboard';
 
 const dashboardSummaryMockData: DashboardSummaryResponse = {
   dashboards: [

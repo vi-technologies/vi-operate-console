@@ -4,26 +4,7 @@ import React from 'react';
 import { Card } from '@/components/_common/ui/card';
 import { Button } from '@/components/_common/ui/button';
 import { Database, Clock, ChevronDown, ChevronRight } from 'lucide-react';
-
-export interface ArchetypeDetailsProps {
-  dataTypes: string[];
-  dependencies: string[];
-  frequency: string;
-}
-
-export interface ArchetypeCardProps {
-  id: number;
-  name: string;
-  description: string;
-  status: string;
-  statusColor: string;
-  tablesCount: number;
-  lastUpdated: string;
-  icon: React.ReactNode;
-  details: ArchetypeDetailsProps;
-  expandedId: number | null;
-  onToggleExpandAction: (id: number) => void;
-}
+import { ArchetypeCardProps } from '@/types/archetype';
 
 export function ArchetypeCard({
   id,
